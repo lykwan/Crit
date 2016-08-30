@@ -68,6 +68,6 @@ is_admin             | boolean   | not null
 column name          | data type | details
 ---------------------|-----------|-----------------------
 id                   | integer   | not null, primary key
-requestor_id         | integer   | not null, foreign key (references users), indexed
-requestee_id         | integer   | not null, foreign key (references users), indexed
+requestor_user_id    | integer   | not null, foreign key (references users), indexed
+requestee_user_id    | integer   | not null, foreign key (references users), indexed
 is_accepted          | boolean   | not null, default: false
