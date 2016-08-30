@@ -19,7 +19,7 @@ List of features in the app:
 - [ ] Production README
 
 Features:
-0. Events
+1. Events
   - Create event (host)
   - Edit event (host)
   - View event
@@ -29,26 +29,26 @@ Features:
       - Based on who's going
     - Choosing time block
   - Destroy event
-0. Groups
+2. Groups
   - Creating groups
   - Viewing groups
   - Adding/deleting members
   - Making admin
-0. Friends
+3. Friends
   - Creating friendship
   - Rejecting friendship
   - Viewing mutual friends
   - Accepting friendship
-0. Profiles
+4. Profiles
   - Viewing friends
   - Viewing public groups
   - Viewing mutual friends
   - Add friend button
-0. BONUS: Notifications
+5. BONUS: Notifications
   - Friends request notifications
   - Events notifications
-0. BONUS: Search for friends
-0. BONUS: Public groups
+6. BONUS: Search for friends
+7. BONUS: Public groups
   - Joining a group
   - Searching group
 
@@ -69,7 +69,7 @@ Features:
 
 ## Implementation Timeline
 
-### Phase 1: Backend setup and Front End User Authentication (2 days)
+### Phase 1: Backend setup and Front End User Authentication (2 day)
 
 **Objective:** Functioning rails project with front-end Authentication
 
@@ -86,19 +86,10 @@ Features:
 - [ ] Allow user to upload image - figure out how uploading images work
 - [ ] Seed users
 - [ ] Review phase 1
+- [ ] User profile component
+- [ ] Style user profile component
 
-### Phase 2: Friends (2 days)
-
-**Objective:** Creating Friends, and user Profiles can be viewed - with their friends
-
-- [ ] `Friend` model and `Friendship` join table
-- [ ] Fetching friendships
-- [ ] Creating friendships
-- [ ] Accepting friendships
-- [ ] Seed user data for friends
-- [ ] Friend search bar
-
-### Phase 3: Groups Model, API, and components (2 days)
+### Phase 2: Groups Model, API, and components (2 days)
 
 **Objective:** Groups can be created, read, edited and destroyed through
 the API.
@@ -115,7 +106,7 @@ the API.
 - Style group components
 - [ ] Seed groups
 
-### Phase 4: Events Model, API, and components (3 days)
+### Phase 3: Events Model, API, and components (2 days)
 
 **Objective:** Events can be created, read, edited and destroyed through
 the API.
@@ -132,6 +123,18 @@ the API.
 - Allow users to accept
 - Style events components
 - [ ] Seed events
+
+### Phase 4: Friends (2 days)
+
+**Objective:** Creating Friends, and user Profiles can be viewed - with their friends
+
+
+- [ ] `Friend` model and `Friendship` join table
+- [ ] Fetching friendships
+- [ ] Creating friendships
+- [ ] Accepting friendships
+- [ ] Seed user data for friends
+- [ ] Friend search bar
 
 ### Phase 6: - Styling (1 day)
 
