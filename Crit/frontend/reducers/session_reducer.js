@@ -1,5 +1,5 @@
-import { SessionConstants } from '../actions/session_actions';
 import { merge } from 'lodash';
+import { SessionConstants } from '../actions/session_actions';
 
 const defaultState = {
   currentUser: null,

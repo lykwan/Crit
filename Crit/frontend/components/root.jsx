@@ -1,10 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import AuthFormContainer from './auth_form/auth_form_container';
+import AppRouter from './app_router';
 
 const Root = ({ store }) => (
   <Provider store={ store }>
-    <AuthFormContainer />
+    <AppRouter />
   </Provider>
 );
 

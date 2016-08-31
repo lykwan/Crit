@@ -7,8 +7,14 @@ import SessionMiddleware from './middleware/session_middleware';
 import { SessionActions } from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
+  let preloadedState = {};
+  if (window.currentUser) {
+    preloadedState = { session: { currentUser: window.currentUser,
+                                  errors: [] }};
+  }
+
+  const store = configureStore(preloadedState);
   const rootEl = document.getElementById('root');
-  const store = configureStore();
   ReactDOM.render(<Root store={ store } />, rootEl);
 
   window.store = store;
