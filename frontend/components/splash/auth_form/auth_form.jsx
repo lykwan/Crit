@@ -50,11 +50,10 @@ class AuthForm extends React.Component {
     let signupInput;
     if (this.state.selectedTab === 'SIGNUP') {
       signupInput = (
-        <label>name
           <input type='text'
                  value={ this.state.user.name }
+                 placeholder="Name"
                  onChange={ this.handleInputChange.bind(this, 'name') } />
-        </label>
       );
     }
 
@@ -64,27 +63,28 @@ class AuthForm extends React.Component {
 
     return (
       <div className='auth-form'>
-        { signupInput }
-        { errors }
+
+        <ul className='auth-form-errors'>
+          { errors }
+        </ul>
 
         <AuthHeader selectedTab={ this.state.selectedTab }
-                    tabs={this.tabs}
+                    tabs={ this.tabs }
                     onTabChosen={this.changeTab.bind(this)} />
 
-        <label>Username
-          <input type='text'
-                 value={ this.state.user.username }
-                 onChange={ this.handleInputChange.bind(this, 'username') }/>
-        </label>
+        { signupInput }
+        <input type='text'
+               placeholder='Username'
+               value={ this.state.user.username }
+               onChange={ this.handleInputChange.bind(this, 'username') }/>
 
-        <label>Password
-          <input type='text'
-                 value={ this.state.user.password }
-                 onChange={ this.handleInputChange.bind(this, 'password') }/>
-        </label>
+        <input type='password'
+               placeholder='Password'
+               value={ this.state.user.password }
+               onChange={ this.handleInputChange.bind(this, 'password') }/>
 
         <button onClick={this.handleClick.bind(this)}>
-          Login
+          { this.state.selectedTab }
         </button>
       </div>
     );

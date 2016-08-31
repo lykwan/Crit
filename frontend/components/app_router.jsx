@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import App from './app';
-import AuthFormContainer from './auth_form/auth_form_container';
+import Splash from './splash/splash';
 import EventsContainer from './events/events_container';
 
 class AppRouter extends React.Component {
@@ -27,7 +27,7 @@ class AppRouter extends React.Component {
     return (
       <Router history={ hashHistory }>
         <Route path='/' component={ App }>
-          <IndexRoute component={ AuthFormContainer }
+          <IndexRoute component={ Splash }
                       onEnter={ this._redirectIfLoggedIn.bind(this) }/>
           <Route path='events' component={ EventsContainer }
                                onEnter={ this._ensureLoggedIn.bind(this) }/>
