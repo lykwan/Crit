@@ -5,6 +5,15 @@ import App from './app';
 import Splash from './splash/splash';
 import EventsContainer from './events/events_container';
 
+const EVENTS = 'Events';
+const GROUPS = 'Groups';
+const PROFILE = 'Profile';
+const NAV_TABS = {
+  [EVENTS]: '/events',
+  [GROUPS]: '/groups',
+  [PROFILE]: '/profile'
+};
+
 class AppRouter extends React.Component {
   isLoggedIn() {
     const currentState = this.context.store.getState();
@@ -28,9 +37,13 @@ class AppRouter extends React.Component {
       <Router history={ hashHistory }>
         <Route path='/' component={ App }>
           <IndexRoute component={ Splash }
-                      onEnter={ this._redirectIfLoggedIn.bind(this) }/>
+                      onEnter={ this._redirectIfLoggedIn.bind(this) } />
           <Route path='events' component={ EventsContainer }
-                               onEnter={ this._ensureLoggedIn.bind(this) }/>
+                               onEnter={ this._ensureLoggedIn.bind(this) } />
+          <Route path='groups' component={ EventsContainer }
+                               onEnter={ this._ensureLoggedIn.bind(this) } />
+          <Route path='profile' component={ EventsContainer }
+                               onEnter={ this._ensureLoggedIn.bind(this) } />
         </Route>
       </Router>
     );

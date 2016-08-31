@@ -1,10 +1,10 @@
-export const SessionConstants = {
+export const SessionConstants = Object.freeze({
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
   SIGNUP: 'SIGNUP',
   RECEIVE_CURRENT_USER: 'RECEIVE_CURRENT_USER',
   RECEIVE_ERRORS: 'RECEIVE_ERRORS'
-};
+});
 
 const login = (user) => ({
   type: SessionConstants.LOGIN,
@@ -29,10 +29,10 @@ const receiveErrors = (errors) => ({
   errors
 });
 
-export const SessionActions = {
+export const SessionActions = Object.freeze({
   login: login,
   logout: logout,
   signup: signup,
   receiveCurrentUser: receiveCurrentUser,
   receiveErrors: receiveErrors,
-};
+});
