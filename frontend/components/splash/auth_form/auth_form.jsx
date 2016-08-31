@@ -1,6 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import AuthHeader from './auth_header';
+import RouteConstants from '../../../util/route_constants';
+
+const LOGIN = 'LOGIN';
+const SIGNUP = 'SIGNUP';
 
 class AuthForm extends React.Component {
   constructor(props) {
@@ -11,12 +15,12 @@ class AuthForm extends React.Component {
               password: '',
               name: ''
             },
-      selectedTab: 'LOGIN'
+      selectedTab: LOGIN
     };
 
     this.tabs = {
-      'LOGIN': this.props.login,
-      'SIGNUP': this.props.signup
+      [LOGIN]: this.props.login,
+      [SIGNUP]: this.props.signup
     };
   }
 
@@ -37,18 +41,18 @@ class AuthForm extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
-    this.redirectIfLoggedIn(nextProps.loggedIn);
+    this.redirectIfLoggedIn(nextProps.isLoggedIn);
   }
 
   redirectIfLoggedIn(isLoggedIn) {
     if (isLoggedIn) {
-      this.props.router.push("/events");
+      this.props.router.push(RouteConstants.EVENTS.route);
     }
   }
 
   render() {
     let signupInput;
-    if (this.state.selectedTab === 'SIGNUP') {
+    if (this.state.selectedTab === SIGNUP) {
       signupInput = (
           <input type='text'
                  value={ this.state.user.name }
