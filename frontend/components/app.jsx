@@ -2,7 +2,10 @@ import React from 'react';
 
 const App = ({ children }) => (
   <div>
-    <h1>Crit</h1>
+    <header className='header'>
+      <h1>Crit</h1>
+      
+    </header>
     { children }
   </div>
 );
