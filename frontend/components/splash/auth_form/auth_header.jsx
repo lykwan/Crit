@@ -13,7 +13,7 @@ class AuthHeader extends React.Component {
     });
 
     return (
-      <ul>
+      <ul className='auth-form-tabs'>
         { tabs }
       </ul>
     );

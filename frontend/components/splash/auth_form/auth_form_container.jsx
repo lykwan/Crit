@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { SessionActions } from '../../actions/session_actions';
+import { SessionActions } from '../../../actions/session_actions';
 import AuthForm from './auth_form';
 
 const mapStateToProps = state => {

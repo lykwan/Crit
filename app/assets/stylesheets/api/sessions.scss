@@ -1,3 +1,88 @@
 // Place all the styles related to the api/sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+:root {
+  --main-bg-color: #57BC90;
+}
+
+.splash {
+  padding: 80px 130px;
+}
+
+.splash-description {
+  position: relative;
+  padding: 40px 130px;
+  float: left;
+}
+
+.splash-description h2 {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.splash-description p {
+  font-size: 30px;
+}
+
+.auth-form {
+  position: relative;
+  float: left;
+  width: 370px;
+  height: 380px;
+  padding: 25px;
+  background-color: var(--main-bg-color);
+  box-sizing: border-box;
+}
+
+.auth-form input {
+  display: block;
+  width: 100%;
+  height: 30px;
+  margin: 30px 0px;
+  padding: 5px;
+  background-color: var(--main-bg-color);
+  border: 1px solid black;
+  box-sizing: inherit;
+}
+
+.auth-form ::-webkit-input-placeholder {
+   color: gray;
+}
+
+.auth-form ::-moz-placeholder {
+   color: gray;
+}
+
+.auth-form button {
+  display: block;
+  width: 100%;
+  padding: 20px;
+}
+
+.auth-form-errors {
+  list-style: none;
+}
+
+.auth-form-tabs {
+  display: flex;
+}
+
+.auth-form-tabs li {
+  flex-grow: 1;
+  padding: 10px;
+  text-align: center;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-left: 2px solid black;
+  background-color: whitesmoke;
+  cursor: pointer;
+}
+
+.auth-form-tabs li:last-child {
+  border-right: 2px solid black;
+}
+
+.auth-form-tabs .selected {
+  background-color: gray;
+}
