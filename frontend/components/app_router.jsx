@@ -4,17 +4,14 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from './app';
 import Splash from './splash/splash';
 import EventsContainer from './events/events_container';
+import ProfileContainer from './profile/profile_container';
 
-const EVENTS = 'Events';
-const GROUPS = 'Groups';
-const PROFILE = 'Profile';
-const NAV_TABS = {
-  [EVENTS]: '/events',
-  [GROUPS]: '/groups',
-  [PROFILE]: '/profile'
-};
+import RouteConstants from '../util/route_constants';
+import { UserActions } from '../actions/user_actions';
 
 class AppRouter extends React.Component {
+
+  // auth helper functions and onEnter functions
   isLoggedIn() {
     const currentState = this.context.store.getState();
     return currentState.session.currentUser;
@@ -32,6 +29,14 @@ class AppRouter extends React.Component {
     }
   }
 
+  // profile onEnter functions
+  _handleEnterUserProfile(nextState, replace) {
+    this._ensureLoggedIn(nextState, replace);
+    const userId = nextState.params.id;
+    const dispatch = this.context.store.dispatch;
+    dispatch(UserActions.fetchUser(userId));
+  }
+
   render() {
     return (
       <Router history={ hashHistory }>
@@ -42,8 +47,11 @@ class AppRouter extends React.Component {
                                onEnter={ this._ensureLoggedIn.bind(this) } />
           <Route path='groups' component={ EventsContainer }
                                onEnter={ this._ensureLoggedIn.bind(this) } />
-          <Route path='profile' component={ EventsContainer }
-                               onEnter={ this._ensureLoggedIn.bind(this) } />
+          <Route path='profile' component={ ProfileContainer }
+                                onEnter={ this._ensureLoggedIn.bind(this) } />
+          <Route path='users/:id'
+                 component={ ProfileContainer }
+                 onEnter={ this._handleEnterUserProfile.bind(this) } />
         </Route>
       </Router>
     );
