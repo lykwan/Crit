@@ -22,4 +22,17 @@ class ApplicationController < ActionController::Base
     @current_user = nil
   end
 
+  def render_404_error(item)
+    render(
+      json: ["Can't find #{item}"],
+      status: 404
+    )
+  end
+
+  def render_403_error(item)
+    render(
+      json: ["You don't have the permission to act on the #{item}"],
+      status: 403
+    )
+  end
 end

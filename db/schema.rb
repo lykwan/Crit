@@ -11,21 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831220502) do
+ActiveRecord::Schema.define(version: 20160901054005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "groups", force: :cascade do |t|
-    t.string   "title",                           null: false
-    t.text     "description",                     null: false
-    t.integer  "creator_user_id",                 null: false
-    t.boolean  "is_public",       default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+  create_table "group_memberships", force: :cascade do |t|
+    t.integer  "group_id",       null: false
+    t.integer  "member_user_id", null: false
+    t.boolean  "is_admin"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  add_index "groups", ["creator_user_id"], name: "index_groups_on_creator_user_id", using: :btree
+  add_index "group_memberships", ["group_id"], name: "index_group_memberships_on_group_id", using: :btree
+  add_index "group_memberships", ["member_user_id", "group_id"], name: "index_group_memberships_on_member_user_id_and_group_id", unique: true, using: :btree
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "title",                       null: false
+    t.text     "description",                 null: false
+    t.boolean  "is_public",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
