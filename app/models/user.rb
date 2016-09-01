@@ -21,6 +21,16 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token!
 
+  has_many :group_memberships,
+    primary_key: :id,
+    foreign_key: :member_user_id,
+    class_name: :GroupMembership,
+    dependent: :destroy
+
+  has_many :groups,
+    through: :group_memberships,
+    source: :group
+
   # Credentials methods
 
   def self.find_by_credentials(username, password)

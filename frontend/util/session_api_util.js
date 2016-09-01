@@ -24,7 +24,7 @@ export const logout = (success) => {
     method: 'DELETE',
     success,
     error: (xhr) => {
-      console.log(xhr.responseText);
+      console.log(xhr.responseJSON);
     }
   });
 };

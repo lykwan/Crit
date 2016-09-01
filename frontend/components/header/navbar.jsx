@@ -47,11 +47,11 @@ class Navbar extends React.Component {
           </div>
 
           <div className='navbar-icon'>
-            <i className='fa fa-users' aria-hidden='true'></i>
+            <i className="fa fa-user-plus" aria-hidden="true"></i>
           </div>
 
           <div className='navbar-icon'>
-            <i className='fa fa-flag' aria-hidden='true'></i>
+            <i className="fa fa-bell" aria-hidden="true"></i>
           </div>
 
           <div className='navbar-icon'>

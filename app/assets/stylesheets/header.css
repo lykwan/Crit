@@ -33,6 +33,7 @@
 
   .navbar-tabs li {
     line-height: var(--navbar-height);
+    cursor: pointer;
   }
 
   .navbar-tabs .active {
@@ -71,6 +72,7 @@
         right: 0px;
         width: 100px;
         border: 1px solid gray;
+        cursor: pointer;
       }
 
         .navbar-dropdown li {

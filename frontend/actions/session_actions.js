@@ -3,7 +3,7 @@ export const SessionConstants = Object.freeze({
   LOGOUT: 'LOGOUT',
   SIGNUP: 'SIGNUP',
   RECEIVE_CURRENT_USER: 'RECEIVE_CURRENT_USER',
-  RECEIVE_ERRORS: 'RECEIVE_ERRORS'
+  RECEIVE_SESSION_ERRORS: 'RECEIVE_SESSION_ERRORS'
 });
 
 const login = (user) => ({

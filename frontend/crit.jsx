@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-import { UserActions } from './actions/user_actions';
+import { GroupActions } from './actions/group_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState = {};
@@ -13,9 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const store = configureStore(preloadedState);
-  window.store = store;
+  window.store = store; //DElELTE
   const rootEl = document.getElementById('root');
   ReactDOM.render(<Root store={ store } />, rootEl);
-
-  window.UserActions = UserActions;
+  window.GroupActions = GroupActions;
 });

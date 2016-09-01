@@ -53,7 +53,6 @@ column name          | data type | details
 id                   | integer   | not null, primary key
 title                | string    | not null
 description          | text      | not null
-creator_user_id      | integer   | not null, foreign key (references users), indexed
 is_public            | boolean   | not null
 
 ## group_membership
