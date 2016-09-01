@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-import SessionMiddleware from './middleware/session_middleware';
-import { SessionActions } from './actions/session_actions';
+import { UserActions } from './actions/user_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState = {};
@@ -14,8 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const store = configureStore(preloadedState);
+  window.store = store;
   const rootEl = document.getElementById('root');
   ReactDOM.render(<Root store={ store } />, rootEl);
 
-  window.store = store;
+  window.UserActions = UserActions;
 });
