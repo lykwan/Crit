@@ -6,31 +6,37 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: RouteConstants.EVENTS
+      selectedTab: null
     };
   }
 
-  selectTab(route) {
-    this.setState({ selectedTab: RouteConstants[route] });
-    this.props.router.push(RouteConstants[route].route);
+  selectTab(section) {
+    this.setState({ selectedTab: RouteConstants[section].route });
+    this.props.router.push(RouteConstants[section].route);
   }
 
   handleClick() {
     this.props.logout();
   }
 
+  componentWillMount() {
+    this.setState({
+      selectedTab: this.context.location.pathname
+    });
+  }
+
   render() {
-    const navbarTabsLi = Object.keys(RouteConstants).map((route) => {
+    const navbarTabsLi = Object.keys(RouteConstants).map((section) => {
       let isActiveTabClass = '';
-      if (this.state.selectedTab === RouteConstants[route]) {
+      if (this.state.selectedTab === RouteConstants[section].route) {
         isActiveTabClass = 'active';
       }
 
       return (
-        <li key={ RouteConstants[route].title }
-            onClick={ this.selectTab.bind(this, route) }
+        <li key={ RouteConstants[section].title }
+            onClick={ this.selectTab.bind(this, section) }
             className={ isActiveTabClass }>
-          { RouteConstants[route].title }
+          { RouteConstants[section].title }
         </li>
       );
     });
@@ -57,7 +63,7 @@ class Navbar extends React.Component {
           <div className='navbar-icon'>
             <i className='fa fa-cog' aria-hidden='true'></i>
             <ul className='navbar-dropdown'>
-              <li onClick={this.handleClick.bind(this)}>
+              <li onClick={ this.handleClick.bind(this) }>
                 <i className="fa fa-sign-out" aria-hidden="true"></i>
                 <span>Logout</span>
               </li>
@@ -68,5 +74,9 @@ class Navbar extends React.Component {
     );
   }
 }
+
+Navbar.contextTypes = {
+  location: React.PropTypes.object
+};
 
 export default withRouter(Navbar);

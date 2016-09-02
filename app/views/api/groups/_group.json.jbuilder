@@ -9,3 +9,9 @@ json.admins do
     json.partial! "api/users/user", user: admin
   end
 end
+
+json.members do
+  json.array! group.members do |member|
+    json.partial! "api/users/user", user: member
+  end
+end
