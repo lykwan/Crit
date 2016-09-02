@@ -21,7 +21,7 @@ creator_user_id         | integer   | not null, foreign key (references users), 
 location                | text      |
 image_link              | string    |
 is_attendees_finalized  | boolean   | not null, default: false
-is_time_finalized       | boolean   | not null
+is_time_finalized       | boolean   | not null, default: false
 
 ## event_responses
 column name          | data type | details
@@ -30,8 +30,15 @@ id                   | integer   | not null, primary key
 event_id             | integer   | not null, foreign key (references events), indexed
 attendee_user_id     | integer   | not null, foreign key (references users), indexed
 response             | string    | not null
-start_time_block     | time      | not null
-end_time_block       | time      | not null
+
+## time_blocks
+column name          | data type | details
+---------------------|-----------|-----------------------
+id                   | integer   | not null, primary key
+event_response_id    | integer   | not null, foreign key (references events), indexed
+start_date_time      | datetime  | not null
+end_date_time        | datetime  | not null
+
 
 ## conditions
 column name          | data type | details

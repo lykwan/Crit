@@ -26,7 +26,7 @@ export const createGroup = (group, success, error) => {
   });
 };
 
-export const editGroup = (groupId, group, success, error) => {
+export const updateGroup = (groupId, group, success, error) => {
   $.ajax({
     method: 'PATCH',
     url: `api/groups/${ groupId }`,

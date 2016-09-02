@@ -4,8 +4,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 
 import { GroupActions } from './actions/group_actions';
-
-import { createGroup } from './util/group_api_util';
+import { EventActions } from './actions/event_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState = {};
@@ -19,6 +18,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const rootEl = document.getElementById('root');
   ReactDOM.render(<Root store={ store } />, rootEl);
   window.GroupActions = GroupActions;
-
-  window.createGroup = createGroup;
+  window.EventActions = EventActions;
 });

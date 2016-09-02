@@ -30,7 +30,7 @@ const createGroup = (group) => {
   };
 };
 
-const editGroup = (groupId, group) => {
+const updateGroup = (groupId, group) => {
   return {
     type: GroupConstants.EDIT_GROUP,
     groupId,
@@ -77,7 +77,7 @@ export const GroupActions = {
   fetchGroups,
   fetchSingleGroup,
   createGroup,
-  editGroup,
+  updateGroup,
   receiveSingleGroup,
   receiveGroups,
   destroyGroup,

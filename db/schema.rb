@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901054005) do
+ActiveRecord::Schema.define(version: 20160902214742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_responses", force: :cascade do |t|
+    t.integer  "event_id",          null: false
+    t.integer  "respondee_user_id", null: false
+    t.string   "response",          null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "event_responses", ["event_id", "respondee_user_id"], name: "index_event_responses_on_event_id_and_respondee_user_id", unique: true, using: :btree
+  add_index "event_responses", ["respondee_user_id"], name: "index_event_responses_on_respondee_user_id", unique: true, using: :btree
+
+  create_table "events", force: :cascade do |t|
+    t.string   "title",                                  null: false
+    t.text     "description",                            null: false
+    t.integer  "group_id",                               null: false
+    t.integer  "host_user_id",                           null: false
+    t.string   "location"
+    t.string   "img"
+    t.boolean  "is_attendees_finalized", default: false
+    t.boolean  "is_time_finalized",      default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "events", ["group_id"], name: "index_events_on_group_id", using: :btree
+  add_index "events", ["host_user_id"], name: "index_events_on_host_user_id", using: :btree
 
   create_table "group_memberships", force: :cascade do |t|
     t.integer  "group_id",       null: false

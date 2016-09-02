@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id                     :integer          not null, primary key
+#  title                  :string           not null
+#  description            :text             not null
+#  group_id               :integer          not null
+#  host_user_id           :integer          not null
+#  location               :string
+#  img                    :string
+#  is_attendees_finalized :boolean          default(FALSE)
+#  is_time_finalized      :boolean          default(FALSE)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value
