@@ -1,5 +1,5 @@
 import { GroupConstants, GroupActions } from '../actions/group_actions';
-import { fetchGroups, fetchSingleGroup, createGroup, editGroup, deleteGroup }
+import { fetchGroups, fetchSingleGroup, createGroup, updateGroup, deleteGroup }
   from '../util/group_api_util';
 
 const GroupMiddleware = ({ dispatch }) => next => action => {

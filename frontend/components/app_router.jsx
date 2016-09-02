@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import App from './app';
 import Splash from './splash/splash';
-import EventsContainer from './events/events_container';
+import EventIndexContainer from './event/event_index_container';
 import GroupIndexContainer from './group/group_index_container';
 import GroupDetailContainer from './group/group_detail_container';
 import GroupFormContainer from './group/group_form_container';
@@ -63,7 +63,7 @@ class AppRouter extends React.Component {
           <IndexRoute component={ Splash }
                       onEnter={ this._redirectIfLoggedIn.bind(this) } />
           <Route path='events'
-                 component={ EventsContainer }
+                 component={ EventIndexContainer }
                  onEnter={ this._ensureLoggedIn.bind(this) } />
           <Route path='groups'
                  component={ GroupIndexContainer }

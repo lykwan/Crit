@@ -20,6 +20,8 @@ class Group < ActiveRecord::Base
     through: :group_memberships,
     source: :member
 
+  has_many :events, dependent: :destroy
+
   accepts_nested_attributes_for :group_memberships
 
   def admins

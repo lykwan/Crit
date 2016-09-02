@@ -21,8 +21,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return ({
     createGroup: (group) => dispatch(GroupActions.createGroup(group)),
-    editGroup: (groupId, group) =>
-      dispatch(GroupActions.editGroup(groupId, group))
+    updateGroup: (groupId, group) =>
+      dispatch(GroupActions.updateGroup(groupId, group))
   });
 };
 

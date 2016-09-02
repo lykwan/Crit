@@ -31,6 +31,12 @@ class User < ActiveRecord::Base
     through: :group_memberships,
     source: :group
 
+  has_many :event_responses,
+    primary_key: :id,
+    foreign_key: :respondee_user_id,
+    class_name: :EventResponse,
+    dependent: :destroy
+
   # Credentials methods
 
   def self.find_by_credentials(username, password)
