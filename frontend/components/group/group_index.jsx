@@ -1,7 +1,12 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import GroupIndexItem from './group_index_item';
 
-const GroupIndex = ({ groups }) => {
+const handleAddGroupClick = (router) => {
+  router.push('/groups/new');
+};
+
+const GroupIndex = ({ groups, router }) => {
   if (groups) {
     const groupIndexItems = groups.map(group => (
       <GroupIndexItem key={ group.id } group={ group } />
@@ -11,9 +16,10 @@ const GroupIndex = ({ groups }) => {
       <section className='group'>
         <div className='group-header'>
           <h2>My Groups</h2>
-          <div className='group-header-add-group'>
+          <div className='group-header-buttons button'
+               onClick={ handleAddGroupClick.bind(null, router) }>
             <i className='fa fa-plus' aria-hidden='true'></i>
-            <span>Create Group</span>
+            <span>  Create Group</span>
           </div>
         </div>
         { groupIndexItems }
@@ -28,4 +34,4 @@ const GroupIndex = ({ groups }) => {
   );
 };
 
-export default GroupIndex;
+export default withRouter(GroupIndex);

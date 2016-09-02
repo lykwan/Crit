@@ -14,11 +14,33 @@
  *= require_self
  */
 
+:root {
+  --border-color: #DCDCDC;
+}
+
 body {
   box-sizing: border-box;
   font-family: 'Montserrat';
+  background-color: #F5F5F5;
 }
 
 button {
 	font-family: 'Montserrat';
+}
+
+h2 {
+  font-family: 'Libre Franklin';
+  font-size: 50px;
+}
+
+h3 {
+  float: left;
+  font-size: 35px;
+  margin: 20px 37px;
+}
+
+.shadow {
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px 6px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }

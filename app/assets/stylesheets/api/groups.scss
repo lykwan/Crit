@@ -1,3 +1,106 @@
 // Place all the styles related to the Api/Groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//* line 5, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 7, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+.group {
+  width: 80%;
+  margin: auto;
+}
+
+/* line 10, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 13, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+.group-header {
+  position: relative;
+  height: 100px;
+  padding: 25px 10px;
+}
+
+.group-header h2 {
+  position: absolute;
+  left: 0px;
+}
+
+.group-header-buttons {
+  position: absolute;
+  right: 20px;
+  bottom: 30px;
+}
+
+.group-show-buttons {
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+}
+
+/* line 17, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 21, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+
+/* line 26, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 27, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+.group-item {
+  height: 200px;
+  margin-bottom: 40px;
+  position: relative;
+  border: 1px solid var(--border-color);
+  opacity: 0.7;
+  background-color: white;
+}
+
+.group-item:hover {
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         0 0 32px rgba(0,0,0,.15);
+  cursor: pointer;
+  opacity: 1;
+}
+
+/* line 31, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 33, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+.group-item-img {
+  background: url(http://i.imgur.com/uE776LD.jpg);
+  background-position: center;
+  background-size: 400px;
+  width: 30%;
+  height: 100%;
+  float: left;
+}
+
+/* line 40, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 43, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+
+
+/* line 44, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 48, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+.group-item span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 20px;
+}
+
+.group-detail-img {
+  width: 100%;
+
+}
+
+.button {
+  cursor: pointer;
+}
+
+.member-list {
+
+}
+
+.member-list-item {
+
+}
+
+.member-list-item div {
+
+}
+
+.member-list-item span {
+
+}

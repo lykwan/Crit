@@ -1,0 +1,61 @@
+import React from 'react';
+
+class GroupDetail extends React.Component {
+  render() {
+
+    if (this.props.group) {
+      const admins = this.props.group.admins.map(admin => {
+        return (
+          <li className='member-list-item' key={ admin.id }>
+            <div className='group' />
+            <span>{ admin.username }</span>
+          </li>
+        );
+      });
+
+      const regularMembers = this.props.group.regular_members.map(member => {
+        return (
+          <li className='member-list-item' key={ member.id }>
+            <div className='group' />
+            <span>{ member.username }</span>
+          </li>
+        );
+      });
+
+      return (
+        <section className='group'>
+          <div className='group-detail-img' />
+          <div className='group-header'>
+            <h2>{ this.props.group.title }</h2>
+            <div className='group-header-buttons group-show-buttons'>
+              <div className='button'>
+                <i className='fa fa-plus' aria-hidden='true'></i>
+                <span>  Add Member</span>
+              </div>
+
+              <div className='button'>
+                <i className='fa fa-plus' aria-hidden='true'></i>
+                <span>  Edit Group</span>
+              </div>
+            </div>
+          </div>
+
+          <h3>ADMINS</h3>
+          <ul className='member-list'>
+            { admins }
+          </ul>
+          <h3>MEMBERS</h3>
+          <ul className='member-list'>
+            { regularMembers }
+          </ul>
+        </section>
+      );
+    }
+
+    return (
+      <div>loading... </div>
+    );
+  }
+}
+
+export default GroupDetail;
