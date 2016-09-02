@@ -2,7 +2,8 @@ class Api::GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.group_memberships_attributes = group_memberships_attributes
+    @group.group_memberships_attributes = new_memberships_attr
+
     if @group.save
       render :show
     else
@@ -68,11 +69,24 @@ class Api::GroupsController < ApplicationController
                                   :is_public)
   end
 
-  def group_memberships_attributes
-    [{
+  def new_memberships_attr
+    new_memberships_hash = params[:group][:group_memberships_attributes]
+    new_memberships_arr = new_memberships_hash.keys.map do |m|
+      new_hash = {}
+      new_hash[:member_user_id] = new_memberships_hash[m][:member_user_id]
+      new_hash[:is_admin] = false
+      new_hash
+    end
+
+    new_memberships_arr << my_membership_attr
+    new_memberships_arr
+  end
+
+  def my_membership_attr
+    {
       member_user_id: current_user.id,
       is_admin: true
-    }]
+    }
   end
 
 end

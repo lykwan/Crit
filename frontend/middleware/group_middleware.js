@@ -3,21 +3,22 @@ import { fetchGroups, fetchSingleGroup, createGroup, editGroup, deleteGroup }
   from '../util/group_api_util';
 
 const GroupMiddleware = ({ dispatch }) => next => action => {
-  let successCb;
-  let errorCb;
+  const receiveSingleGroup = group =>
+    dispatch(GroupActions.receiveSingleGroup(group));
+  const receiveGroups = groups =>
+    dispatch(GroupActions.receiveGroups(groups));
+  const errorCb = xhr =>
+    dispatch(GroupActions.receiveGroupErrors(xhr.responseJSON));
 
   switch(action.type) {
     case GroupConstants.FETCH_GROUPS:
-      successCb = groups => dispatch(GroupActions.receiveGroups(groups));
-      errorCb = xhr =>
-        dispatch(GroupActions.receiveGroupErrors(xhr.responseJSON));
-      fetchGroups(successCb, errorCb);
+      fetchGroups(receiveGroups, errorCb);
       return next(action);
     case GroupConstants.FETCH_SINGLE_GROUP:
-      successCb = group => dispatch(GroupActions.receiveSingleGroup(group));
-      errorCb = xhr =>
-        dispatch(GroupActions.receiveGroupErrors(xhr.responseJSON));
-      fetchSingleGroup(action.groupId, successCb, errorCb);
+      fetchSingleGroup(action.groupId, receiveSingleGroup, errorCb);
+      return next(action);
+    case GroupConstants.CREATE_GROUP:
+      createGroup(action.group, receiveSingleGroup, errorCb);
       return next(action);
     default:
       return next(action);

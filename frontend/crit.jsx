@@ -5,6 +5,8 @@ import Root from './components/root';
 
 import { GroupActions } from './actions/group_actions';
 
+import { createGroup } from './util/group_api_util';
+
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState = {};
   if (window.currentUser) {
@@ -17,4 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const rootEl = document.getElementById('root');
   ReactDOM.render(<Root store={ store } />, rootEl);
   window.GroupActions = GroupActions;
+
+  window.createGroup = createGroup;
 });

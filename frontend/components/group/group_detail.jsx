@@ -40,11 +40,11 @@ class GroupDetail extends React.Component {
             </div>
           </div>
 
-          <h3>ADMINS</h3>
+          <h4>ADMINS</h4>
           <ul className='member-list'>
             { admins }
           </ul>
-          <h3>MEMBERS</h3>
+          <h4>MEMBERS</h4>
           <ul className='member-list'>
             { regularMembers }
           </ul>

@@ -16,6 +16,7 @@
 
 :root {
   --border-color: #DCDCDC;
+  --navbar-height: 60px;
 }
 
 body {
@@ -37,6 +38,10 @@ h3 {
   float: left;
   font-size: 35px;
   margin: 20px 37px;
+}
+
+h4 {
+  font-size: 25px;
 }
 
 .shadow {
