@@ -68,12 +68,12 @@ class AppRouter extends React.Component {
           <Route path='groups'
                  component={ GroupIndexContainer }
                  onEnter={ this._handleEnterGroups.bind(this) } />
+          <Route path='groups/new'
+                 component={ GroupFormContainer } />
+                 onEnter={ this._ensureLoggedIn.bind(this) } />
           <Route path='groups/:id'
                  component={ GroupDetailContainer }
                  onEnter={ this._handleEnterGroupDetail.bind(this) } />
-          <Route path='groups/new'
-                 component={ GroupFormContainer }
-                 onEnter={ this._ensureLoggedIn.bind(this) } />
           <Route path='profile'
                  component={ ProfileContainer }
                  onEnter={ this._ensureLoggedIn.bind(this) } />
