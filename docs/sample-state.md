@@ -23,12 +23,15 @@
     }
   },
   groups: {
-    1: {
+    groups: [],
+    groupDetail: {
+      id: 1
       title: "blah",
       creator_id: 1,
       description: "is cool"
       is_public: false
-    }
+    },
+    errors: []
   },
 
   users: {

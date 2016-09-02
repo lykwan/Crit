@@ -12,11 +12,12 @@ const allGroupsDict = groups => {
 const GroupReducer = (state = {}, action) => {
   switch(action.type) {
     case GroupConstants.RECEIVE_GROUPS:
-      return merge({}, state, { groups: action.groups });
+      return merge({}, { groups: action.groups });
     case GroupConstants.RECEIVE_SINGLE_GROUP:
-      return merge({}, state, { groupDetail: action.group });
+      return merge({}, { groupDetail: action.group });
     case GroupConstants.RECEIVE_GROUP_ERRORS:
-      return merge({}, state, { errors: action.errors });
+
+      return merge({}, { errors: action.errors });
     default:
       return state;
   }
