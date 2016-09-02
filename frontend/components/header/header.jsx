@@ -16,7 +16,7 @@ class Header extends React.Component {
   render() {
     let navbar;
     if (this.props.isLoggedIn) {
-      navbar = (<NavbarContainer />);
+      navbar = (<NavbarContainer location={ this.props.location }/>);
     }
 
     return (

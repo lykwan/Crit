@@ -4,10 +4,12 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from './app';
 import Splash from './splash/splash';
 import EventsContainer from './events/events_container';
+import GroupIndexContainer from './group/group_index_container';
 import ProfileContainer from './profile/profile_container';
 
 import RouteConstants from '../util/route_constants';
 import { UserActions } from '../actions/user_actions';
+import { GroupActions } from '../actions/group_actions';
 
 class AppRouter extends React.Component {
 
@@ -17,15 +19,15 @@ class AppRouter extends React.Component {
     return currentState.session.currentUser;
   }
 
-  _ensureLoggedIn(nextState, replace) {
+  _ensureLoggedIn(_, replace) {
     if (!this.isLoggedIn()) {
       replace("/");
     }
   }
 
-  _redirectIfLoggedIn(nextState, replace) {
+  _redirectIfLoggedIn(_, replace) {
     if (this.isLoggedIn()) {
-      replace("/events");
+      replace(RouteConstants.EVENTS.route);
     }
   }
 
@@ -37,6 +39,17 @@ class AppRouter extends React.Component {
     dispatch(UserActions.fetchUser(userId));
   }
 
+  // group onEnter functions
+  _handleEnterGroups(_, replace) {
+    this._ensureLoggedIn(_, replace);
+    this.requestAllGroups();
+  }
+
+  requestAllGroups() {
+    const dispatch = this.context.store.dispatch;
+    dispatch(GroupActions.fetchGroups());
+  }
+
   render() {
     return (
       <Router history={ hashHistory }>
@@ -45,8 +58,9 @@ class AppRouter extends React.Component {
                       onEnter={ this._redirectIfLoggedIn.bind(this) } />
           <Route path='events' component={ EventsContainer }
                                onEnter={ this._ensureLoggedIn.bind(this) } />
-          <Route path='groups' component={ EventsContainer }
-                               onEnter={ this._ensureLoggedIn.bind(this) } />
+          <Route path='groups' component={ GroupIndexContainer }
+                               onEnter={ this._handleEnterGroups.bind(this) } >
+          </Route>
           <Route path='profile' component={ ProfileContainer }
                                 onEnter={ this._ensureLoggedIn.bind(this) } />
           <Route path='users/:id'

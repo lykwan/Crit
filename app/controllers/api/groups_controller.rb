@@ -14,7 +14,7 @@ class Api::GroupsController < ApplicationController
   end
 
   def index
-    @groups = current_user.groups
+    @groups = current_user.groups.includes(:members)
   end
 
   def show
