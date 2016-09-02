@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import GroupIndex from './group_index';
+import GroupDetail from './group_detail';
 
 const mapStateToProps = state => {
   return {
-    groups: state.groups.groups
+    group: state.groups.groupDetail
   };
 };
 
 export default connect(
   mapStateToProps
-)(GroupIndex);
+)(GroupDetail);

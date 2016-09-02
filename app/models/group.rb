@@ -26,4 +26,7 @@ class Group < ActiveRecord::Base
     self.members.where(group_memberships: { is_admin: true })
   end
 
+  def regular_members
+    self.members.where(group_memberships: { is_admin: false })
+  end
 end

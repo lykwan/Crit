@@ -10,8 +10,8 @@ json.admins do
   end
 end
 
-json.members do
-  json.array! group.members do |member|
+json.regular_members do
+  json.array! group.regular_members do |member|
     json.partial! "api/users/user", user: member
   end
 end

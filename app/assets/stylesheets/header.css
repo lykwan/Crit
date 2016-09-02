@@ -9,8 +9,8 @@
   height: var(--navbar-height);
   box-sizing: border-box;
   padding: 0 17px;
-  border-bottom: 1px solid #DCDCDC;
   background-color: white;
+  box-shadow: 0 0 32px rgba(0, 0, 0, .15);
 }
 
 .header h1 {
