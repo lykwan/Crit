@@ -4,7 +4,7 @@ import { fetchEvents, fetchSingleEvent, createEvent, updateEvent, deleteEvent}
 
 const EventMiddleware = ({ dispatch }) => next => action => {
   const receiveSingleEvent = eventData =>
-    dispatch(EventActions.receiveSingleGroup(eventData));
+    dispatch(EventActions.receiveSingleEvent(eventData));
   const receiveEvents = events =>
     dispatch(EventActions.receiveEvents(events));
   const errorCb = xhr =>
@@ -18,7 +18,11 @@ const EventMiddleware = ({ dispatch }) => next => action => {
       fetchSingleEvent(action.eventId, receiveSingleEvent, errorCb);
       return next(action);
     case EventConstants.CREATE_EVENT:
-      createEvent(action.eventData, receiveSingleEvent, errorCb);
+      createEvent(action.groupId,
+                  action.eventData,
+                  receiveSingleEvent,
+                  errorCb
+                 );
       return next(action);
     default:
       return next(action);

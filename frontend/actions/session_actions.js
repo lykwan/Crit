@@ -24,8 +24,8 @@ const receiveCurrentUser = (user) => ({
   type: SessionConstants.RECEIVE_CURRENT_USER,
   user
 });
-const receiveErrors = (errors) => ({
-  type: SessionConstants.RECEIVE_ERRORS,
+const receiveSessionErrors = (errors) => ({
+  type: SessionConstants.RECEIVE_SESSION_ERRORS,
   errors
 });
 
@@ -34,5 +34,5 @@ export const SessionActions = Object.freeze({
   logout: logout,
   signup: signup,
   receiveCurrentUser: receiveCurrentUser,
-  receiveErrors: receiveErrors,
+  receiveSessionErrors: receiveSessionErrors
 });

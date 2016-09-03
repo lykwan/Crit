@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
     class_name: :EventResponse,
     dependent: :destroy
 
+  has_many :events,
+    through: :groups,
+    source: :events
+
   # Credentials methods
 
   def self.find_by_credentials(username, password)

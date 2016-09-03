@@ -1,13 +1,18 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 
-const Events = ({ logout }) => {
+const EventIndex = ({ events }) => {
   return (
-    <div>
-      <button onClick={logout}></button>
-      <h1>youre logged in</h1>
-    </div>
+    <section className='event'>
+      <div className='event-header'>
+        <h2>My Events</h2>
+        <div className='event-header-buttons button'>
+          <i className='fa fa-plus' aria-hidden='true'></i>
+          <span>  Create Event</span>
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default Events;
+export default EventIndex;

@@ -1,16 +1,12 @@
 import { connect } from 'react-redux';
 import { SessionActions } from '../../actions/session_actions';
-import Events from './event_index';
+import { EventActions } from '../../actions/event_actions';
+import EventIndex from './event_index';
 
 const mapStateToProps = state => ({
-  state: state
-});
-
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(SessionActions.logout())
+  events: state.events.events
 });
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Events);
+  mapStateToProps
+)(EventIndex);
