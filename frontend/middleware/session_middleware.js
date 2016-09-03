@@ -5,7 +5,7 @@ const SessionMiddleware = ({ dispatch }) => next => action => {
   const successCb = user => dispatch(SessionActions.receiveCurrentUser(user));
   const errorCb = xhr => {
     const errors = xhr.responseJSON;
-    dispatch(SessionActions.receiveErrors(errors));
+    dispatch(SessionActions.receiveSessionErrors(errors));
   };
 
   switch(action.type) {

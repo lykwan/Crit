@@ -21,3 +21,17 @@ GroupMembership.create!(member_user_id: 6, group_id: 2, is_admin: true)
 
 GroupMembership.create!(member_user_id: 6, group_id: 3, is_admin: false)
 GroupMembership.create!(member_user_id: 7, group_id: 3, is_admin: true)
+
+Event.create!(title: 'dinner', description: 'yummy food', group_id: 1, host_user_id: 1)
+Event.create!(title: 'lunch', description: 'yummy food again', group_id: 2, host_user_id: 2)
+Event.create!(title: 'bowling', description: 'fun times', group_id: 2, host_user_id: 5)
+Event.create!(title: 'play with dogs', description: 'corgi day', group_id: 1, host_user_id: 3)
+Event.create!(title: 'girls night out', description: 'yaas turnt', group_id: 1, host_user_id: 1)
+Event.create!(title: 'destroy human things', description: 'evil af pets', group_id: 3, host_user_id: 6)
+
+EventResponse.create!(event_id: 1, respondee_user_id: 1, response: 'definitely_going')
+EventResponse.create!(event_id: 2, respondee_user_id: 2, response: 'definitely_going')
+EventResponse.create!(event_id: 3, respondee_user_id: 5, response: 'definitely_going')
+EventResponse.create!(event_id: 4, respondee_user_id: 3, response: 'definitely_going')
+EventResponse.create!(event_id: 5, respondee_user_id: 1, response: 'definitely_going')
+EventResponse.create!(event_id: 6, respondee_user_id: 6, response: 'definitely_going')

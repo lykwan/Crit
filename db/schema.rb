@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20160902214742) do
   end
 
   add_index "event_responses", ["event_id", "respondee_user_id"], name: "index_event_responses_on_event_id_and_respondee_user_id", unique: true, using: :btree
-  add_index "event_responses", ["respondee_user_id"], name: "index_event_responses_on_respondee_user_id", unique: true, using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "title",                                  null: false

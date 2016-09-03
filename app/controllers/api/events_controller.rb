@@ -6,7 +6,12 @@ class Api::EventsController < ApplicationController
     @event.group_id = params[:group_id]
     @event.host_user_id = current_user.id
 
-    if @event.save
+    group = Group.find_by_id(params[:group_id])
+    if !group
+      render_404_error("group")
+    elsif !current_user.groups.include?(group)
+      render_403_error("event")
+    elsif @event.save
       render :show
     else
       render(
@@ -22,10 +27,13 @@ class Api::EventsController < ApplicationController
 
   def show
     @event = Event.find_by_id(params[:id])
-    group = @event.group
     if !@event
       render_404_error("event")
-    elsif !current_user.groups.include?(group)
+      return
+    end
+
+    group = @event.group
+    if !current_user.groups.include?(group)
       render_403_error("event")
     else
       render :show
