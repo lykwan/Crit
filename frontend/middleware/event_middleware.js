@@ -21,7 +21,6 @@ const EventMiddleware = ({ dispatch }) => next => action => {
       return next(action);
     case EventConstants.CREATE_EVENT:
       const successCb = eventData => {
-        console.log('success form submit');
         hashHistory.push(`/events/${ eventData.id }`);
       };
       createEvent(action.eventData,
