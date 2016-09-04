@@ -1,18 +1,28 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import EventIndexItem from './event_index_item';
+import EventFormContainer from './event_form_container';
 
-const EventIndex = ({ events }) => {
-  return (
-    <section className='event'>
-      <div className='event-header'>
-        <h2>My Events</h2>
-        <div className='event-header-buttons button'>
-          <i className='fa fa-plus' aria-hidden='true'></i>
-          <span>  Create Event</span>
+const EventIndex = ({ events, router }) => {
+  if (events) {
+    const eventIndexItems = events.map(event => (
+      <EventIndexItem key={ event.id } eventData={ event } />
+    ));
+
+    return (
+      <section className='content'>
+        <div className='content-header'>
+          <h2>My Events</h2>
+          <EventFormContainer />
         </div>
-      </div>
-    </section>
+        { eventIndexItems }
+      </section>
+    );
+  }
+
+  return (
+    <div>loading...</div>
   );
 };
 
-export default EventIndex;
+export default withRouter(EventIndex);

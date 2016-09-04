@@ -8,7 +8,8 @@ const EventReducer = (state = {}, action) => {
     case EventConstants.RECEIVE_SINGLE_EVENT:
       return merge({}, { eventDetail: action.eventData });
     case EventConstants.RECEIVE_EVENT_ERRORS:
-      return merge({}, { errors: action.errors });
+      const newState = merge({}, state, { errors: action.errors });
+      return newState;
     default:
       return state;
   }

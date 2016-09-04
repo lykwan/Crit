@@ -3,14 +3,16 @@ class Api::EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.event_responses_attributes = my_response_attr
-    @event.group_id = params[:group_id]
     @event.host_user_id = current_user.id
 
-    group = Group.find_by_id(params[:group_id])
+    group = Group.find_by_id(@event.group_id)
     if !group
-      render_404_error("group")
+      render(
+        json: ["Please submit a proper group"],
+        status: 404
+      )
     elsif !current_user.groups.include?(group)
-      render_403_error("event")
+      render_403_error("group")
     elsif @event.save
       render :show
     else
@@ -77,6 +79,7 @@ class Api::EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:title,
                                   :description,
+                                  :group_id,
                                   :location,
                                   :img,
                                   :is_time_finalized)

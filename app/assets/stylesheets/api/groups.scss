@@ -4,29 +4,6 @@
 
 //* line 5, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 /* line 7, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-.group {
-  width: 80%;
-  margin: auto;
-}
-
-/* line 10, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 13, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-.group-header {
-  position: relative;
-  height: 100px;
-  padding: 25px 10px;
-}
-
-.group-header h2 {
-  position: absolute;
-  left: 0px;
-}
-
-.group-header-buttons {
-  position: absolute;
-  right: 20px;
-  bottom: 30px;
-}
 
 .group-show-buttons {
   display: flex;
@@ -47,6 +24,13 @@
   opacity: 0.7;
   background-color: white;
 }
+
+.group-item h3 {
+  float: left;
+  font-size: 35px;
+  margin: 20px 37px;
+}
+
 
 .group-item:hover {
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */

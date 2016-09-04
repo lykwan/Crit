@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import GroupIndexItem from './group_index_item';
 
-const handleAddGroupClick = (router) => {
+const _handleAddGroupClick = (router) => {
   router.push('/groups/new');
 };
 
@@ -13,11 +13,11 @@ const GroupIndex = ({ groups, router }) => {
     ));
 
     return (
-      <section className='group'>
-        <div className='group-header'>
+      <section className='content'>
+        <div className='content-header'>
           <h2>My Groups</h2>
-          <div className='group-header-buttons button'
-               onClick={ handleAddGroupClick.bind(null, router) }>
+          <div className='content-header-buttons button'
+               onClick={ _handleAddGroupClick.bind(null, router) }>
             <i className='fa fa-plus' aria-hidden='true'></i>
             <span>  Create Group</span>
           </div>

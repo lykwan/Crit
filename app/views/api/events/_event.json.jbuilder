@@ -1,4 +1,5 @@
 json.extract! event,
+              :id,
               :title,
               :description,
               :group,
