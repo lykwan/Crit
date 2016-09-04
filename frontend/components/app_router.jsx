@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from './app';
 import Splash from './splash/splash';
 import EventIndexContainer from './event/event_index_container';
-import EventDetailContainer from './event/event_detail_container';
+import EventDetailContainer from './event/event_detail/event_detail_container';
 import GroupIndexContainer from './group/group_index_container';
 import GroupDetailContainer from './group/group_detail_container';
 import GroupFormContainer from './group/group_form_container';
@@ -40,6 +40,7 @@ class AppRouter extends React.Component {
     this._ensureLoggedIn(_, replace);
     const dispatch = this.context.store.dispatch;
     dispatch(EventActions.fetchEvents());
+    dispatch(GroupActions.fetchGroups());
   }
 
   _handleEnterEventDetail(nextState, replace) {

@@ -6,6 +6,8 @@
 #  username        :string           not null
 #  password_digest :string           not null
 #  session_token   :string           not null
+#  name            :string           not null
+#  img             :string
 #  description     :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

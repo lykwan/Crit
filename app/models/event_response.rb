@@ -26,4 +26,10 @@ class EventResponse < ActiveRecord::Base
     foreign_key: :respondee_user_id,
     class_name: :User
 
+  has_one :condition, dependent: :destroy, inverse_of: :event_response
+
+  has_many :availability_bitmaps,
+    dependent: :destroy,
+    inverse_of: :event_response
+
 end

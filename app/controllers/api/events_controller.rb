@@ -82,7 +82,8 @@ class Api::EventsController < ApplicationController
                                   :group_id,
                                   :location,
                                   :img,
-                                  :is_time_finalized)
+                                  :start_time,
+                                  :end_time)
   end
 
   def my_response_attr

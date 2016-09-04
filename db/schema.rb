@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902214742) do
+ActiveRecord::Schema.define(version: 20160904031109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "availability_bitmaps", force: :cascade do |t|
+    t.integer  "event_response_id",           null: false
+    t.date     "date",                        null: false
+    t.integer  "time",              limit: 8, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "availability_bitmaps", ["date"], name: "index_availability_bitmaps_on_date", using: :btree
+  add_index "availability_bitmaps", ["event_response_id", "date"], name: "index_availability_bitmaps_on_event_response_id_and_date", unique: true, using: :btree
+
+  create_table "conditions", force: :cascade do |t|
+    t.integer  "event_response_id", null: false
+    t.integer  "min_num_people"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "conditions", ["event_response_id"], name: "index_conditions_on_event_response_id", unique: true, using: :btree
 
   create_table "event_responses", force: :cascade do |t|
     t.integer  "event_id",          null: false
@@ -25,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160902214742) do
   end
 
   add_index "event_responses", ["event_id", "respondee_user_id"], name: "index_event_responses_on_event_id_and_respondee_user_id", unique: true, using: :btree
+  add_index "event_responses", ["respondee_user_id"], name: "index_event_responses_on_respondee_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "title",                                  null: false
@@ -42,6 +63,16 @@ ActiveRecord::Schema.define(version: 20160902214742) do
 
   add_index "events", ["group_id"], name: "index_events_on_group_id", using: :btree
   add_index "events", ["host_user_id"], name: "index_events_on_host_user_id", using: :btree
+
+  create_table "friend_conditions", force: :cascade do |t|
+    t.integer  "condition_id",   null: false
+    t.integer  "friend_user_id", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "friend_conditions", ["condition_id", "friend_user_id"], name: "index_friend_conditions_on_condition_id_and_friend_user_id", unique: true, using: :btree
+  add_index "friend_conditions", ["friend_user_id"], name: "index_friend_conditions_on_friend_user_id", using: :btree
 
   create_table "group_memberships", force: :cascade do |t|
     t.integer  "group_id",       null: false
@@ -62,10 +93,14 @@ ActiveRecord::Schema.define(version: 20160902214742) do
     t.datetime "updated_at",                  null: false
   end
 
+  add_index "groups", ["title"], name: "index_groups_on_title", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
     t.string   "password_digest", null: false
     t.string   "session_token",   null: false
+    t.string   "name",            null: false
+    t.string   "img"
     t.text     "description"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
