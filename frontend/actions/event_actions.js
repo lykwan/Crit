@@ -24,10 +24,9 @@ const fetchSingleEvent = (eventId) => {
   };
 };
 
-const createEvent = (groupId, eventData) => {
+const createEvent = (eventData) => {
   return {
     type: EventConstants.CREATE_EVENT,
-    groupId,
     eventData
   };
 };

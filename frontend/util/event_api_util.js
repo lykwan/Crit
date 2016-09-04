@@ -16,11 +16,10 @@ export const fetchSingleEvent = (eventId, success, error) => {
   });
 };
 
-export const createEvent = (groupId, eventData, success, error) => {
-  console.log('in api util', groupId, eventData);
+export const createEvent = (eventData, success, error) => {
   $.ajax({
     method: 'POST',
-    url: `api/groups/${groupId}/events`,
+    url: `api/events`,
     data: { event: eventData },
     success,
     error

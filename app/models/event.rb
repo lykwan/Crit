@@ -17,7 +17,7 @@
 
 class Event < ActiveRecord::Base
 
-  validates :title, :description, :group_id, :host_user_id, null: false
+  validates :title, :description, :group_id, :host_user_id, presence: true
 
   belongs_to :group
 

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 const img = "http://cdn3-www.dogtime.com/assets/uploads/gallery/pembroke-welsh-corgi-dog-breed-pictures/prance-8.jpg";
 
 const handleClick = (router, groupId) => {
-  router.push(`/groups/${groupId}`);
+  router.push(`/groups/${ groupId }`);
 };
 
 const GroupIndexItem = ({ group, router }) => {

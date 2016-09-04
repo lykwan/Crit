@@ -34,7 +34,8 @@ ActiveRecord::Schema.define(version: 20160902214742) do
     t.string   "location"
     t.string   "img"
     t.boolean  "is_attendees_finalized", default: false
-    t.boolean  "is_time_finalized",      default: false
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end

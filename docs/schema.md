@@ -36,8 +36,8 @@ column name          | data type | details
 ---------------------|-----------|-----------------------
 id                   | integer   | not null, primary key
 event_response_id    | integer   | not null, foreign key (references events), indexed
-start_date_time      | datetime  | not null
-end_date_time        | datetime  | not null
+date                 | date      | not null
+time                 | integer   | not null (limit: 8)
 
 
 ## conditions

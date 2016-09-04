@@ -23,11 +23,11 @@ class GroupDetail extends React.Component {
       });
 
       return (
-        <section className='group'>
+        <section className='content'>
           <div className='group-detail-img' />
-          <div className='group-header'>
+          <div className='content-header'>
             <h2>{ this.props.group.title }</h2>
-            <div className='group-header-buttons group-show-buttons'>
+            <div className='content-header-buttons group-show-buttons'>
               <div className='button'>
                 <i className='fa fa-plus' aria-hidden='true'></i>
                 <span>  Add Member</span>

@@ -4,14 +4,16 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from './app';
 import Splash from './splash/splash';
 import EventIndexContainer from './event/event_index_container';
+import EventDetailContainer from './event/event_detail_container';
 import GroupIndexContainer from './group/group_index_container';
 import GroupDetailContainer from './group/group_detail_container';
 import GroupFormContainer from './group/group_form_container';
 import ProfileContainer from './profile/profile_container';
 
 import RouteConstants from '../util/route_constants';
-import { UserActions } from '../actions/user_actions';
+import { EventActions } from '../actions/event_actions';
 import { GroupActions } from '../actions/group_actions';
+import { UserActions } from '../actions/user_actions';
 
 class AppRouter extends React.Component {
 
@@ -33,12 +35,18 @@ class AppRouter extends React.Component {
     }
   }
 
-  // profile onEnter functions
-  _handleEnterUserProfile(nextState, replace) {
-    this._ensureLoggedIn(nextState, replace);
-    const userId = nextState.params.id;
+  // event onEnter functions
+  _handleEnterEvents(_, replace) {
+    this._ensureLoggedIn(_, replace);
     const dispatch = this.context.store.dispatch;
-    dispatch(UserActions.fetchUser(userId));
+    dispatch(EventActions.fetchEvents());
+  }
+
+  _handleEnterEventDetail(nextState, replace) {
+    this._ensureLoggedIn(nextState, replace);
+    const eventId = nextState.params.id;
+    const dispatch = this.context.store.dispatch;
+    dispatch(EventActions.fetchSingleEvent(eventId));
   }
 
   // group onEnter functions
@@ -55,6 +63,13 @@ class AppRouter extends React.Component {
     dispatch(GroupActions.fetchSingleGroup(groupId));
   }
 
+  // profile onEnter functions
+  _handleEnterUserProfile(nextState, replace) {
+    this._ensureLoggedIn(nextState, replace);
+    const userId = nextState.params.id;
+    const dispatch = this.context.store.dispatch;
+    dispatch(UserActions.fetchUser(userId));
+  }
 
   render() {
     return (
@@ -64,7 +79,10 @@ class AppRouter extends React.Component {
                       onEnter={ this._redirectIfLoggedIn.bind(this) } />
           <Route path='events'
                  component={ EventIndexContainer }
-                 onEnter={ this._ensureLoggedIn.bind(this) } />
+                 onEnter={ this._handleEnterEvents.bind(this) } />
+          <Route path='events/:id'
+                 component={ EventDetailContainer }
+                 onEnter={ this._handleEnterEventDetail.bind(this) } />
           <Route path='groups'
                  component={ GroupIndexContainer }
                  onEnter={ this._handleEnterGroups.bind(this) } />
