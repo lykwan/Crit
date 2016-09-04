@@ -12,6 +12,7 @@ import ProfileContainer from './profile/profile_container';
 
 import RouteConstants from '../util/route_constants';
 import { EventActions } from '../actions/event_actions';
+import { EventResponseActions } from '../actions/event_response_actions';
 import { GroupActions } from '../actions/group_actions';
 import { UserActions } from '../actions/user_actions';
 
@@ -48,6 +49,7 @@ class AppRouter extends React.Component {
     const eventId = nextState.params.id;
     const dispatch = this.context.store.dispatch;
     dispatch(EventActions.fetchSingleEvent(eventId));
+    // dispatch(EventResponseActions.fetchEventResponse(eventId));
   }
 
   // group onEnter functions
