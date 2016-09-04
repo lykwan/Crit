@@ -21,7 +21,8 @@ creator_user_id         | integer   | not null, foreign key (references users), 
 location                | text      |
 image_link              | string    |
 is_attendees_finalized  | boolean   | not null, default: false
-is_time_finalized       | boolean   | not null, default: false
+start_time              | datetime  |
+end_time                | datetime  |
 
 ## event_responses
 column name          | data type | details
@@ -31,11 +32,11 @@ event_id             | integer   | not null, foreign key (references events), in
 attendee_user_id     | integer   | not null, foreign key (references users), indexed
 response             | string    | not null
 
-## time_blocks
+## availability_bitmaps
 column name          | data type | details
 ---------------------|-----------|-----------------------
 id                   | integer   | not null, primary key
-event_response_id    | integer   | not null, foreign key (references events), indexed
+event_response_id    | integer   | not null, foreign key (references event_responses), indexed
 date                 | date      | not null
 time                 | integer   | not null (limit: 8)
 
@@ -44,7 +45,7 @@ time                 | integer   | not null (limit: 8)
 column name          | data type | details
 ---------------------|-----------|-----------------------
 id                   | integer   | not null, primary key
-event_response_id    | integer   | not null, foreign key (references event_responses), indexed
+event_response_id    | integer   | not null, foreign key (references event_responses), indexed, unique
 min_num_people       | integer   |
 
 ## friend_conditions

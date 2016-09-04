@@ -1,3 +1,6 @@
 json.extract! user,
               :id,
-              :username
+              :username,
+              :name,
+              :img,
+              :description

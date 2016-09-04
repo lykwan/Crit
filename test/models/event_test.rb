@@ -10,7 +10,8 @@
 #  location               :string
 #  img                    :string
 #  is_attendees_finalized :boolean          default(FALSE)
-#  is_time_finalized      :boolean          default(FALSE)
+#  start_time             :datetime
+#  end_time               :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

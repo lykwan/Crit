@@ -4,13 +4,24 @@ import EventForm from './event_form';
 
 const mapStateToProps = state => {
   let errors = [];
-
   if (state.events.errors) {
     errors = state.events.errors;
   }
 
+  let groups = [];
+  if (state.groups.groups) {
+    groups = state.groups.groups.map(group => {
+      return {
+        value: group.title,
+        label: group.title,
+        groupId: group.id
+      };
+    });
+  }
+
   return {
-    errors
+    errors,
+    groups
   };
 };
 

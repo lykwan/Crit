@@ -7,5 +7,6 @@ class CreateEventResponses < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_index :event_responses, [:event_id, :respondee_user_id], unique: true
+    add_index :event_responses, :respondee_user_id
   end
 end

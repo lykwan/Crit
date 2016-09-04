@@ -6,6 +6,8 @@
 #  username        :string           not null
 #  password_digest :string           not null
 #  session_token   :string           not null
+#  name            :string           not null
+#  img             :string
 #  description     :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -15,7 +17,7 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
-  validates :username, :password_digest, :session_token, presence: true
+  validates :username, :password_digest, :session_token, :name, presence: true
   validates :username, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: :true }
 

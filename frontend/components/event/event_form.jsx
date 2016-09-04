@@ -1,14 +1,26 @@
 import React from 'react';
 import Modal from 'react-modal';
+import Select from 'react-select';
 
 const customModalStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+  overlay: {
+    position        :'fixed',
+    top             :0,
+    left            :0,
+    right           :0,
+    bottom          :0,
+    backgroundColor :'rgba(0, 0, 0, 0.40)',
+    zIndex          :10
+  },
+  content: {
+    position        :'fixed',
+    top             :'100px',
+    left            :'150px',
+    right           :'150px',
+    bottom          :'100px',
+    border          :'1px solid #ccc',
+    padding         :'30px',
+    zIndex          :11
   }
 };
 
@@ -16,14 +28,18 @@ const formFields = {
   TITLE: 'title',
   DESCRIPTION: 'description',
   LOCATION: 'location',
-  GROUP_ID: 'group_id'
+  GROUP_ID: 'group_id',
+  START_TIME: 'start_time',
+  END_TIME: 'end_time'
 };
 
 const blankEventData = {
   title: '',
   description: '',
   location: '',
-  group_id: ''
+  group_id: '',
+  start_time: '',
+  end_time: ''
 };
 
 class EventForm extends React.Component {
@@ -35,15 +51,29 @@ class EventForm extends React.Component {
     };
   }
 
+  inputGroup(val) {
+    console.log(val);
+    const groupId = val.groupId;
+    const eventData = Object.assign({},
+                                    this.state.eventData,
+                                    { group_id: groupId }
+                                   );
+    this.setState({ eventData });
+  }
+
   afterOpenModal() {
   }
 
+
+  //TODO: fix the issue with blur background with not closing modal
   openModal() {
     this.setState({ isModalOpen: true });
+    // document.body.className = 'modal-open';
   }
 
   closeModal() {
     this.setState({ isModalOpen: false });
+    // document.body.className = '';
   }
 
   _handleInputChange(field, e) {
@@ -66,6 +96,8 @@ class EventForm extends React.Component {
       });
     }
 
+    //TODO: fix the dropdown of select group
+
     return (
       <div>
         <div className='content-header-buttons button'
@@ -80,14 +112,17 @@ class EventForm extends React.Component {
           onRequestClose={ this.closeModal.bind(this) }
           style={ customModalStyles } >
 
-          <button onClick={ this.closeModal.bind(this) }>close</button>
+          <div className='modal-close-button'
+               onClick={ this.closeModal.bind(this) }>
+            X
+          </div>
 
           { errors }
 
           <form className='event-form'
                 onSubmit={ this._handleSubmit.bind(this) } >
 
-            <h3>Add Group</h3>
+            <h3>Add Event</h3>
 
             <label>Event Name
               <input
@@ -99,8 +134,7 @@ class EventForm extends React.Component {
             </label>
 
             <label>Description
-              <input
-                type='text'
+              <textarea
                 value={ this.state.eventData.description }
                 onChange={
                   this._handleInputChange.bind(this, formFields.DESCRIPTION)
@@ -108,6 +142,7 @@ class EventForm extends React.Component {
             </label>
 
             <label>Location
+              <span className='optional'> (Optional)</span>
               <input
                 type='text'
                 value={ this.state.eventData.location }
@@ -116,12 +151,29 @@ class EventForm extends React.Component {
                 } />
             </label>
 
-            <label>Group
+            <Select
+                value='check'
+                options={ this.props.groups }
+                onChange={ this.inputGroup.bind(this) }
+            />
+
+            <label>Start Time
+              <span className='optional'> (Optional)</span>
               <input
                 type='text'
-                value={ this.state.eventData.group_id }
+                value={ this.state.eventData.start_time }
                 onChange={
-                  this._handleInputChange.bind(this, formFields.GROUP_ID)
+                  this._handleInputChange.bind(this, formFields.START_TIME)
+                } />
+            </label>
+
+            <label>End Time
+              <span className='optional'> (Optional)</span>
+              <input
+                type='text'
+                value={ this.state.eventData.end_time }
+                onChange={
+                  this._handleInputChange.bind(this, formFields.END_TIME)
                 } />
             </label>
 

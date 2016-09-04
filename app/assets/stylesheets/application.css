@@ -14,6 +14,8 @@
  *= require_self
  */
 
+/*TODO: get rid of variables */
+
 :root {
   --border-color: #DCDCDC;
   --navbar-height: 60px;
@@ -34,6 +36,9 @@ h2 {
   font-size: 50px;
 }
 
+h3 {
+  font-size: 35px;
+}
 
 h4 {
   font-size: 25px;
@@ -50,8 +55,6 @@ h4 {
   margin: auto;
 }
 
-/* line 10, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 13, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 .content-header {
   position: relative;
   height: 100px;
@@ -67,4 +70,18 @@ h4 {
   position: absolute;
   right: 20px;
   bottom: 30px;
+}
+
+.modal-open #root {
+  -webkit-filter: blur(4px) grayscale(50%);
+  transition: all 0.5s linear;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal-close-button {
+  float: right;
+  cursor: pointer;
 }
