@@ -4,7 +4,7 @@ export const EventConstants = {
   RECEIVE_EVENTS: 'RECEIVE_EVENTS',
   RECEIVE_SINGLE_EVENT: 'RECEIVE_SINGLE_EVENT',
   CREATE_EVENT: 'CREATE_EVENT',
-  EDIT_EVENT: 'EDIT_EVENT',
+  UPDATE_EVENT: 'UPDATE_EVENT',
   DELETE_EVENT: 'DELETE_EVENT',
   REMOVE_EVENT: 'REMOVE_EVENT',
   RECEIVE_EVENT_ERRORS: 'RECEIVE_EVENT_ERRORS',
@@ -33,7 +33,7 @@ const createEvent = (eventData) => {
 
 const updateEvent = (eventId, eventData) => {
   return {
-    type: EventConstants.EDIT_EVENT,
+    type: EventConstants.UPDATE_EVENT,
     eventId,
     eventData
   };
@@ -53,9 +53,9 @@ const receiveSingleEvent = (eventData) => {
   };
 };
 
-const destroyEvent = (eventId) => {
+const deleteEvent = (eventId) => {
   return {
-    type: EventConstants.DESTROY_EVENT,
+    type: EventConstants.DELETE_EVENT,
     eventId
   };
 };
@@ -81,7 +81,7 @@ export const EventActions = {
   updateEvent,
   receiveSingleEvent,
   receiveEvents,
-  destroyEvent,
+  deleteEvent,
   removeEvent,
   receiveEventErrors
 };

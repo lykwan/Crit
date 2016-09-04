@@ -56,7 +56,7 @@ class Api::GroupsController < ApplicationController
       render :show
     else
       render(
-        json: @group.errors.full_messages,
+        json: ["Could not destroy group"],
         status: 422
       )
     end

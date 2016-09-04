@@ -69,7 +69,7 @@ class Api::EventsController < ApplicationController
       render :show
     else
       render(
-        json: @event.errors.full_messages,
+        json: ["Could not destroy event"],
         status: 422
       )
     end
