@@ -89,7 +89,7 @@ class Api::EventsController < ApplicationController
   def my_response_attr
     [{
       respondee_user_id: current_user.id,
-      response: "definitely_going"
+      response: "definitely"
     }]
   end
 

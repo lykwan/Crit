@@ -12,9 +12,8 @@ const mapStateToProps = state => {
   if (state.groups.groups) {
     groups = state.groups.groups.map(group => {
       return {
-        value: group.title,
+        value: group.id,
         label: group.title,
-        groupId: group.id
       };
     });
   }

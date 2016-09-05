@@ -43,18 +43,13 @@ class EventForm extends React.Component {
     super(props);
     this.state = {
       isModalOpen: false,
-      eventData: blankEventData
+      eventData: blankEventData,
+      group: ''
     };
   }
 
   inputGroup(val) {
-    console.log(val);
-    const groupId = val.groupId;
-    const eventData = Object.assign({},
-                                    this.state.eventData,
-                                    { group_id: groupId }
-                                   );
-    this.setState({ eventData });
+    this.setState({ group: val });
   }
 
   afterOpenModal() {
@@ -82,7 +77,10 @@ class EventForm extends React.Component {
 
   _handleSubmit(e) {
     e.preventDefault();
-    this.props.createEvent(this.state.eventData);
+    const eventData = Object.assign({},
+                                    this.state.eventData,
+                                    { group_id: this.state.group.value });
+    this.props.createEvent(eventData);
   }
 
   render() {
@@ -149,7 +147,7 @@ class EventForm extends React.Component {
             </label>
 
             <Select
-                value='check'
+                value={ this.state.group }
                 options={ this.props.groups }
                 onChange={ this.inputGroup.bind(this) }
             />

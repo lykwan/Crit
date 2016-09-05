@@ -1,34 +1,24 @@
 import { connect } from 'react-redux';
-import { EventResponseActions } from '../../../actions/event_response_actions';
+import { ConditionActions } from '../../../actions/condition_actions';
 import EventConditionForm from './event_condition_form';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    eventResponse: state.eventResponse.eventResponse,
-    eventId: ownProps.eventId
+    condition: state.condition.condition,
+    eventResponseId: ownProps.eventResponseId,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchEventResponse: (eventId) => {
+    fetchCondition: (eventResponseId) => {
       dispatch(
-        EventResponseActions.fetchEventResponse(eventId)
+        ConditionActions.fetchCondition(eventResponseId)
       );
     },
-    createEventResponse: (eventId, eventResponse) => {
+    updateCondition: (eventResponseId, eventResponse) => {
       dispatch(
-        EventResponseActions.createEventResponse(eventId, eventResponse)
-      );
-    },
-    updateEventResponse: (eventId, eventResponse) => {
-      dispatch(
-        EventResponseActions.updateEventResponse(eventId, eventResponse)
-      );
-    },
-    deleteEventResponse: (eventId) => {
-      dispatch(
-        EventResponseActions.deleteEventResponse(eventId)
+        ConditionActions.updateCondition(eventResponseId, eventResponse)
       );
     }
   };
