@@ -1,3 +1,42 @@
-// Place all the styles related to the Api/EventResponses controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* line 5, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
+/* line 7, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
+.event-response-form {
+  display: flex;
+  width: 400px;
+  background-color: #d6dbdf;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* line 9, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
+/* line 16, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
+.event-response-form li {
+  border-right: 2px solid #e4e7ea;
+  flex-grow: 1;
+  padding: 10px 20px;
+  transition: 0.25s ease-out;
+  color: white;
+  cursor: pointer;
+}
+
+/* line 25, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
+.event-response-form li:last-child {
+  border-right: 0;
+}
+
+/* line 13, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
+/* line 30, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
+.event-response-form .response {
+  color: white;
+  background-color: #16A085;
+}
+
+/* line 36, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
+.event-response-form li:hover {
+  background-color: #48C9B0;
+}
+
+
+.event-response-form .response:hover {
+    background-color: #16A085;
+}

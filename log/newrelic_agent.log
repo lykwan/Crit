@@ -950,3 +950,69 @@
 [2016-09-04 16:08:28 -0700 LaiYees-MacBook.local (5986)] INFO : Installing Rails 4 view instrumentation
 [2016-09-04 16:08:28 -0700 LaiYees-MacBook.local (5986)] INFO : Installing Rails 4 Error instrumentation
 [2016-09-04 16:08:28 -0700 LaiYees-MacBook.local (5986)] INFO : Finished instrumentation
+[2016-09-04 18:50:09 -0700 LaiYees-MacBook.local (5662)] INFO : Starting Agent shutdown
+[2016-09-04 18:50:50 -0700 LaiYees-MacBook.local (15512)] INFO : Starting the New Relic agent in "development" environment.
+[2016-09-04 18:50:50 -0700 LaiYees-MacBook.local (15512)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-09-04 18:50:50 -0700 LaiYees-MacBook.local (15512)] WARN : No configuration file found. Working directory = /Users/Lily/Documents/aa/Crit
+[2016-09-04 18:50:50 -0700 LaiYees-MacBook.local (15512)] WARN : Looked in these locations (based on defaults): /Users/Lily/Documents/aa/Crit/config/newrelic.yml, /Users/Lily/Documents/aa/Crit/newrelic.yml, /Users/Lily/Documents/aa/Crit/config/newrelic.yml, /Users/Lily/Documents/aa/Crit/newrelic.yml, /Users/Lily/.newrelic/newrelic.yml, /Users/Lily/newrelic.yml
+[2016-09-04 18:50:50 -0700 LaiYees-MacBook.local (15512)] INFO : Environment: development
+[2016-09-04 18:50:50 -0700 LaiYees-MacBook.local (15512)] INFO : Dispatcher: webrick
+[2016-09-04 18:50:50 -0700 LaiYees-MacBook.local (15512)] INFO : Application: development
+[2016-09-04 18:50:50 -0700 LaiYees-MacBook.local (15512)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2016-09-04 18:50:51 -0700 LaiYees-MacBook.local (15512)] INFO : Installing ActiveJob instrumentation
+[2016-09-04 18:50:51 -0700 LaiYees-MacBook.local (15512)] INFO : Installing ActiveRecord 4+ instrumentation
+[2016-09-04 18:50:51 -0700 LaiYees-MacBook.local (15512)] INFO : Installing Net instrumentation
+[2016-09-04 18:50:51 -0700 LaiYees-MacBook.local (15512)] INFO : Installing deferred Rack::Builder instrumentation
+[2016-09-04 18:50:51 -0700 LaiYees-MacBook.local (15512)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-09-04 18:50:51 -0700 LaiYees-MacBook.local (15512)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-09-04 18:50:51 -0700 LaiYees-MacBook.local (15512)] INFO : Installing Rails 4 Controller instrumentation
+[2016-09-04 18:50:51 -0700 LaiYees-MacBook.local (15512)] INFO : Installing Rails 4 view instrumentation
+[2016-09-04 18:50:51 -0700 LaiYees-MacBook.local (15512)] INFO : Installing Rails 4 Error instrumentation
+[2016-09-04 18:50:51 -0700 LaiYees-MacBook.local (15512)] INFO : Finished instrumentation
+[2016-09-04 18:50:52 -0700 LaiYees-MacBook.local (15512)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-09-04 18:51:18 -0700 LaiYees-MacBook.local (15512)] ERROR : Invalid license key, please contact support@newrelic.com
+[2016-09-04 18:51:18 -0700 LaiYees-MacBook.local (15512)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[2016-09-04 19:11:48 -0700 LaiYees-MacBook.local (15512)] INFO : Starting Agent shutdown
+[2016-09-04 19:12:18 -0700 LaiYees-MacBook.local (16719)] INFO : Starting the New Relic agent in "development" environment.
+[2016-09-04 19:12:18 -0700 LaiYees-MacBook.local (16719)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-09-04 19:12:18 -0700 LaiYees-MacBook.local (16719)] WARN : No configuration file found. Working directory = /Users/Lily/Documents/aa/Crit
+[2016-09-04 19:12:18 -0700 LaiYees-MacBook.local (16719)] WARN : Looked in these locations (based on defaults): /Users/Lily/Documents/aa/Crit/config/newrelic.yml, /Users/Lily/Documents/aa/Crit/newrelic.yml, /Users/Lily/Documents/aa/Crit/config/newrelic.yml, /Users/Lily/Documents/aa/Crit/newrelic.yml, /Users/Lily/.newrelic/newrelic.yml, /Users/Lily/newrelic.yml
+[2016-09-04 19:12:18 -0700 LaiYees-MacBook.local (16719)] INFO : Environment: development
+[2016-09-04 19:12:18 -0700 LaiYees-MacBook.local (16719)] INFO : Dispatcher: webrick
+[2016-09-04 19:12:18 -0700 LaiYees-MacBook.local (16719)] INFO : Application: development
+[2016-09-04 19:12:18 -0700 LaiYees-MacBook.local (16719)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2016-09-04 19:12:19 -0700 LaiYees-MacBook.local (16719)] INFO : Installing ActiveJob instrumentation
+[2016-09-04 19:12:19 -0700 LaiYees-MacBook.local (16719)] INFO : Installing ActiveRecord 4+ instrumentation
+[2016-09-04 19:12:19 -0700 LaiYees-MacBook.local (16719)] INFO : Installing Net instrumentation
+[2016-09-04 19:12:19 -0700 LaiYees-MacBook.local (16719)] INFO : Installing deferred Rack::Builder instrumentation
+[2016-09-04 19:12:19 -0700 LaiYees-MacBook.local (16719)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-09-04 19:12:19 -0700 LaiYees-MacBook.local (16719)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-09-04 19:12:19 -0700 LaiYees-MacBook.local (16719)] INFO : Installing Rails 4 Controller instrumentation
+[2016-09-04 19:12:19 -0700 LaiYees-MacBook.local (16719)] INFO : Installing Rails 4 view instrumentation
+[2016-09-04 19:12:19 -0700 LaiYees-MacBook.local (16719)] INFO : Installing Rails 4 Error instrumentation
+[2016-09-04 19:12:19 -0700 LaiYees-MacBook.local (16719)] INFO : Finished instrumentation
+[2016-09-04 19:12:21 -0700 LaiYees-MacBook.local (16719)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-09-04 19:12:25 -0700 LaiYees-MacBook.local (16719)] ERROR : Invalid license key, please contact support@newrelic.com
+[2016-09-04 19:12:25 -0700 LaiYees-MacBook.local (16719)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[2016-09-04 22:46:07 -0700 LaiYees-MacBook.local (16719)] INFO : Starting Agent shutdown
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : Starting the New Relic agent in "development" environment.
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] WARN : No configuration file found. Working directory = /Users/Lily/Documents/aa/Crit
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] WARN : Looked in these locations (based on defaults): /Users/Lily/Documents/aa/Crit/config/newrelic.yml, /Users/Lily/Documents/aa/Crit/newrelic.yml, /Users/Lily/Documents/aa/Crit/config/newrelic.yml, /Users/Lily/Documents/aa/Crit/newrelic.yml, /Users/Lily/.newrelic/newrelic.yml, /Users/Lily/newrelic.yml
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : Environment: development
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : Dispatcher: webrick
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : Application: development
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : Installing ActiveJob instrumentation
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : Installing ActiveRecord 4+ instrumentation
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : Installing Net instrumentation
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : Installing deferred Rack::Builder instrumentation
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : Installing Rack::Builder middleware instrumentation
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : Installing Rails 3+ middleware instrumentation
+[2016-09-04 22:48:32 -0700 LaiYees-MacBook.local (28940)] INFO : Installing Rails 4 Controller instrumentation
+[2016-09-04 22:48:33 -0700 LaiYees-MacBook.local (28940)] INFO : Installing Rails 4 view instrumentation
+[2016-09-04 22:48:33 -0700 LaiYees-MacBook.local (28940)] INFO : Installing Rails 4 Error instrumentation
+[2016-09-04 22:48:33 -0700 LaiYees-MacBook.local (28940)] INFO : Finished instrumentation
+[2016-09-04 22:48:34 -0700 LaiYees-MacBook.local (28940)] INFO : Doing deferred dependency-detection before Rack startup
+[2016-09-04 22:48:41 -0700 LaiYees-MacBook.local (28940)] ERROR : Invalid license key, please contact support@newrelic.com
+[2016-09-04 22:48:41 -0700 LaiYees-MacBook.local (28940)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.

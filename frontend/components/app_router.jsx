@@ -49,7 +49,6 @@ class AppRouter extends React.Component {
     const eventId = nextState.params.id;
     const dispatch = this.context.store.dispatch;
     dispatch(EventActions.fetchSingleEvent(eventId));
-    // dispatch(EventResponseActions.fetchEventResponse(eventId));
   }
 
   // group onEnter functions

@@ -11,14 +11,20 @@
 
 class Condition < ActiveRecord::Base
 
-  validates :event_response, presence: true, uniqueness: true
+  validates :event_response_id, presence: true, uniqueness: true
 
   belongs_to :event_response
 
+  has_one :respondee,
+    through: :event_response,
+    source: :respondee
+
   has_many :friend_conditions, dependent: :destroy, inverse_of: :condition
 
-  accepts_nested_attributes_for :friend_conditions
+  has_many :specified_friends,
+    through: :friend_conditions,
+    source: :friend
 
-
+  accepts_nested_attributes_for :friend_conditions, allow_destroy: true
 
 end

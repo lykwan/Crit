@@ -30,19 +30,18 @@ const createEventResponse = (eventId, eventResponse) => {
   };
 };
 
-const updateEventResponse = (eventResponseId, eventResponse) => {
+const updateEventResponse = (eventId, eventResponse) => {
   return {
     type: EventResponseConstants.UPDATE_EVENT_RESPONSE,
-    eventResponseId,
+    eventId,
     eventResponse
   };
 };
 
-const deleteEventResponse = (eventResponseId, eventResponse) => {
+const deleteEventResponse = (eventId) => {
   return {
     type: EventResponseConstants.DELETE_EVENT_RESPONSE,
-    eventResponseId,
-    eventResponse
+    eventId
   };
 };
 

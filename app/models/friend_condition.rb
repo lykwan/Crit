@@ -18,7 +18,7 @@ class FriendCondition < ActiveRecord::Base
 
   belongs_to :friend,
     primary_key: :id,
-    foreign_key: :friend_user_id
+    foreign_key: :friend_user_id,
     class_name: :User
 
 end

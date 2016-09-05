@@ -21,7 +21,8 @@ class GroupForm extends React.Component {
     };
   }
 
-  _handleSubmit() {
+  _handleSubmit(e) {
+    e.preventDefault();
     if (!this.state.toggleDropDown) {
       this.props.createGroup(this.state.group);
     }
@@ -40,7 +41,6 @@ class GroupForm extends React.Component {
       const membership = { member_user_id: e.currentTarget.value };
       const updatedMembershipsAttr =
         [...this.state.group.group_memberships_attributes, membership];
-      console.log(updatedMembershipsAttr);
 
       const group =
         Object.assign({},
