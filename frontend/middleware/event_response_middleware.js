@@ -37,6 +37,8 @@ const EventResponseMiddleware = ({ dispatch }) => next => action => {
                           removeEventResponse,
                           errorCb);
       return next(action);
+    default:
+      return next(action);
   }
 };
 
