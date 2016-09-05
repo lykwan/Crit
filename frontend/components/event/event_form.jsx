@@ -80,7 +80,8 @@ class EventForm extends React.Component {
     this.setState({ eventData });
   }
 
-  _handleSubmit() {
+  _handleSubmit(e) {
+    e.preventDefault();
     this.props.createEvent(this.state.eventData);
   }
 
@@ -110,7 +111,7 @@ class EventForm extends React.Component {
 
           <div className='modal-close-button'
                onClick={ this.closeModal.bind(this) }>
-            X
+            <i className="fa fa-times" aria-hidden="true"></i>
           </div>
 
           { errors }

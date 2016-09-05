@@ -29,9 +29,19 @@ Event.create!(title: 'play with dogs', description: 'corgi day', group_id: 1, ho
 Event.create!(title: 'girls night out', description: 'yaas turnt', group_id: 1, host_user_id: 1)
 Event.create!(title: 'destroy human things', description: 'evil af pets', group_id: 3, host_user_id: 6)
 
-EventResponse.create!(event_id: 1, respondee_user_id: 1, response: 'definitely_going')
-EventResponse.create!(event_id: 2, respondee_user_id: 2, response: 'definitely_going')
-EventResponse.create!(event_id: 3, respondee_user_id: 5, response: 'definitely_going')
-EventResponse.create!(event_id: 4, respondee_user_id: 3, response: 'definitely_going')
-EventResponse.create!(event_id: 5, respondee_user_id: 1, response: 'definitely_going')
-EventResponse.create!(event_id: 6, respondee_user_id: 6, response: 'definitely_going')
+EventResponse.create!(event_id: 1, respondee_user_id: 1, response: 'definitely')
+EventResponse.create!(event_id: 1, respondee_user_id: 3, response: 'only if')
+EventResponse.create!(event_id: 1, respondee_user_id: 4, response: 'only if')
+EventResponse.create!(event_id: 2, respondee_user_id: 2, response: 'definitely')
+EventResponse.create!(event_id: 2, respondee_user_id: 1, response: 'definitely not')
+EventResponse.create!(event_id: 3, respondee_user_id: 5, response: 'definitely')
+EventResponse.create!(event_id: 4, respondee_user_id: 3, response: 'definitely')
+EventResponse.create!(event_id: 5, respondee_user_id: 1, response: 'definitely')
+EventResponse.create!(event_id: 6, respondee_user_id: 6, response: 'definitely')
+
+Condition.create!(event_response_id: 2,
+                  min_num_people: 3,
+                  friend_conditions_attributes: [{ friend_user_id: 1},
+                                                 { friend_user_id: 4}]
+                 )
+Condition.create!(event_response_id: 3, min_num_people: 4)

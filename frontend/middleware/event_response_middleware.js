@@ -7,8 +7,9 @@ import { fetchEventResponse,
        } from '../util/event_response_api_util';
 
 const EventResponseMiddleware = ({ dispatch }) => next => action => {
-  const receiveEventResponse = eventResponse =>
+  const receiveEventResponse = eventResponse => {
     dispatch(EventResponseActions.receiveEventResponse(eventResponse));
+  };
   const removeEventResponse = () =>
     dispatch(EventResponseActions.removeEventResponse());
   const errorCb = xhr => {
@@ -27,13 +28,13 @@ const EventResponseMiddleware = ({ dispatch }) => next => action => {
                           errorCb);
       return next(action);
     case EventResponseConstants.UPDATE_EVENT_RESPONSE:
-      updateEventResponse(action.eventResponseId,
+      updateEventResponse(action.eventId,
                           action.eventResponse,
                           receiveEventResponse,
                           errorCb);
       return next(action);
     case EventResponseConstants.DELETE_EVENT_RESPONSE:
-      updateEventResponse(action.eventResponseId,
+      deleteEventResponse(action.eventId,
                           removeEventResponse,
                           errorCb);
       return next(action);

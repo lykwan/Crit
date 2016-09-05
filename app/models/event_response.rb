@@ -13,11 +13,12 @@
 class EventResponse < ActiveRecord::Base
 
   validates :event, :respondee_user_id, :response, null: false
-  validates :response, inclusion: { in: ["definitely_going",
-                                         "only_if",
-                                         "definitely_not_going"
+  validates :response, inclusion: { in: ["definitely",
+                                         "only if",
+                                         "definitely not"
                                         ]}
-  validates :event_id, uniqueness: { scope: :respondee_user_id }
+  validates :event_id, uniqueness: { scope: :respondee_user_id,
+                                     message: "User already made a response" }
 
   belongs_to :event
 
@@ -26,7 +27,7 @@ class EventResponse < ActiveRecord::Base
     foreign_key: :respondee_user_id,
     class_name: :User
 
-  has_one :condition, dependent: :destroy, inverse_of: :event_response
+  has_one :condition, dependent: :destroy
 
   has_many :availability_bitmaps,
     dependent: :destroy,

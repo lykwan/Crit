@@ -8,7 +8,7 @@ const EventResponseReducer = (state = {}, action) => {
     case EventResponseConstants.REMOVE_EVENT_RESPONSE:
       return {};
     case EventResponseConstants.RECEIVE_EVENT_RESPONSE_ERRORS:
-      return merge({}, state, { eventResponse: action.eventResponse });
+      return merge({}, { errors: action.errors });
     default:
       return state;
   }

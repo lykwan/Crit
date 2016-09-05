@@ -8,20 +8,20 @@ export const fetchEventResponse = (eventId, success, error) => {
 };
 
 export const updateEventResponse =
-  (eventResponseId, eventResponse, success, error) => {
+  (eventId, eventResponse, success, error) => {
     $.ajax({
       method: 'PATCH',
-      url: `/api/event_responses/${ eventResponseId }`,
-      data: { eventResponse },
+      url: `/api/events/${ eventId }/event_response`,
+      data: { event_response: eventResponse },
       success,
       error
   });
 };
 
-export const deleteEventResponse = (eventResponseId, success, error) => {
+export const deleteEventResponse = (eventId, success, error) => {
   $.ajax({
     method: 'DELETE',
-    url: `/api/event_responses/${ eventResponseId }`,
+    url: `/api/events/${ eventId }/event_response`,
     success,
     error
   });
@@ -31,7 +31,7 @@ export const createEventResponse = (eventId, eventResponse, success, error) => {
   $.ajax({
     method: 'POST',
     url: `/api/events/${ eventId }/event_response`,
-    data: { eventResponse },
+    data: { event_response: eventResponse },
     success,
     error
   });

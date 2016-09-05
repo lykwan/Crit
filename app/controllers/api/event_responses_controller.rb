@@ -21,22 +21,22 @@ class Api::EventResponsesController < ApplicationController
   end
 
   def show
-    @event_response = EventResponse.find_by(event_id: params[:event_id])
+    @event_response = EventResponse.find_by(event_id: params[:event_id],
+                                            respondee_user_id: current_user.id)
     if !@event_response
-      render_404_error("event_response")
-    elsif @event_response.respondee_user_id != current_user.id
-      render_403_error("event_response")
+      render(
+        json: {}
+      )
     else
       render :show
     end
   end
 
   def update
-    @event_response = EventResponse.find_by_id(params[:id])
+    @event_response = EventResponse.find_by(event_id: params[:event_id],
+                                            respondee_user_id: current_user.id)
     if !@event_response
-      render_404_error("event_response")
-    elsif @event_response.respondee_user_id != current_user.id
-      render_403_error("event_response")
+      render_404_error("event response")
     elsif @event_response.update(event_response_params)
       render :show
     else
@@ -48,11 +48,10 @@ class Api::EventResponsesController < ApplicationController
   end
 
   def destroy
-    @event_response = EventResponse.find_by_id(params[:id])
+    @event_response = EventResponse.find_by(event_id: params[:event_id],
+                                            respondee_user_id: current_user.id)
     if !@event_response
-      render_404_error("event_response")
-    elsif @event_response.respondee_user_id != current_user.id
-      render_403_error("event_response")
+      render_404_error("event response")
     elsif @event_response.destroy
       # TODO: fix this event response destroy??
       render :show

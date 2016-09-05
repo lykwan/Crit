@@ -7,9 +7,11 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :groups, only: [:index, :create, :show, :update, :destroy]
     resources :events, only: [:index, :create, :show, :update, :destroy] do
-      resource :event_response, only: [:show, :create]
+      resource :event_response, only: [:show, :create, :update, :destroy]
     end
-    resources :event_responses, only: [:update, :destroy]
+    resources :event_responses, only: [] do
+      resource :condition, only: [:create, :update, :show]
+    end
   end
 
 end

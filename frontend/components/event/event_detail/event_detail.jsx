@@ -1,7 +1,7 @@
 import React from 'react';
 import EventAttendeeList from './event_attendee_list';
 import EventTimeForm from './event_time_form';
-import EventConditionForm from './event_condition_form';
+import EventResponseFormContainer from './event_response_form_container';
 
 class EventDetail extends React.Component {
   render() {
@@ -27,7 +27,7 @@ class EventDetail extends React.Component {
 
           <EventAttendeeList />
           <EventTimeForm />
-          <EventConditionForm />
+          <EventResponseFormContainer eventId={ eventData.id }/>
 
         </section>
       );

@@ -7,6 +7,7 @@ import Root from './components/root';
 import { GroupActions } from './actions/group_actions';
 import { EventActions } from './actions/event_actions';
 import { EventResponseActions } from './actions/event_response_actions';
+import { ConditionActions } from './actions/condition_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState = {};
@@ -23,5 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.GroupActions = GroupActions;
   window.EventActions = EventActions;
-  // window.EventResponseActions = EventResponseActions;
+  window.ConditionActions = ConditionActions;
 });
