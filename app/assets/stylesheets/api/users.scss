@@ -1,8 +1,6 @@
-// Place all the styles related to the Api/Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 /* line 5, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/users.scss */
+/* line 7, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
+/* line 4, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
 .profile-img-frame {
   display: flex;
   justify-content: space-around;
@@ -12,9 +10,15 @@
   width: 350px;
   height: 350px;
   margin: 30px auto;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         0 0 32px rgba(0,0,0,.1);
+
 }
 
 /* line 15, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/users.scss */
+/* line 19, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
+/* line 17, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
 .profile-img {
   background-position: center;
   background-size: cover;
@@ -23,17 +27,40 @@
   margin: auto;
 }
 
+/* line 27, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
+/* line 26, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
 .profile-content-row {
-  width: 400px;
+  width: 650px;
   margin: auto;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
+/* line 34, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
+/* line 34, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
 .profile-content-row .title {
-  width: 150px;
+  width: 30%;
 }
 
+/* line 38, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
+/* line 39, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
 .profile-content-row .detail {
   width: 350px;
+}
+
+/* line 42, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
+/* line 44, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
+.profile-name {
+  font-size: 20px;
+}
+
+/* line 46, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
+/* line 49, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */
+.profile-content-row .profile-group-list {
+  padding: 10px;
+  border: 2px solid #d9d9d9;
+  background: white;
+  width: 500px;
+  overflow: auto;
+  height: 200px;
 }
