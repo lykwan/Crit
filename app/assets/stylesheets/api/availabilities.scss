@@ -9,7 +9,7 @@
 }
 
 /* line 17, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/availabilities.scss */
-.date-time {
+.date-box {
   background: white;
   border: 1px solid black;
   width: 60px;
@@ -18,6 +18,11 @@
 }
 
 /* line 24, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/availabilities.scss */
-.date-time.selected {
+.date-box.selected {
   background-color: green;
+}
+
+.date-first-row {
+  height: 30px;
+  line-height: 30px;
 }
