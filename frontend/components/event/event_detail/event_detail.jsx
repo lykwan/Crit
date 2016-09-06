@@ -1,6 +1,6 @@
 import React from 'react';
 import EventAttendeeList from './event_attendee_list';
-import EventTimeFormContainer from './event_time_form_container';
+import EventScheduleContainer from './event_schedule_container';
 import EventResponseFormContainer from './event_response_form_container';
 
 class EventDetail extends React.Component {
@@ -29,14 +29,14 @@ class EventDetail extends React.Component {
     return attendeeResponseForm;
   }
 
-  getTimeForm(eventData) {
-    let eventTimeFormContainer;
+  getSchedule(eventData) {
+    let eventSchedule;
     if (eventData.is_attendees_finalized &&
         eventData.finalized_attendees[this.props.currentUser.id]) {
-        eventTimeFormContainer =
-          <EventTimeFormContainer eventData={ eventData }/>;
+        eventSchedule =
+          <EventScheduleContainer eventData={ eventData }/>;
     }
-    return eventTimeFormContainer;
+    return eventSchedule;
   }
 
   getAttendeeList(eventData) {
@@ -73,7 +73,7 @@ class EventDetail extends React.Component {
           </span>
 
           { this.getAttendeeList(eventData) }
-          { this.getTimeForm(eventData) }
+          { this.getSchedule(eventData) }
           { this.getAttendeeResponseForm(eventData) }
 
         </section>

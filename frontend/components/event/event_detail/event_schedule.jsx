@@ -1,7 +1,7 @@
 import React from 'react';
 import { fill } from 'lodash';
 
-class EventTimeForm extends React.Component {
+class EventSchedule extends React.Component {
   constructor(props) {
     super(props);
     let timeForm = {};
@@ -9,7 +9,8 @@ class EventTimeForm extends React.Component {
       timeForm[date] = fill(Array(24), 0);
     });
     this.state = {
-      timeForm
+      timeForm,
+      openEditForm: false
     };
   }
 
@@ -22,12 +23,17 @@ class EventTimeForm extends React.Component {
                                    { [date]: dateCol }
                                    );
     this.setState({ timeForm });
+    console.log(timeForm);
   }
 
   dateEqual(date, otherDate) {
     return date.getFullYear() === otherDate.getFullYear() &&
       date.getMonth() === otherDate.getMonth() &&
       date.getDate() === otherDate.getDate();
+  }
+
+  openEditForm() {
+    this.setState({ openEditForm: true });
   }
 
   formatDate(date) {
@@ -84,13 +90,23 @@ class EventTimeForm extends React.Component {
                   </div>);
     }
 
+    // if (this.state.openEditForm) {
+    //
+    // }
+
     return (
-      <div className='date-table'>
-        <div className='date-col'>{ hourCol }</div>
-        { dateCols }
+      <div className='event-time-form'>
+        <h4>Choose your availability</h4>
+        <div onClick={ this.openEditForm.bind(this) }>
+          <i className="fa fa-pencil" aria-hidden="true"></i>
+        </div>
+        <div className='date-table'>
+          <div className='date-col'>{ hourCol }</div>
+          { dateCols }
+        </div>
       </div>
     );
   }
 }
 
-export default EventTimeForm;
+export default EventSchedule;

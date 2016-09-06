@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { AvailabilityActions } from '../../../actions/availability_actions';
-import EventTimeForm from './event_time_form';
+import EventSchedule from './event_schedule';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -32,4 +32,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EventTimeForm);
+)(EventSchedule);
