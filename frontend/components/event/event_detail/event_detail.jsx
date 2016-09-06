@@ -30,19 +30,22 @@ class EventDetail extends React.Component {
   }
 
   getTimeForm(eventData) {
+    let eventTimeFormContainer;
     if (eventData.is_attendees_finalized &&
         eventData.finalized_attendees[this.props.currentUser.id]) {
-        return <EventTimeFormContainer />;
-    } else {
-      return null;
+        eventTimeFormContainer =
+          <EventTimeFormContainer eventData={ eventData }/>;
     }
+    return eventTimeFormContainer;
   }
 
   getAttendeeList(eventData) {
+    let eventAttendeeList;
     if (eventData.is_attendees_finalized) {
-      return <EventAttendeeList attendees={ eventData.finalized_attendees }/>;
+      eventAttendeeList =
+        <EventAttendeeList attendees={ eventData.finalized_attendees }/>;
     } else {
-      return null;
+      return eventAttendeeList;
     }
   }
 

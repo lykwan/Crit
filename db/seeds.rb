@@ -22,7 +22,7 @@ GroupMembership.create!(member_user_id: 6, group_id: 2, is_admin: true)
 GroupMembership.create!(member_user_id: 6, group_id: 3, is_admin: false)
 GroupMembership.create!(member_user_id: 7, group_id: 3, is_admin: true)
 
-Event.create!(title: 'dinner', description: 'yummy food', group_id: 1, host_user_id: 1)
+Event.create!(title: 'dinner', description: 'yummy food', group_id: 1, host_user_id: 1, start_date: DateTime.new(2016,10,5).strftime("%Y-%m-%d"), end_date: DateTime.new(2016,10,12).strftime("%Y-%m-%d"))
 Event.create!(title: 'lunch', description: 'yummy food again', group_id: 2, host_user_id: 2)
 Event.create!(title: 'bowling', description: 'fun times', group_id: 2, host_user_id: 5)
 Event.create!(title: 'play with dogs', description: 'corgi day', group_id: 1, host_user_id: 3)
@@ -45,3 +45,5 @@ Condition.create!(event_response_id: 2,
                                                  { friend_user_id: 4}]
                  )
 Condition.create!(event_response_id: 3, min_num_people: 4)
+
+Availability.create!(event_id: 1, user_id: 1, date: DateTime.new(2016,9,5).strftime("%Y-%m-%d"), time_slot_bitmap: 255)

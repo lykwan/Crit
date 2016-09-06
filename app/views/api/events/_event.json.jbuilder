@@ -5,8 +5,8 @@ json.extract! event,
               :location,
               :img,
               :is_attendees_finalized,
-              :start_time,
-              :end_time
+              :start_date,
+              :end_date
 
 json.event_respondees do
   json.array! event.event_respondees do |respondee|
