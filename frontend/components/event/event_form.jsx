@@ -159,7 +159,7 @@ class EventForm extends React.Component {
             <label>Start Time
               <span className='optional'> (Optional)</span>
               <input
-                type='text'
+                type='date'
                 value={ this.state.eventData.start_time }
                 onChange={
                   this._handleInputChange.bind(this, formFields.START_TIME)
@@ -169,7 +169,7 @@ class EventForm extends React.Component {
             <label>End Time
               <span className='optional'> (Optional)</span>
               <input
-                type='text'
+                type='date'
                 value={ this.state.eventData.end_time }
                 onChange={
                   this._handleInputChange.bind(this, formFields.END_TIME)
