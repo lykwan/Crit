@@ -86,14 +86,14 @@ class Api::EventsController < ApplicationController
       return
     end
 
-    @event.is_attendees_finalized = true
-    if @event.save
+    if @event.update({ is_attendees_finalized: true })
       render :show
     else
       render(
         json: @event.errors.full_messages,
         status: 422
       )
+    end
 
   end
 

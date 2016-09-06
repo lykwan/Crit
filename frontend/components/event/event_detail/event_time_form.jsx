@@ -2,7 +2,8 @@ import React from 'react';
 
 const EventTimeForm = () => {
   return (
-    <div>time form</div>
+    <div>time form
+    </div>
   );
 };
 

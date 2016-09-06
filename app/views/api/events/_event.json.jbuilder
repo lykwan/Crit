@@ -21,3 +21,13 @@ end
 json.host do
   json.partial! "api/users/user", user: event.host
 end
+
+if event.is_attendees_finalized
+  json.finalized_attendees do
+    event.finalized_attendees.each do |attendee|
+      json.set! attendee.id do
+        json.partial! "api/users/user", user: attendee
+      end
+    end
+  end
+end

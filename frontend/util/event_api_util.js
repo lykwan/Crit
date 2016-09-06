@@ -44,3 +44,12 @@ export const deleteEvent = (eventId, success, error) => {
     error
   });
 };
+
+export const closePoll = (eventId, success, error) => {
+  $.ajax({
+    method: 'POST',
+    url: `api/events/${eventId}/close_poll`,
+    success,
+    error
+  });
+};

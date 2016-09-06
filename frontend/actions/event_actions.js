@@ -7,7 +7,8 @@ export const EventConstants = {
   UPDATE_EVENT: 'UPDATE_EVENT',
   DELETE_EVENT: 'DELETE_EVENT',
   REMOVE_EVENT: 'REMOVE_EVENT',
-  RECEIVE_EVENT_ERRORS: 'RECEIVE_EVENT_ERRORS',
+  CLOSE_POLL: 'CLOSE_POLL',
+  RECEIVE_EVENT_ERRORS: 'RECEIVE_EVENT_ERRORS'
 };
 
 
@@ -74,6 +75,13 @@ const receiveEventErrors = (errors) => {
   };
 };
 
+const closePoll = (eventId) => {
+  return {
+    type: EventConstants.CLOSE_POLL,
+    eventId
+  };
+};
+
 export const EventActions = {
   fetchEvents,
   fetchSingleEvent,
@@ -83,5 +91,6 @@ export const EventActions = {
   receiveEvents,
   deleteEvent,
   removeEvent,
-  receiveEventErrors
+  receiveEventErrors,
+  closePoll
 };
