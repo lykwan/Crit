@@ -49,7 +49,11 @@ class EventForm extends React.Component {
   }
 
   inputGroup(val) {
-    this.setState({ group: val });
+    if (val) {
+      this.setState({ group: val });
+    } else {
+      this.setState({ group: '' });
+    }
   }
 
   afterOpenModal() {

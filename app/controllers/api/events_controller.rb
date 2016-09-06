@@ -75,6 +75,28 @@ class Api::EventsController < ApplicationController
     end
   end
 
+  def close_poll
+    @event = Event.find_by_id(params[:id])
+
+    if !@event
+      render_404_error("event")
+      return
+    elsif @event.host_user_id != current_user.id
+      render_403_error("event")
+      return
+    end
+
+    @event.is_attendees_finalized = true
+    if @event.save
+      render :show
+    else
+      render(
+        json: @event.errors.full_messages,
+        status: 422
+      )
+
+  end
+
   private
   def event_params
     params.require(:event).permit(:title,

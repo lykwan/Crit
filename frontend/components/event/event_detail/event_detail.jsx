@@ -6,6 +6,7 @@ import EventResponseFormContainer from './event_response_form_container';
 class EventDetail extends React.Component {
   render() {
     const eventData = this.props.eventData;
+    const currentUser = this.props.currentUser;
 
     if (eventData) {
       const location = eventData.location ?
@@ -17,9 +18,21 @@ class EventDetail extends React.Component {
         <span>{ eventData.start_time } - { eventData.end_time }</span> :
         <span>TBD</span>;
 
+      let closePollButton, attendeeResponseForm;
+      if (eventData.host.id === currentUser.id) {
+        closePollButton = (
+          <div className='button'>Close Poll</div>
+        );
+      } else {
+        attendeeResponseForm =
+          <EventResponseFormContainer eventId={ eventData.id }/>;
+      }
+
+
       return (
         <section className='content'>
           <h2>{ eventData.title }</h2>
+          { closePollButton }
           { location }
           <span>
             { eventData.group.title } - { eventData.host.username } hosted
@@ -27,7 +40,7 @@ class EventDetail extends React.Component {
 
           <EventAttendeeList />
           <EventTimeForm />
-          <EventResponseFormContainer eventId={ eventData.id }/>
+          { attendeeResponseForm }
 
         </section>
       );
