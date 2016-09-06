@@ -1,0 +1,40 @@
+/*LIST ITEM STYLING*/
+
+.list-item {
+  border: 1px solid var(--border-color);
+  opacity: 1.7;
+  background-color: white;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+}
+
+.list-item:hover {
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         0 0 32px rgba(0,0,0,.15);
+  cursor: pointer;
+  opacity: 1;
+}
+
+.group-item {
+  height: 63px;
+  background: #F5F5F5;
+  width: 210px;
+  float: left;
+  margin-right: 10px;
+}
+
+.group-item-img {
+  background-position: center;
+  background-size: 120px;
+  width: 35%;
+  height: 100%;
+  float: left;
+}
+
+.list-item-text {
+  text-align: center;
+}
+
+.group-item-text span {
+  line-height: 63px;
+}

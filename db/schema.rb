@@ -87,24 +87,25 @@ ActiveRecord::Schema.define(version: 20160906053014) do
   add_index "group_memberships", ["member_user_id", "group_id"], name: "index_group_memberships_on_member_user_id_and_group_id", unique: true, using: :btree
 
   create_table "groups", force: :cascade do |t|
-    t.string   "title",                       null: false
-    t.text     "description",                 null: false
+    t.string   "title",                                                                                                    null: false
+    t.text     "description",                                                                                              null: false
+    t.string   "img",         default: "http://www.pawbuzz.com/wp-content/uploads/sites/551/2014/11/corgi-puppies-21.jpg", null: false
     t.boolean  "is_public",   default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                                                                               null: false
+    t.datetime "updated_at",                                                                                               null: false
   end
 
   add_index "groups", ["title"], name: "index_groups_on_title", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
-    t.string   "name",            null: false
-    t.string   "img"
+    t.string   "username",                                                                                                            null: false
+    t.string   "password_digest",                                                                                                     null: false
+    t.string   "session_token",                                                                                                       null: false
+    t.string   "name",                                                                                                                null: false
+    t.string   "img",             default: "https://s-media-cache-ak0.pinimg.com/236x/39/51/66/395166785942e7f4098fb27b5dc8b3d2.jpg"
     t.text     "description"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                                                                                                          null: false
+    t.datetime "updated_at",                                                                                                          null: false
   end
 
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree

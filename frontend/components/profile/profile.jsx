@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import GroupItem from '../group/group_item';
 
 class Profile extends React.Component {
   render() {
@@ -8,7 +9,8 @@ class Profile extends React.Component {
       if (this.props.user.groups) {
         groups = this.props.user.groups.map(group => {
           return (
-            <li key={group.id}>{ group.title }</li>
+            <GroupItem key={group.id} group={ group }
+                       />
           );
         });
       }
@@ -22,18 +24,18 @@ class Profile extends React.Component {
           <div>
              <div className='profile-content-row'>
                <div className='title'>Name</div>
-               <div className='detail'>{ this.props.user.name }</div>
+               <div className='detail profile-name'>{ this.props.user.name }</div>
              </div>
              <div className='profile-content-row'>
                <div className='title'>Description</div>
-               <div className='detail'>I really really like cats and dogs and all that jazzz you know?!?!?!?!? yaas</div>
+               <div className='detail'>{ this.props.user.description }</div>
              </div>
              <div className='profile-content-row'>
                <div className='title'>Groups</div>
-               <div className='detail'>
-                 <ul>
+               <div className='detail profile-group-list'>
+                 <div>
                    { groups }
-                 </ul>
+                 </div>
                </div>
              </div>
           </div>
