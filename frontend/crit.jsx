@@ -9,6 +9,7 @@ import { UserActions } from './actions/user_actions';
 import { EventActions } from './actions/event_actions';
 import { EventResponseActions } from './actions/event_response_actions';
 import { ConditionActions } from './actions/condition_actions';
+import { AvailabilityActions } from './actions/availability_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState = {};
@@ -27,4 +28,5 @@ document.addEventListener('DOMContentLoaded', () => {
   window.EventActions = EventActions;
   window.ConditionActions = ConditionActions;
   window.UserActions = UserActions;
+  window.AvailabilityActions = AvailabilityActions;
 });

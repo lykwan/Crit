@@ -5,7 +5,7 @@ import GroupReducer from './group_reducer';
 import EventReducer from './event_reducer';
 import EventResponseReducer from './event_response_reducer';
 import ConditionReducer from './condition_reducer';
-import AvailabilityBitmapReducer from './availability_bitmap_reducer';
+import AvailabilityReducer from './availability_reducer';
 
 const RootReducer = combineReducers({
   session: SessionReducer,
@@ -14,7 +14,7 @@ const RootReducer = combineReducers({
   events: EventReducer,
   eventResponse: EventResponseReducer,
   condition: ConditionReducer,
-  availability_bitmap: AvailabilityBitmapReducer
+  availability: AvailabilityReducer
 });
 
 export default RootReducer;

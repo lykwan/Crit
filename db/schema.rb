@@ -11,21 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904031109) do
+ActiveRecord::Schema.define(version: 20160906053014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "availability_bitmaps", force: :cascade do |t|
-    t.integer  "event_response_id",           null: false
-    t.date     "date",                        null: false
-    t.integer  "time",              limit: 8, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+  create_table "availabilities", force: :cascade do |t|
+    t.integer  "event_id",         null: false
+    t.integer  "user_id",          null: false
+    t.date     "date",             null: false
+    t.integer  "time_slot_bitmap", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  add_index "availability_bitmaps", ["date"], name: "index_availability_bitmaps_on_date", using: :btree
-  add_index "availability_bitmaps", ["event_response_id", "date"], name: "index_availability_bitmaps_on_event_response_id_and_date", unique: true, using: :btree
+  add_index "availabilities", ["date"], name: "index_availabilities_on_date", using: :btree
+  add_index "availabilities", ["event_id", "user_id", "date"], name: "index_availabilities_on_event_id_and_user_id_and_date", unique: true, using: :btree
 
   create_table "conditions", force: :cascade do |t|
     t.integer  "event_response_id", null: false
@@ -55,8 +56,8 @@ ActiveRecord::Schema.define(version: 20160904031109) do
     t.string   "location"
     t.string   "img"
     t.boolean  "is_attendees_finalized", default: false
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
   end

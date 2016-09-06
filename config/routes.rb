@@ -11,10 +11,10 @@ Rails.application.routes.draw do
         post "close_poll"
       end
       resource :event_response, only: [:show, :create, :update, :destroy]
+      resource :availability, only: [:show, :create, :update]
     end
     resources :event_responses, only: [] do
       resource :condition, only: [:create, :update, :show]
-      resource :availability_bitmap, only: [:show, :create, :update]
     end
   end
 

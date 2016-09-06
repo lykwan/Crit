@@ -5,7 +5,7 @@ import GroupMiddleware from './group_middleware';
 import EventMiddleware from './event_middleware';
 import EventResponseMiddleware from './event_response_middleware';
 import ConditionMiddleware from './condition_middleware';
-import AvailabilityBitmapMiddleware from './availability_bitmap_middleware';
+import AvailabilityMiddleware from './availability_middleware';
 
 const RootMiddleware = applyMiddleware(
   SessionMiddleware,
@@ -14,7 +14,7 @@ const RootMiddleware = applyMiddleware(
   EventMiddleware,
   EventResponseMiddleware,
   ConditionMiddleware,
-  AvailabilityBitmapMiddleware
+  AvailabilityMiddleware
 );
 
 export default RootMiddleware;

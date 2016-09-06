@@ -8,8 +8,8 @@ class CreateEvents < ActiveRecord::Migration
       t.string :location
       t.string :img
       t.boolean :is_attendees_finalized, default: false
-      t.datetime :start_time
-      t.datetime :end_time
+      t.datetime :start_date
+      t.datetime :end_date
       t.timestamps null: false
     end
   end
