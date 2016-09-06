@@ -1,3 +1,23 @@
-// Place all the styles related to the Api/Availabilities controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* line 9, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/availabilities.scss */
+.time-table {
+  display: flex;
+}
+
+/* line 13, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/availabilities.scss */
+.date-col {
+  float: left;
+}
+
+/* line 17, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/availabilities.scss */
+.date-time {
+  background: white;
+  border: 1px solid black;
+  width: 60px;
+  height: 20px;
+  text-align: center;
+}
+
+/* line 24, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/availabilities.scss */
+.date-time.selected {
+  background-color: green;
+}
