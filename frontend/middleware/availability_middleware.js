@@ -1,5 +1,5 @@
 import { AvailabilityConstants, AvailabilityActions }
-  from '../actions/Availability_actions';
+  from '../actions/availability_actions';
 import { fetchAvailability,
          createAvailability,
          updateAvailability
