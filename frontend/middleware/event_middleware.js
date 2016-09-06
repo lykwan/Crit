@@ -1,6 +1,7 @@
 import { hashHistory } from 'react-router';
 import { EventConstants, EventActions } from '../actions/event_actions';
-import { fetchEvents, fetchSingleEvent, createEvent, updateEvent, deleteEvent}
+import { fetchEvents, fetchSingleEvent, createEvent, updateEvent, deleteEvent,
+         closePoll }
   from '../util/event_api_util';
 
 const EventMiddleware = ({ dispatch }) => next => action => {
@@ -27,6 +28,9 @@ const EventMiddleware = ({ dispatch }) => next => action => {
                   successCb,
                   errorCb
                  );
+      return next(action);
+    case EventConstants.CLOSE_POLL:
+      closePoll(action.eventId, receiveSingleEvent, errorCb);
       return next(action);
     default:
       return next(action);

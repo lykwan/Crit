@@ -36,7 +36,32 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :event_responses
 
   def finalized_attendees
-    dependencies_hash = {}
+    # potential_respondees_responses =
+    #   self.event_responses.includes(:respondee, condition: {friend_conditions: :friend})
+    #                       .where(response: ["definitely", "only if"])
+    # dependencies_hash = Hash.new { |h, k| h[k] = [] }
+    # potential_respondees_responses.each do |response|
+    #   if response.condition
+    #     response.condition.specified_friends.each do |depended_friend|
+    #       dependencies_hash[depended_friend] << response
+    #     end
+    #   end
+    # end
+    #
+    # remaining_potentials = pontential_respondees_responses
+    # is_all_satisfied = false
+    # until is_all_satisfied
+    #   is_all_satisified = true
+    #   eliminate_responses = remaining_potentials.filter do |response|
+    #     !condition_satisfied(response.condition)
+    #   end
+    #   eliminate_responses.each do |response|
+    #     is_all_satisfied = false
+    #     if (dependencies_hash[response.respondee]) {
+    #
+    #     }
+
+    self.event_respondees.where(event_responses: { response: "definitely" })
 
   end
 

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
     resources :event_responses, only: [] do
       resource :condition, only: [:create, :update, :show]
+      resource :availability_bitmap, only: [:show, :create, :update]
     end
   end
 

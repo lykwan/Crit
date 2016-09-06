@@ -1,9 +1,51 @@
 import React from 'react';
 import EventAttendeeList from './event_attendee_list';
-import EventTimeForm from './event_time_form';
+import EventTimeFormContainer from './event_time_form_container';
 import EventResponseFormContainer from './event_response_form_container';
 
 class EventDetail extends React.Component {
+  getClosePollButton(eventData) {
+    let closePollButton;
+    if (eventData.host.id === this.props.currentUser.id &&
+        !eventData.is_attendees_finalized) {
+      closePollButton = (
+        <div className='button'
+             onClick={ this.props.closePoll.bind(this, eventData.id) }>
+          Close Poll
+        </div>
+      );
+    }
+    return closePollButton;
+  }
+
+  getAttendeeResponseForm(eventData) {
+    let attendeeResponseForm;
+    if (eventData.host.id !== this.props.currentUser.id &&
+        !eventData.is_attendees_finalized) {
+      attendeeResponseForm =
+        <EventResponseFormContainer eventId={ eventData.id }/>;
+    }
+
+    return attendeeResponseForm;
+  }
+
+  getTimeForm(eventData) {
+    if (eventData.is_attendees_finalized &&
+        eventData.finalized_attendees[this.props.currentUser.id]) {
+        return <EventTimeFormContainer />;
+    } else {
+      return null;
+    }
+  }
+
+  getAttendeeList(eventData) {
+    if (eventData.is_attendees_finalized) {
+      return <EventAttendeeList attendees={ eventData.finalized_attendees }/>;
+    } else {
+      return null;
+    }
+  }
+
   render() {
     const eventData = this.props.eventData;
     const currentUser = this.props.currentUser;
@@ -18,29 +60,18 @@ class EventDetail extends React.Component {
         <span>{ eventData.start_time } - { eventData.end_time }</span> :
         <span>TBD</span>;
 
-      let closePollButton, attendeeResponseForm;
-      if (eventData.host.id === currentUser.id) {
-        closePollButton = (
-          <div className='button'>Close Poll</div>
-        );
-      } else {
-        attendeeResponseForm =
-          <EventResponseFormContainer eventId={ eventData.id }/>;
-      }
-
-
       return (
         <section className='content'>
           <h2>{ eventData.title }</h2>
-          { closePollButton }
+          { this.getClosePollButton(eventData) }
           { location }
           <span>
             { eventData.group.title } - { eventData.host.username } hosted
           </span>
 
-          <EventAttendeeList />
-          <EventTimeForm />
-          { attendeeResponseForm }
+          { this.getAttendeeList(eventData) }
+          { this.getTimeForm(eventData) }
+          { this.getAttendeeResponseForm(eventData) }
 
         </section>
       );

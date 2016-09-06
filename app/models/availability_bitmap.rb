@@ -17,4 +17,8 @@ class AvailabilityBitmap < ActiveRecord::Base
 
   belongs_to :event_response
 
+  belongs_to :respondee,
+    through: :event_response,
+    source: :respondee
+
 end
