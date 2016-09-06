@@ -50,6 +50,7 @@ class EventDetail extends React.Component {
   }
 
   render() {
+    console.log('got here');
     const eventData = this.props.eventData;
     const currentUser = this.props.currentUser;
 

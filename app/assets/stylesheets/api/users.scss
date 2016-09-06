@@ -1,3 +1,39 @@
 // Place all the styles related to the Api/Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* line 5, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/users.scss */
+.profile-img-frame {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  border: 2px solid #E4E4E4;
+  width: 350px;
+  height: 350px;
+  margin: 30px auto;
+}
+
+/* line 15, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/users.scss */
+.profile-img {
+  background-position: center;
+  background-size: cover;
+  width: 95%;
+  height: 95%;
+  margin: auto;
+}
+
+.profile-content-row {
+  width: 400px;
+  margin: auto;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.profile-content-row .title {
+  width: 150px;
+}
+
+.profile-content-row .detail {
+  width: 350px;
+}

@@ -42,6 +42,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         ConditionActions.updateCondition(eventResponseId, eventResponse)
       );
+    },
+    clearCondition: () => {
+      dispatch(
+        ConditionActions.clearCondition()
+      );
     }
   };
 };

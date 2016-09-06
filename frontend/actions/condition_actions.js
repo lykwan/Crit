@@ -3,6 +3,7 @@ export const ConditionConstants = {
   RECEIVE_CONDITION: 'RECEIVE_CONDITION',
   CREATE_CONDITION: 'CREATE_CONDITION',
   UPDATE_CONDITION: 'UPDATE_CONDITION',
+  CLEAR_CONDITION: 'CLEAR_CONDITION',
   RECEIVE_CONDITION_ERRORS: 'RECEIVE_CONDITION_ERRORS'
 };
 
@@ -40,6 +41,12 @@ const receiveConditionErrors = (errors) => {
   return {
     type: ConditionConstants.RECEIVE_CONDITION_ERRORS,
     errors
+  };
+};
+
+const clearCondition = () => {
+  return {
+    type: ConditionConstants.CLEAR_CONDITION
   };
 };
 
