@@ -35,4 +35,9 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :event_responses
 
+  def finalized_attendees
+    dependencies_hash = {}
+
+  end
+
 end

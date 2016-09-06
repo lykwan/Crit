@@ -24,7 +24,7 @@ class Api::ConditionsController < ApplicationController
       Condition.find_by(event_response_id: params[:event_response_id])
 
     if !@condition
-      render_404_error("condition")
+      render json: {}
     elsif @condition.respondee.id != current_user.id
       render_403_error("condition")
     else

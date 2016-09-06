@@ -1,6 +1,8 @@
 import { ConditionConstants } from '../actions/condition_actions';
 import { merge } from 'lodash';
 
+
+
 const ConditionReducer = (state = {}, action) => {
   switch(action.type) {
     case ConditionConstants.RECEIVE_CONDITION:

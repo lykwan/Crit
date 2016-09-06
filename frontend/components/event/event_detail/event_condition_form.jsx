@@ -9,14 +9,22 @@ class EventConditionForm extends React.Component {
 
   componentWillMount() {
     this.props.fetchCondition(this.props.eventResponseId);
+    this.props.fetchUsers();
   }
 
   render() {
-    let minNumPeople, friendConditions;
+    let minNumPeople, friendConditions = [];
     if (this.props.condition) {
       minNumPeople = this.props.condition.min_num_people;
       friendConditions = this.props.condition.friend_conditions;
     }
+
+    const friendConditionsDict = {};
+    friendConditions.map(cond => {
+      friendConditionsDict[cond.id] = cond;
+    });
+
+    console.log(friendConditions);
 
     return (
       <div className='event-condition-form'>
@@ -29,6 +37,7 @@ class EventConditionForm extends React.Component {
                                   eventResponseId={ this.props.eventResponseId }
                                   createCondition={ this.props.createCondition }
                                   updateCondition={ this.props.updateCondition }
+                                  users={ this.props.users }
                                   />
       </div>
     );
