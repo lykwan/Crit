@@ -3,7 +3,7 @@ import { AvailabilityConstants, AvailabilityActions }
 import { fetchAvailability,
          createAvailability,
          updateAvailability
-       } from '../util/Availability_api_util';
+       } from '../util/availability_api_util';
 
 const AvailabilityMiddleware = ({ dispatch }) => next => action => {
   const receiveAvailability = availability => {
