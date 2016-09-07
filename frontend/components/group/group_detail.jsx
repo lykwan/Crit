@@ -24,30 +24,33 @@ class GroupDetail extends React.Component {
 
       return (
         <section className='content'>
-          <div className='group-detail-img' />
-          <div className='content-header'>
-            <h2>{ this.props.group.title }</h2>
-            <div className='content-header-buttons group-show-buttons'>
-              <div className='button'>
-                <i className='fa fa-plus' aria-hidden='true'></i>
-                <span>  Add Member</span>
-              </div>
+          <div className='group-detail-img'
+               style={ { backgroundImage: `url(${this.props.group.img})`} } />
+          <div className='content-body'>
+            <div className='content-header'>
+              <h2>{ this.props.group.title }</h2>
+              <div className='content-header-buttons group-show-buttons'>
+                <div className='button'>
+                  <i className='fa fa-plus' aria-hidden='true'></i>
+                  <span>  Member</span>
+                </div>
 
-              <div className='button'>
-                <i className='fa fa-plus' aria-hidden='true'></i>
-                <span>  Edit Group</span>
+                <div className='button'>
+                  <i className="fa fa-pencil" aria-hidden="true"></i>
+                  <span>  Edit</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <h4>ADMINS</h4>
-          <ul className='member-list'>
-            { admins }
-          </ul>
-          <h4>MEMBERS</h4>
-          <ul className='member-list'>
-            { regularMembers }
-          </ul>
+            <h4>ADMINS</h4>
+            <ul className='member-list'>
+              { admins }
+            </ul>
+            <h4>MEMBERS</h4>
+            <ul className='member-list'>
+              { regularMembers }
+            </ul>
+          </div>
         </section>
       );
     }

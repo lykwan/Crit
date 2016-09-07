@@ -10,8 +10,9 @@ const fetchUser = (userId) => ({
   userId
 });
 
-const fetchUsers = () => ({
-  type: UserConstants.FETCH_USERS
+const fetchUsers = (query) => ({
+  type: UserConstants.FETCH_USERS,
+  query
 });
 
 const receiveUsers = (users) => ({

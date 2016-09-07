@@ -1,10 +1,30 @@
 import React from 'react';
+import Modal from 'react-modal';
 import { withRouter } from 'react-router';
+import UserSearchContainer from '../user_search/user_search_container';
+
+const customModalStyles = {
+  overlay: {
+    position        :'fixed',
+    top             :0,
+    left            :0,
+    right           :0,
+    bottom          :0,
+    backgroundColor :'rgba(0, 0, 0, 0.40)',
+  },
+  content: {
+    position        :'fixed',
+    width           :'700px',
+    height          :'400px',
+    margin          :'auto',
+    border          :'1px solid #ccc',
+    padding         :'30px',
+  }
+};
 
 const formFields = {
   TITLE: 'title',
-  DESCRIPTION: 'description',
-  FRIENDS_SEARCH: 'friends_search',
+  DESCRIPTION: 'description'
 };
 
 class GroupForm extends React.Component {
@@ -17,16 +37,40 @@ class GroupForm extends React.Component {
         friends_search: '',
         group_memberships_attributes: []
       },
-      toggleDropDown: false
+      membersInput: [],
+      isModalOpen: false
     };
   }
 
   _handleSubmit(e) {
     e.preventDefault();
-    if (!this.state.toggleDropDown) {
-      this.props.createGroup(this.state.group);
-    }
+
+    const membershipAttributes =
+      this.state.membersInput.map(input => {
+        return {
+          member_user_id: input.value
+        };
+      });
+
+    const group =
+      Object.assign({},
+                    this.state.group,
+                    { group_memberships_attributes: membershipAttributes }
+                   );
+
+    this.props.createGroup(group);
   }
+
+  closeModal() {
+    this.setState({ isModalOpen: false });
+    // document.body.className = '';
+  }
+
+  openModal() {
+    this.setState({ isModalOpen: true });
+    // document.body.className = 'modal-open';
+  }
+
 
   _handleInputChange(field, e) {
     const group = Object.assign({},
@@ -36,32 +80,20 @@ class GroupForm extends React.Component {
     this.setState({ group: group });
   }
 
-  _handleKeyPress(e) {
-    if (e.key === '~') {
-      const membership = { member_user_id: e.currentTarget.value };
-      const updatedMembershipsAttr =
-        [...this.state.group.group_memberships_attributes, membership];
-
-      const group =
-        Object.assign({},
-                      this.state.group,
-                      { group_memberships_attributes:updatedMembershipsAttr,
-                        friends_search: ''
-                      }
-                     );
-      this.setState({ group: group });
-    }
+  setMembersInput(input) {
+    this.setState({ membersInput: input });
   }
 
-  componentWillUpdate(nextProps) {
-    this._redirectIfSuccessSubmit(nextProps.successSubmitGroupId);
-  }
-
-  _redirectIfSuccessSubmit(groupId) {
-    if (groupId) {
-      this.props.router.push(`/groups/${groupId}`);
-    }
-  }
+  // componentWillUpdate(nextProps) {
+  //   this._redirectIfSuccessSubmit(nextProps.successSubmitGroupId);
+  // }
+  //
+  // _redirectIfSuccessSubmit(groupId) {
+  //   if (groupId) {
+  //     // this.props.router.push(`/groups/${groupId}`);
+  //     this.setState({ isModalOpen: false });
+  //   }
+  // }
 
   render() {
     const groupMemberships =
@@ -71,46 +103,77 @@ class GroupForm extends React.Component {
         );
       });
 
+    let errors;
+    if (this.props.errors) {
+      errors = this.props.errors.map((error, idx) => {
+        return (
+          <li key={idx}>{ error }</li>
+        );
+      });
+    }
+
     return (
-      <form className='group-form'
-            onSubmit={ this._handleSubmit.bind(this) }>
-
-        <label>Group Name
-          <input type='text'
-                 value={ this.state.group.title }
-                 onChange={
-                   this._handleInputChange.bind(this, formFields.TITLE)
-                 } />
-        </label>
-
-        <label>Description
-          <textarea cols='30' rows='10'
-                    value={ this.state.group.description }
-                    onChange={
-                      this._handleInputChange.bind(this, formFields.DESCRIPTION)
-                    } />
-        </label>
-
-        <div className='group-form-invite'>
-          <label>Invite People
-            <div>
-              <i className="fa fa-search" aria-hidden="true"></i>
-              <input type='text'
-                     value={ this.state.group.friends_search }
-                     onChange={
-                       this._handleInputChange.bind(this,
-                                                    formFields.FRIENDS_SEARCH)
-                     }
-                     onKeyPress={ this._handleKeyPress.bind(this) } />
-            </div>
-          </label>
-          <div className='group-form-invite-friends'>
-            { groupMemberships }
-          </div>
+      <div>
+        <div className='content-header-buttons button'
+             onClick={ this.openModal.bind(this) }>
+          <i className='fa fa-plus' aria-hidden='true'></i>
+          <span>  Create Group</span>
         </div>
 
-        <button className='button'>Submit Form</button>
-      </form>
+        <Modal
+          isOpen={ this.state.isModalOpen }
+          onRequestClose={ this.closeModal.bind(this) }
+          style={ customModalStyles } >
+
+          <div className='modal-close-button'
+               onClick={ this.closeModal.bind(this) }>
+            <i className="fa fa-times" aria-hidden="true"></i>
+          </div>
+
+          <form className='form group-form'
+                onSubmit={ this._handleSubmit.bind(this) }>
+
+            <h3>Create Group</h3>
+
+            <input type='text'
+                   value={ this.state.group.title }
+                   className='form-input'
+                   placeholder='Group name'
+                   onChange={
+                     this._handleInputChange.bind(this, formFields.TITLE)
+                   } />
+
+            <input type='text'
+                    value={ this.state.group.description }
+                    className='form-textarea form-input'
+                    placeholder='Description'
+                    onChange={
+                      this._handleInputChange.
+                        bind(this, formFields.DESCRIPTION)
+                    } />
+
+            <div className='group-form-invite'>
+              <div className='form-search'>
+                <div className='form-search-icon'>
+                  <i className="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <UserSearchContainer
+                  membersInput={ this.state.membersInput }
+                  setMembersInput={ this.setMembersInput.bind(this) }/>
+              </div>
+              <div className='group-form-invite-friends'>
+                { groupMemberships }
+              </div>
+            </div>
+
+            <ul>
+              { errors }
+            </ul>
+
+            <button className='button'>Submit Form</button>
+          </form>
+        </Modal>
+      </div>
     );
   }
 }

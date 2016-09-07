@@ -19,6 +19,7 @@
 :root {
   --border-color: #DCDCDC;
   --navbar-height: 60px;
+  --input-width: 450px;
 }
 
 body {
@@ -51,8 +52,12 @@ h4 {
 }
 
 .content {
-  width: 70%;
+  width: 800px;
   margin: auto;
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  background: white;
+  height: 100vh;
 }
 
 .content-header {
@@ -68,7 +73,7 @@ h4 {
 
 .content-header-buttons {
   position: absolute;
-  right: 20px;
+  right: 0;
   bottom: 30px;
 }
 
@@ -84,4 +89,17 @@ body.modal-open {
 .modal-close-button {
   float: right;
   cursor: pointer;
+}
+
+.button {
+  cursor: pointer;
+  border: 1px solid #bdbdbd;
+  border-bottom: 2px solid #d3d3d3;
+  background: white;
+  padding: 7px;
+  border-radius: 7px;
+}
+
+.content-body {
+  padding: 26px 30px;
 }

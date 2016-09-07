@@ -16,7 +16,7 @@ const GroupReducer = (state = {}, action) => {
     case GroupConstants.RECEIVE_SINGLE_GROUP:
       return merge({}, { groupDetail: action.group });
     case GroupConstants.RECEIVE_GROUP_ERRORS:
-      return merge({}, { errors: action.errors });
+      return merge(state, { errors: action.errors });
     default:
       return state;
   }

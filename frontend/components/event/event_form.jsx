@@ -118,7 +118,7 @@ class EventForm extends React.Component {
 
           { errors }
 
-          <form className='event-form'
+          <form className='form event-form'
                 onSubmit={ this._handleSubmit.bind(this) } >
 
             <h3>Add Event</h3>

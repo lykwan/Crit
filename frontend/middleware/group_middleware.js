@@ -1,3 +1,4 @@
+import { hashHistory } from 'react-router';
 import { GroupConstants, GroupActions } from '../actions/group_actions';
 import { fetchGroups, fetchSingleGroup, createGroup, updateGroup, deleteGroup }
   from '../util/group_api_util';
@@ -18,7 +19,10 @@ const GroupMiddleware = ({ dispatch }) => next => action => {
       fetchSingleGroup(action.groupId, receiveSingleGroup, errorCb);
       return next(action);
     case GroupConstants.CREATE_GROUP:
-      createGroup(action.group, receiveSingleGroup, errorCb);
+      const successCb = group => {
+        hashHistory.push(`/groups/${ group.id }`);
+      };
+      createGroup(action.group, successCb, errorCb);
       return next(action);
     default:
       return next(action);

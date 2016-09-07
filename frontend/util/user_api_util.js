@@ -7,10 +7,11 @@ export const fetchUser = (userId, success, error) => {
   });
 };
 
-export const fetchUsers = (success, error) => {
+export const fetchUsers = (success, error, query) => {
   $.ajax({
     url: 'api/users',
     method: 'GET',
+    data: { query },
     success,
     error
   });

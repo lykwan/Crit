@@ -29,7 +29,11 @@ class Api::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.includes(:groups)
+    if params[:query]
+      @users = User.where("name LIKE '#{params[:query]}%'").includes(:groups)
+    else
+      @users = User.all.where("id != '#{current_user.id}'").includes(:groups)
+    end
   end
 
   private

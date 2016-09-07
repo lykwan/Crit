@@ -2,7 +2,8 @@ json.extract! group,
               :id,
               :title,
               :description,
-              :is_public
+              :is_public,
+              :img
 
 json.admins do
   json.array! group.admins do |admin|
