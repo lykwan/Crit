@@ -1,5 +1,6 @@
 import React from 'react';
 import UserItem from '../profile/user_item';
+import GroupFormContainer from '../group/group_form_container';
 
 class GroupDetail extends React.Component {
   render() {
@@ -18,7 +19,7 @@ class GroupDetail extends React.Component {
       });
 
       return (
-        <section className='content'>
+        <section className='content detail-content'>
           <div className='group-detail-img'
                style={ { backgroundImage: `url(${this.props.group.img})`} } />
           <div className='content-body'>
@@ -30,9 +31,9 @@ class GroupDetail extends React.Component {
                   <span>  Member</span>
                 </div>
 
-                <div className='button'>
-                  <i className="fa fa-pencil" aria-hidden="true"></i>
-                  <span>  Edit</span>
+                <div>
+                  <GroupFormContainer isEditForm={ true }
+                                      group={ this.props.group }/>
                 </div>
               </div>
             </div>

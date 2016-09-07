@@ -1,19 +1,26 @@
 .form h3 {
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 .form .form-input {
   border-bottom: 1px solid #d3d3d3;;
-  /* border-radius: 3px; */
   padding: 4px 8px;
   display: block;
-  margin: 30px 0;
+  margin-bottom: 30px;
   width: var(--input-width);
 }
 
 .form .form-textarea {
   width: 500px;
 }
+
+/*.form .form-input.form-date {
+  border-bottom: 1px solid #d3d3d3;;
+  padding: 4px 8px;
+  display: block;
+  margin: ;
+  width: var(--input-width);
+}*/
 
 .form .optional {
   font-size: 10px;
@@ -36,4 +43,8 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid black;
+}
+
+.form-date {
+  margin-top: 30px;
 }

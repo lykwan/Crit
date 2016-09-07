@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import GroupForm from './group_form';
 import { GroupActions } from '../../actions/group_actions';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   let successSubmitGroupId = null;
 
   if (state.groups.groupDetail) {
@@ -11,7 +11,9 @@ const mapStateToProps = state => {
 
   return {
     successSubmitGroupId,
-    errors: state.groups.errors
+    errors: state.groups.errors,
+    isEditForm: ownProps.isEditForm,
+    group: ownProps.group
   };
 };
 

@@ -24,6 +24,13 @@ class EventDetail extends React.Component {
         !eventData.is_attendees_finalized) {
       attendeeResponseForm =
         <EventResponseFormContainer eventId={ eventData.id }/>;
+    } else if (!eventData.is_attendees_finalized) {
+      attendeeResponseForm = (
+        <span>
+          Currently waiting for group members to respond to event. Close the
+          poll when you are no longer accepting responses.
+        </span>
+      );
     }
 
     return attendeeResponseForm;
@@ -65,7 +72,7 @@ class EventDetail extends React.Component {
         <span>TBD</span>;
 
       return (
-        <section className='content'>
+        <section className='content detail-content'>
           <h2>{ eventData.title }</h2>
           { this.getClosePollButton(eventData) }
           { location }

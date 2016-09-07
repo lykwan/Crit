@@ -24,6 +24,9 @@ const GroupMiddleware = ({ dispatch }) => next => action => {
       };
       createGroup(action.group, successCb, errorCb);
       return next(action);
+    case GroupConstants.UPDATE_GROUP:
+      createGroup(action.group, receiveSingleGroup, errorCb);
+      return next(action);
     default:
       return next(action);
   }
