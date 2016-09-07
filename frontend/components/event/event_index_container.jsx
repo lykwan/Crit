@@ -4,7 +4,8 @@ import { EventActions } from '../../actions/event_actions';
 import EventIndex from './event_index';
 
 const mapStateToProps = state => ({
-  events: state.events.events
+  events: state.events.events,
+  currentUser: state.session.currentUser
 });
 
 export default connect(

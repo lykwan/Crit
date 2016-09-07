@@ -18,7 +18,9 @@
 
 class Event < ActiveRecord::Base
 
-  validates :title, :description, :group_id, :host_user_id, presence: true
+  validates :title, :description, :group_id, :host_user_id,
+            :start_date, :end_date, presence: true
+  validate :event_in_future, :end_date_after_start, :valid_time_range
 
   belongs_to :group
 
@@ -34,6 +36,25 @@ class Event < ActiveRecord::Base
     source: :respondee
 
   accepts_nested_attributes_for :event_responses
+
+  def event_in_future
+    if self.start_date && self.start_date <= Time.now
+      self.errors[:start_date] << "has to be in the future"
+    end
+  end
+
+  def end_date_after_start
+    if self.start_date && self.end_date && self.start_date > self.end_date
+      self.errors[:end_date] << "has to be after start_date"
+    end
+  end
+
+  def valid_time_range
+    if self.start_date && self.end_date &&
+        (self.end_date.to_date - self.start_date.to_date).to_i > 14
+      self.errors[:end_date] << "can only be within two weeks from start date"
+    end
+  end
 
   def finalized_attendees
     # potential_respondees_responses =

@@ -1,10 +1,26 @@
-// Place all the styles related to the Api/Events controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* line 5, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/events.scss */
+.event-item-info {
+  padding: 20px;
+}
+
 
 .event-item {
-  width: 80%;
+    display: flex;
+}
+
+.event-item-info span {
+    display: block;
+}
+
+.content-header.event-content-header {
   height: 120px;
-  margin: 10px;
-  border: 1px solid black;
+}
+
+.content-divider {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.event-content-header span {
+  display: block;
 }

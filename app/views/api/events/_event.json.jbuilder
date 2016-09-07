@@ -8,6 +8,9 @@ json.extract! event,
               :start_date,
               :end_date
 
+json.start_date_formatted event.start_date.strftime("%A %m/%d/%Y")
+json.end_date_formatted event.end_date.strftime("%A %m/%d/%Y")
+
 json.event_respondees do
   json.array! event.event_respondees do |respondee|
     json.partial! "api/users/user", user: respondee

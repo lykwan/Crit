@@ -9,9 +9,11 @@ class EventDetail extends React.Component {
     if (eventData.host.id === this.props.currentUser.id &&
         !eventData.is_attendees_finalized) {
       closeResponsePollButton = (
-        <div className='button'
-             onClick={ this.props.closeResponsePoll.bind(this, eventData.id) }>
-          Close Poll
+        <div className='content-header-buttons'>
+          <div className='button'
+               onClick={ this.props.closeResponsePoll.bind(this, eventData.id) }>
+            Close Poll
+          </div>
         </div>
       );
     }
@@ -26,10 +28,15 @@ class EventDetail extends React.Component {
         <EventResponseFormContainer eventId={ eventData.id }/>;
     } else if (!eventData.is_attendees_finalized) {
       attendeeResponseForm = (
-        <span>
-          Currently waiting for group members to respond to event. Close the
-          poll when you are no longer accepting responses.
-        </span>
+        <div>
+          <span>
+            Currently waiting for group members to respond to event.
+          </span>
+          <br/>
+          <br/>
+          <span>Close the poll when you are no longer accepting responses.
+          </span>
+        </div>
       );
     }
 
@@ -72,16 +79,29 @@ class EventDetail extends React.Component {
 
       return (
         <section className='content detail-content'>
-          <h2>{ eventData.title }</h2>
-          { this.getCloseResponsePollButton(eventData) }
-          { location }
-          <span>
-            { eventData.group.title } - { eventData.host.username } hosted
-          </span>
+          <div className='detail-img'
+               style={ { backgroundImage: `url(${eventData.img})`} } />
 
-          { this.getAttendeeList(eventData) }
-          { this.getSchedule(eventData) }
-          { this.getAttendeeResponseForm(eventData) }
+          <div className='content-body'>
+
+            <div className='content-header event-content-header'>
+              <h2>{ eventData.title }</h2>
+              { this.getCloseResponsePollButton(eventData) }
+              { location }
+              <span>
+                { eventData.group.title } - { eventData.host.username } hosted
+              </span>
+            </div>
+
+            <div className='content-divider'>
+              _________________________________________________________________________________
+            </div>
+
+            { this.getAttendeeList(eventData) }
+            { this.getSchedule(eventData) }
+            { this.getAttendeeResponseForm(eventData) }
+
+          </div>
 
         </section>
       );

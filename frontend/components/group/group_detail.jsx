@@ -20,7 +20,7 @@ class GroupDetail extends React.Component {
 
       return (
         <section className='content detail-content'>
-          <div className='group-detail-img'
+          <div className='detail-img'
                style={ { backgroundImage: `url(${this.props.group.img})`} } />
           <div className='content-body'>
             <div className='content-header'>

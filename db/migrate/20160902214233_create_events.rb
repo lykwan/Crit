@@ -6,7 +6,7 @@ class CreateEvents < ActiveRecord::Migration
       t.integer :group_id, null: false, index: true
       t.integer :host_user_id, null: false, index: true
       t.string :location
-      t.string :img
+      t.string :img, default: "http://cdn.andersonacres.com/wp-content/uploads/2007/09/corgi-party.JPG"
       t.boolean :is_attendees_finalized, default: false
       t.boolean :is_time_finalized, default: false
       t.datetime :start_date, null: false

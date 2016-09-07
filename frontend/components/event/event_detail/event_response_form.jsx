@@ -67,8 +67,8 @@ class EventResponseForm extends React.Component {
     }
 
     return (
-      <div>
-        <h5>Are you attending this event?</h5>
+      <div className='event-response-form-container'>
+        <h4>Are you attending this event?</h4>
         <ul className='event-response-form'>
           { responseChoiceTags }
         </ul>

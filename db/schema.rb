@@ -49,17 +49,18 @@ ActiveRecord::Schema.define(version: 20160906053014) do
   add_index "event_responses", ["respondee_user_id"], name: "index_event_responses_on_respondee_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.string   "title",                                  null: false
-    t.text     "description",                            null: false
-    t.integer  "group_id",                               null: false
-    t.integer  "host_user_id",                           null: false
+    t.string   "title",                                                                                                      null: false
+    t.text     "description",                                                                                                null: false
+    t.integer  "group_id",                                                                                                   null: false
+    t.integer  "host_user_id",                                                                                               null: false
     t.string   "location"
-    t.string   "img"
+    t.string   "img",                    default: "http://cdn.andersonacres.com/wp-content/uploads/2007/09/corgi-party.JPG"
     t.boolean  "is_attendees_finalized", default: false
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.boolean  "is_time_finalized",      default: false
+    t.datetime "start_date",                                                                                                 null: false
+    t.datetime "end_date",                                                                                                   null: false
+    t.datetime "created_at",                                                                                                 null: false
+    t.datetime "updated_at",                                                                                                 null: false
   end
 
   add_index "events", ["group_id"], name: "index_events_on_group_id", using: :btree
