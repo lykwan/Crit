@@ -29,8 +29,4 @@ class EventResponse < ActiveRecord::Base
 
   has_one :condition, dependent: :destroy
 
-  has_many :availability_bitmaps,
-    dependent: :destroy,
-    inverse_of: :event_response
-
 end

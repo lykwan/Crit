@@ -10,10 +10,19 @@ const responseChoices = {
 class EventResponseForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      responseChoice: ''
+    };
   }
 
   componentWillMount() {
     this.props.fetchEventResponse(this.props.eventId);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      responseChoice: nextProps.eventResponse.response
+    });
   }
 
   handleClick(choice) {
@@ -33,7 +42,7 @@ class EventResponseForm extends React.Component {
   render() {
     let responseChoice = '';
     if (this.props.eventResponse) {
-      responseChoice = this.props.eventResponse.response;
+      responseChoice = this.state.responseChoice;
     }
 
     const responseChoiceTags =

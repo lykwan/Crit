@@ -1,63 +1,33 @@
 class Api::AvailabilitiesController < ApplicationController
 
   def create
-    @availability = Availability.new(availability_params)
-    @availability.event_id = params[:event_id]
-    @availability.user_id = current_user.id
-    @availability.date = Time.iso8601(params[:availability][:date])
-
-    event = Event.find_by_id(@availability.event_id)
-    if !event
-      render_404_error("event")
-    elsif !current_user.events.include?(event)
-      render_403_error("event")
-    elsif @availability.save
-      render :show
-    else
-      render(
-        json: @availability.errors.full_messages,
-        status: 422
-      )
+    @availabilities = params["availabilities"].keys.map do |id|
+      availability = Availability.new(availability_params(id))
+      availability.date = Time.iso8601(availability_params(id)[:date])
+      availability.user_id = current_user.id
+      availability.event_id = params[:event_id]
+      availability
     end
+
+    Availability.transaction do
+      @availabilities.each do |avail|
+        avail.save
+      end
+    end
+
+    render :index
   end
 
-  def show
-    @availability =
-      Availability.find_by(event_id: params[:event_id],
-                           user_id: current_user.id)
-
-    if !@availability
-      render(
-        json: {}
-      )
-    else
-      render :show
-    end
-  end
-
-  def update
-    @availability =
-      Availability.find_by(event_id: params[:event_id],
-                          user_id: current_user.id)
-    @availability.date = Time.iso8601(params[:availability][:date])
-
-    if !@availability
-      render_404_error("availability")
-    elsif @availability.update(availability_params)
-      render :show
-    else
-      render(
-        json: @availability.errors.full_messages,
-        status: 422
-      )
-    end
+  def index
+    @availabilities =
+      Availability.where(event_id: params[:event_id],
+                         user_id: current_user.id)
   end
 
   private
-  def availability_params
-    params.require(:availability)
-          .permit(:time_slot_bitmap)
+  def availability_params(id)
+    params.require(:availabilities).fetch(id)
+          .permit(:time_slot_bitmap , :date)
   end
-
 
 end

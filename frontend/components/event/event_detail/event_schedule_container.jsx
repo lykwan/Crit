@@ -4,26 +4,21 @@ import EventSchedule from './event_schedule';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    availability: state.availability.availability,
+    availabilities: state.availability,
     eventData: ownProps.eventData
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAvailability: (eventId) => {
+    fetchAvailabilities: (eventId) => {
       dispatch(
-        AvailabilityActions.fetchAvailability(eventId)
+        AvailabilityActions.fetchAvailabilities(eventId)
       );
     },
-    createAvailability: (eventId, availability) => {
+    createAvailabilities: (eventId, availability) => {
       dispatch(
-        AvailabilityActions.createAvailability(eventId, availability)
-      );
-    },
-    updateAvailability: (eventId, availability) => {
-      dispatch(
-        AvailabilityActions.updateAvailability(eventId, availability)
+        AvailabilityActions.createAvailabilities(eventId, availability)
       );
     }
   };
