@@ -45,10 +45,10 @@ export const deleteEvent = (eventId, success, error) => {
   });
 };
 
-export const closePoll = (eventId, success, error) => {
+export const closeResponsePoll = (eventId, success, error) => {
   $.ajax({
     method: 'POST',
-    url: `api/events/${eventId}/close_poll`,
+    url: `api/events/${eventId}/close_response_poll`,
     success,
     error
   });

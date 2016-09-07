@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     resources :groups, only: [:index, :create, :show, :update, :destroy]
     resources :events, only: [:index, :create, :show, :update, :destroy] do
       member do
-        post "close_poll"
+        post "close_response_poll"
+        post "close_schedule_poll"
       end
       resource :event_response, only: [:show, :create, :update, :destroy]
       resources :availabilities, only: [:index, :create]

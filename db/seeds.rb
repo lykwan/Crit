@@ -46,4 +46,4 @@ Condition.create!(event_response_id: 2,
                  )
 Condition.create!(event_response_id: 3, min_num_people: 4)
 
-Availability.create!(event_id: 1, user_id: 1, date: DateTime.new(2016,9,5).strftime("%Y-%m-%d"), time_slot_bitmap: 255)
+Availability.create!(event_id: 1, user_id: 1, date: DateTime.new(2016,10,5), time_slot_bitmap: 255)

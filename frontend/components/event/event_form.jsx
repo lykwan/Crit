@@ -150,6 +150,7 @@ class EventForm extends React.Component {
                 } />
 
             <Select
+                placeholder='Choose group'
                 value={ this.state.group }
                 options={ this.props.groups }
                 onChange={ this.inputGroup.bind(this) }

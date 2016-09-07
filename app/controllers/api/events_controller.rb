@@ -5,9 +5,6 @@ class Api::EventsController < ApplicationController
     @event.event_responses_attributes = my_response_attr
     @event.host_user_id = current_user.id
 
-    p @event.start_date
-    p @event.end_date
-
     group = Group.find_by_id(@event.group_id)
     if !group
       render(
@@ -78,7 +75,7 @@ class Api::EventsController < ApplicationController
     end
   end
 
-  def close_poll
+  def close_response_poll
     @event = Event.find_by_id(params[:id])
 
     if !@event
