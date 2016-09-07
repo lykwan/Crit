@@ -22,10 +22,15 @@
   --input-width: 450px;
 }
 
+html, #root, .app {
+  height: 100%;
+}
+
 body {
   box-sizing: border-box;
-  font-family: 'Open Sans';
+  font-family: 'Muli';
   background-color: #F5F5F5;
+  height: 100%;
 }
 
 button {
@@ -54,7 +59,7 @@ h4 {
 .content {
   width: 800px;
   margin: auto;
-  height: 100vh;
+  height: 100%;
 }
 
 
@@ -102,6 +107,7 @@ body.modal-open {
   border: 1px solid;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   background: white;
+  height: 100%
 }
 
 .content-body {

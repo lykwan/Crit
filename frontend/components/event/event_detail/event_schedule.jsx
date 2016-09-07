@@ -11,36 +11,58 @@ class EventSchedule extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.props.fetchAvailabilities(this.props.eventData.id);
+  }
+
   openEditForm() {
     this.setState({ openEditForm: true });
   }
 
   getEventTimeForm() {
     return <EventTimeForm eventData={ this.props.eventData }
-                          isEditForm={ this.state.openEditForm }
-                          createAvailability={ this.props.createAvailability }
-                          updateAvailability={ this.props.updateAvailability }
-                          />;
+                        isEditForm={ this.state.openEditForm }
+                        createAvailabilities={ this.props.createAvailabilities }
+                        availabilities={ this.props.availabilities }
+                        />;
   }
 
   render() {
     let editButton;
-    if (!this.state.openEditForm) {
+    let eventId;
+    if (this.props.availabilities.length !== 0) {
+      eventId = this.props.availabilities[0].event_id;
+    }
+
+    if (!this.state.openEditForm &&
+        this.props.availabilities.length === 0) {
       editButton = (
-        <div onClick={ this.openEditForm.bind(this) }>
-          <i className="fa fa-pencil" aria-hidden="true"></i>
+        <div>
+          <span>You have not fill out your availability yet. </span>
+          <div className='button' onClick={ this.openEditForm.bind(this) }>
+            <i className="fa fa-pencil" aria-hidden="true"></i>
+            <span>  Fill Schedule</span>
+          </div>
         </div>
       );
+    } else {
+      editButton = <div></div>;
     }
 
 
-    return (
-      <div className='event-time-form'>
-        <h4>Choose your availability</h4>
-        { editButton }
-        { this.getEventTimeForm() }
-      </div>
-    );
+    if (!eventId || this.props.eventData.id === eventId) {
+      return (
+        <div className='event-time-form'>
+          <h4>My availability</h4>
+          { editButton }
+          { this.getEventTimeForm() }
+        </div>
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
   }
 }
 

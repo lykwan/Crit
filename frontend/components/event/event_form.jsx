@@ -25,8 +25,8 @@ const formFields = {
   DESCRIPTION: 'description',
   LOCATION: 'location',
   GROUP_ID: 'group_id',
-  START_TIME: 'start_time',
-  END_TIME: 'end_time'
+  START_DATE: 'start_date',
+  END_DATE: 'end_date'
 };
 
 const blankEventData = {
@@ -34,8 +34,8 @@ const blankEventData = {
   description: '',
   location: '',
   group_id: '',
-  start_time: '',
-  end_time: ''
+  start_date: '',
+  end_date: ''
 };
 
 class EventForm extends React.Component {
@@ -160,9 +160,9 @@ class EventForm extends React.Component {
                   <input
                     className='form-input'
                     type='date'
-                    value={ this.state.eventData.start_time }
+                    value={ this.state.eventData.start_date }
                     onChange={
-                      this._handleInputChange.bind(this, formFields.START_TIME)
+                      this._handleInputChange.bind(this, formFields.START_DATE)
                     } />
                 </label>
             </div>
@@ -172,9 +172,9 @@ class EventForm extends React.Component {
                 <input
                   className='form-input'
                   type='date'
-                  value={ this.state.eventData.end_time }
+                  value={ this.state.eventData.end_date }
                   onChange={
-                    this._handleInputChange.bind(this, formFields.END_TIME)
+                    this._handleInputChange.bind(this, formFields.END_DATE)
                   } />
               </label>
             </div>

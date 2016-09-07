@@ -1,14 +1,10 @@
 import { AvailabilityConstants } from '../actions/availability_actions';
 import { merge } from 'lodash';
 
-const AvailabilityReducer = (state = {}, action) => {
+const AvailabilityReducer = (state = [], action) => {
   switch(action.type) {
-    case AvailabilityConstants.RECEIVE_AVAILABILITY:
-      return merge({}, { availability: action.availability });
-    case AvailabilityConstants.REMOVE_AVAILABILITY:
-      return {};
-    case AvailabilityConstants.RECEIVE_AVAILABILITY_ERRORS:
-      return merge({}, { errors: action.errors });
+    case AvailabilityConstants.RECEIVE_AVAILABILITIES:
+      return action.availabilities;
     default:
       return state;
   }

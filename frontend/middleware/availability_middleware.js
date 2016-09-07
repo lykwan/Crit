@@ -1,33 +1,23 @@
 import { AvailabilityConstants, AvailabilityActions }
   from '../actions/availability_actions';
-import { fetchAvailability,
-         createAvailability,
-         updateAvailability
+import { fetchAvailabilities,
+         createAvailabilities,
+         updateAvailabilities
        } from '../util/availability_api_util';
 
 const AvailabilityMiddleware = ({ dispatch }) => next => action => {
-  const receiveAvailability = availability => {
-    dispatch(AvailabilityActions.receiveAvailability(availability));
-  };
-  const errorCb = xhr => {
-    dispatch(AvailabilityActions.receiveAvailabilityErrors(xhr.responseJSON));
+  const receiveAvailabilities = availabilities => {
+    dispatch(AvailabilityActions.receiveAvailabilities(availabilities));
   };
 
   switch(action.type) {
-    case AvailabilityConstants.FETCH_AVAILABILITY:
-      fetchAvailability(action.eventId, receiveAvailability, errorCb);
+    case AvailabilityConstants.FETCH_AVAILABILITIES:
+      fetchAvailabilities(action.eventId, receiveAvailabilities);
       return next(action);
-    case AvailabilityConstants.CREATE_AVAILABILITY:
-      createAvailability(action.eventId,
-                      action.availability,
-                      receiveAvailability,
-                      errorCb);
-      return next(action);
-    case AvailabilityConstants.UPDATE_AVAILABILITY:
-      updateAvailability(action.eventId,
-                      action.availability,
-                      receiveAvailability,
-                      errorCb);
+    case AvailabilityConstants.CREATE_AVAILABILITIES:
+      createAvailabilities(action.eventId,
+                      action.availabilities,
+                      receiveAvailabilities);
       return next(action);
     default:
       return next(action);

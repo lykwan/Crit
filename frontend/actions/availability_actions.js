@@ -1,52 +1,33 @@
 export const AvailabilityConstants = {
-  FETCH_AVAILABILITY: 'FETCH_AVAILABILITY',
-  RECEIVE_AVAILABILITY: 'RECEIVE_AVAILABILITY',
-  CREATE_AVAILABILITY: 'CREATE_AVAILABILITY',
-  UPDATE_AVAILABILITY: 'UPDATE_AVAILABILITY',
-  RECEIVE_AVAILABILITY_ERRORS: 'RECEIVE_AVAILABILITY_ERRORS'
+  FETCH_AVAILABILITIES: 'FETCH_AVAILABILITIES',
+  RECEIVE_AVAILABILITIES: 'RECEIVE_AVAILABILITIES',
+  CREATE_AVAILABILITIES: 'CREATE_AVAILABILITIES',
 };
 
-const fetchAvailability = (eventId) => {
+const fetchAvailabilities = (eventId) => {
   return {
-    type: AvailabilityConstants.FETCH_AVAILABILITY,
+    type: AvailabilityConstants.FETCH_AVAILABILITIES,
     eventId
   };
 };
 
-const receiveAvailability = (availability) => {
+const receiveAvailabilities = (availabilities) => {
   return {
-    type: AvailabilityConstants.RECEIVE_AVAILABILITY,
-    availability
+    type: AvailabilityConstants.RECEIVE_AVAILABILITIES,
+    availabilities
   };
 };
 
-const createAvailability = (eventId, availability) => {
+const createAvailabilities = (eventId, availabilities) => {
   return {
-    type: AvailabilityConstants.CREATE_AVAILABILITY,
+    type: AvailabilityConstants.CREATE_AVAILABILITIES,
     eventId,
-    availability
-  };
-};
-
-const updateAvailability = (eventId, availability) => {
-  return {
-    type: AvailabilityConstants.UPDATE_AVAILABILITY,
-    eventId,
-    availability
-  };
-};
-
-const receiveAvailabilityErrors = (errors) => {
-  return {
-    type: AvailabilityConstants.RECEIVE_AVAILABILITY_ERRORS,
-    errors
+    availabilities
   };
 };
 
 export const AvailabilityActions = {
-  fetchAvailability,
-  receiveAvailability,
-  createAvailability,
-  updateAvailability,
-  receiveAvailabilityErrors,
+  fetchAvailabilities,
+  receiveAvailabilities,
+  createAvailabilities
 };

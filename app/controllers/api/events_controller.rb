@@ -5,6 +5,9 @@ class Api::EventsController < ApplicationController
     @event.event_responses_attributes = my_response_attr
     @event.host_user_id = current_user.id
 
+    p @event.start_date
+    p @event.end_date
+
     group = Group.find_by_id(@event.group_id)
     if !group
       render(

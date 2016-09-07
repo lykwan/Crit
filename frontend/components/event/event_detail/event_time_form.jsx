@@ -5,43 +5,43 @@ class EventTimeForm extends React.Component {
   constructor(props) {
     super(props);
     let timeForm = {};
-    console.log(this.props.eventData.start_date);
-    console.log(this.props.eventData.end_date);
+    this.allDates = this.getAllDates();
 
-    if (this.props.isEditForm || !this.props.availability) {
-      this.getAllDates().forEach(date => {
-        timeForm[date] = fill(Array(24), 0);
-      });
-      this.state = {
-        timeForm
-      };
-    } else {
-      this.getAllDates().forEach(date => {
-        if (this.props.availability[date]) {
-          timeForm[date] = this.bitMapToArr(this.props.availability[date]);
-        } else {
-          timeForm[date] = fill(Array(24), 0);
-        }
-      });
-      this.state = {
-        timeForm
-      };
-    }
+    this.allDates.forEach(date => {
+      timeForm[date] = fill(Array(24), 0);
+    });
+    this.state = {
+      timeForm
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let updatedTimeForm = {};
+    nextProps.availabilities.forEach(avail => {
+      let dateObj = new Date(avail.date);
+      dateObj.setTime(dateObj.getTime() + dateObj.getTimezoneOffset()*60*1000);
+      updatedTimeForm[this.formatDate(dateObj)] =
+        this.bitMapToArr(avail.time_slot_bitmap);
+    });
+
+    const timeForm = Object.assign({},
+                                   this.state.timeForm,
+                                   updatedTimeForm
+                                   );
+    this.setState({ timeForm });
   }
 
   _handleSubmit() {
-    let availability = {};
-    Object.keys(this.state.timeForm).forEach(formattedDate => {
-      let [year, month, date] = formattedDate.split('/');
-      let dateObj = new Date(year, month, date);
-      availability[dateObj.toISOString()] =
-        this.arrToBitMap(this.state.timeForm[formattedDate]);
-    });
-    if (this.props.availability) {
-      this.props.createAvailability(this.props.eventData.id, availability);
-    } else {
-      this.props.updateAvailability(this.props.eventData.id, availability);
-    }
+    const availabilities =
+      Object.keys(this.state.timeForm).map(formattedDate => {
+        let [year, month, date] = formattedDate.split('/');
+        let dateObj = new Date(year, month, date);
+        return {
+          date: dateObj.toISOString(),
+          time_slot_bitmap: this.arrToBitMap(this.state.timeForm[formattedDate])
+        };
+      });
+    this.props.createAvailabilities(this.props.eventData.id, availabilities);
   }
 
   arrToBitMap(arr) {
@@ -60,6 +60,10 @@ class EventTimeForm extends React.Component {
       bitArr.unshift(bitMap % 2);
       bitMap >>= 1;
     }
+
+    while (bitArr.length < 24) {
+      bitArr.unshift(0);
+    }
     return bitArr;
   }
 
@@ -75,65 +79,71 @@ class EventTimeForm extends React.Component {
   }
 
   dateEqual(date, otherDate) {
-    return date.getFullYear() === otherDate.getFullYear() &&
+    const value = date.getFullYear() === otherDate.getFullYear() &&
       date.getMonth() === otherDate.getMonth() &&
       date.getDate() === otherDate.getDate();
+    return value;
   }
 
   formatDate(date) {
-    return date.getFullYear() + '/' +
-           date.getMonth() + '/' +
-           date.getDate();
+    console.log(date);
+    return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
   }
 
   getAllDates() {
     let date = new Date(this.props.eventData.start_date);
     let endDate = new Date(this.props.eventData.end_date);
     date.setTime(date.getTime() + date.getTimezoneOffset()*60*1000);
+    endDate.setTime(endDate.getTime() + endDate.getTimezoneOffset()*60*1000);
+
     let allDates = [];
     while (!this.dateEqual(date, endDate)) {
       allDates.push(this.formatDate(date));
       date.setDate(date.getDate() + 1);
     }
+    allDates.push(this.formatDate(date));
+
     return allDates;
   }
 
 
   render() {
-    let date = new Date(this.props.eventData.start_date);
-    let endDate = new Date(this.props.eventData.end_date);
-    date.setTime(date.getTime() + date.getTimezoneOffset()*60*1000);
+    // let date = new Date(this.props.eventData.start_date);
+    // let endDate = new Date(this.props.eventData.end_date);
+    // date.setTime(date.getTime() + date.getTimezoneOffset()*60*1000);
+    // endDate.setTime(endDate.getTime() + endDate.getTimezoneOffset()*60*1000);
 
     let dateCols = [];
-    while (!this.dateEqual(date, endDate)) {
-      let dateCol = [<div className='date-box date-first-row'>
-                      { date.getMonth() + '/' + date.getDate() }
+    this.allDates.forEach(date => {
+      let [year, month, day] = date.split('/');
+      let dateCol = [<div key={date} className='date-box date-first-row'>
+                      { `${parseInt(month) + 1} / ${day}` }
                     </div>];
+
       for (let i = 0; i < 24; i++) {
-        const selectedClass = this.state.timeForm[this.formatDate(date)][i] ?
+        const selectedClass = this.state.timeForm[date][i] ?
                               'selected' :
                               '';
 
         let onClickCb;
         if (this.props.isEditForm) {
-           onClickCb = this._handleClick.bind(this, this.formatDate(date), i);
+           onClickCb = this._handleClick.bind(this, date, i);
         }
 
         dateCol.push(
-          <div key={ `${this.formatDate(date)}-${i}` }
+          <div key={ `${date}-${i}` }
                className={ `date-box ${ selectedClass }` }
                onClick={ onClickCb } >
           </div>);
       }
       dateCols.push(
-        <div key={ this.formatDate(date) } className='date-col'>
+        <div key={ date } className='date-col'>
           { dateCol }
         </div>
       );
-      date.setDate(date.getDate() + 1);
-    }
+    });
 
-    let hourCol = [<div className='date-box date-first-row'></div>];
+    let hourCol = [<div key='hour' className='date-box date-first-row'></div>];
     for (let i = 0; i < 24; i++) {
       hourCol.push(<div key={ `hour-${i}` } className='date-box'>
                     { `${i}:00` }

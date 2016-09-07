@@ -1,29 +1,18 @@
-export const fetchAvailability= (eventId, success, error) => {
+export const fetchAvailabilities = (eventId, success, error) => {
   $.ajax({
     method: 'GET',
-    url: `/api/events/${ eventId }/availability`,
+    url: `/api/events/${ eventId }/availabilities`,
     success,
     error
   });
 };
 
-export const updateAvailability=
-  (eventId, availability, success, error) => {
-    $.ajax({
-      method: 'PATCH',
-      url: `/api/events/${ eventId }/availability`,
-      data: { availability },
-      success,
-      error
-  });
-};
-
-export const createAvailability=
-  (eventId, availability, success, error) => {
+export const createAvailabilities =
+  (eventId, availabilities, success, error) => {
     $.ajax({
       method: 'POST',
-      url: `/api/events/${ eventId }/availability`,
-      data: { availability },
+      url: `/api/events/${ eventId }/availabilities`,
+      data: { availabilities },
       success,
       error
     });
