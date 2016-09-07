@@ -41,6 +41,8 @@ class Profile extends React.Component {
           </div>
         </div>
       );
+    } else {
+      return <div></div>;
     }
   }
 }

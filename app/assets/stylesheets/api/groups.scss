@@ -1,6 +1,8 @@
 /* line 7, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 /* line 9, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
 /* line 4, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 5, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 6, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 .group-show-buttons {
   display: flex;
   width: 184px;
@@ -13,14 +15,19 @@
 /* line 27, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 /* line 20, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
 /* line 15, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-.group-index-item {
-  height: 200px;
-  margin-bottom: 40px;
-  position: relative;
+/* line 17, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 19, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+.list-index-item {
+  width: 100%;
+  height: 135px;
+  margin: 20px 0;
+  border: 1px solid black;
 }
 
 /* line 26, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
 /* line 22, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 26, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 29, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 .group-index-item h3 {
   float: left;
   font-size: 35px;
@@ -31,10 +38,11 @@
 /* line 33, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 /* line 34, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
 /* line 31, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-.group-index-item-img {
-  background: url(http://i.imgur.com/uE776LD.jpg);
+/* line 36, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 40, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+.list-index-item-img {
   background-position: center;
-  background-size: 400px;
+  background-size: 338px;
   width: 30%;
   height: 100%;
   float: left;
@@ -46,28 +54,34 @@
 /* line 48, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 /* line 49, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
 /* line 45, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-.group-index-item span {
+/* line 50, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 55, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+.group-index-item-info span {
   position: absolute;
   right: 0;
   bottom: 0;
   margin: 20px;
 }
 
-/* line 56, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 53, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-.group-detail-img {
-  width: 100%;
-  height: 280px;
-  background-position: center;
-  background-size: 700px;
+.group-index-item-info {
+  position: relative;
 }
 
+/* line 56, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 53, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 59, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 65, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+
+/* line 66, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 73, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 .group-description {
   margin-bottom: 40px;
 }
 
 /* line 63, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
 /* line 61, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 72, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+/* line 80, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 .member-list {
   display: block;
 }

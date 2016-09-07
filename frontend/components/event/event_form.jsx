@@ -116,7 +116,6 @@ class EventForm extends React.Component {
             <i className="fa fa-times" aria-hidden="true"></i>
           </div>
 
-          { errors }
 
           <form className='form event-form'
                 onSubmit={ this._handleSubmit.bind(this) } >
@@ -179,6 +178,10 @@ class EventForm extends React.Component {
                   } />
               </label>
             </div>
+
+            <ul className='errors-list'>
+              { errors }
+            </ul>
 
             <button className='button'>Submit Form</button>
           </form>

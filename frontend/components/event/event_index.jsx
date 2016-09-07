@@ -3,10 +3,11 @@ import { withRouter } from 'react-router';
 import EventIndexItem from './event_index_item';
 import EventFormContainer from './event_form_container';
 
-const EventIndex = ({ events, router }) => {
+const EventIndex = ({ events, currentUser,router }) => {
   if (events) {
     const eventIndexItems = events.map(event => (
-      <EventIndexItem key={ event.id } eventData={ event } />
+      <EventIndexItem key={ event.id } eventData={ event }
+                      currentUser={ currentUser }/>
     ));
 
     return (
