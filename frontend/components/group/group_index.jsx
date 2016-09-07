@@ -12,7 +12,7 @@ const GroupIndex = ({ groups, router }) => {
       <section className='content'>
         <div className='content-header'>
           <h2>My Groups</h2>
-          <GroupFormContainer />
+          <GroupFormContainer isEditForm={ false }/>
         </div>
         { groupIndexItems }
       </section>

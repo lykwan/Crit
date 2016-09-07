@@ -123,32 +123,31 @@ class EventForm extends React.Component {
 
             <h3>Add Event</h3>
 
-            <label>Event Name
-              <input
-                type='text'
-                value={ this.state.eventData.title }
-                onChange={
-                  this._handleInputChange.bind(this, formFields.TITLE)
-                } />
-            </label>
+            <input
+              type='text'
+              placeholder='Event Title'
+              value={ this.state.eventData.title }
+              className='form-input'
+              onChange={
+                this._handleInputChange.bind(this, formFields.TITLE)
+              } />
 
-            <label>Description
-              <textarea
+            <input
                 value={ this.state.eventData.description }
+                placeholder='Description'
+                className='form-input'
                 onChange={
                   this._handleInputChange.bind(this, formFields.DESCRIPTION)
                 } />
-            </label>
 
-            <label>Location
-              <span className='optional'> (Optional)</span>
               <input
                 type='text'
+                placeholder='Location (optional)'
+                className='form-input'
                 value={ this.state.eventData.location }
                 onChange={
                   this._handleInputChange.bind(this, formFields.LOCATION)
                 } />
-            </label>
 
             <Select
                 value={ this.state.group }
@@ -156,25 +155,29 @@ class EventForm extends React.Component {
                 onChange={ this.inputGroup.bind(this) }
             />
 
-            <label>Start Time
-              <span className='optional'> (Optional)</span>
-              <input
-                type='date'
-                value={ this.state.eventData.start_time }
-                onChange={
-                  this._handleInputChange.bind(this, formFields.START_TIME)
-                } />
-            </label>
+          <div className='form-date'>
+              <label>Start Date
+                  <input
+                    className='form-input'
+                    type='date'
+                    value={ this.state.eventData.start_time }
+                    onChange={
+                      this._handleInputChange.bind(this, formFields.START_TIME)
+                    } />
+                </label>
+            </div>
 
-            <label>End Time
-              <span className='optional'> (Optional)</span>
-              <input
-                type='date'
-                value={ this.state.eventData.end_time }
-                onChange={
-                  this._handleInputChange.bind(this, formFields.END_TIME)
-                } />
-            </label>
+            <div className='form-date'>
+              <label>End Date
+                <input
+                  className='form-input'
+                  type='date'
+                  value={ this.state.eventData.end_time }
+                  onChange={
+                    this._handleInputChange.bind(this, formFields.END_TIME)
+                  } />
+              </label>
+            </div>
 
             <button className='button'>Submit Form</button>
           </form>

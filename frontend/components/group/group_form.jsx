@@ -30,35 +30,55 @@ const formFields = {
 class GroupForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      group: {
-        title: '',
-        description: '',
-        friends_search: '',
-        group_memberships_attributes: []
-      },
-      membersInput: [],
-      isModalOpen: false
-    };
+    if (props.isEditForm) {
+      this.state = {
+        group: {
+          title: props.group.title,
+          description: props.group.description,
+        },
+        isModalOpen: false
+      };
+    } else {
+      this.state = {
+        group: {
+          title: '',
+          description: '',
+          friends_search: '',
+          group_memberships_attributes: []
+        },
+        membersInput: [],
+        isModalOpen: false
+      };
+    }
   }
 
   _handleSubmit(e) {
     e.preventDefault();
 
-    const membershipAttributes =
-      this.state.membersInput.map(input => {
-        return {
-          member_user_id: input.value
-        };
-      });
+    if (!this.props.isEditForm) {
+      const membershipAttributes =
+        this.state.membersInput.map(input => {
+          return {
+            member_user_id: input.value
+          };
+        });
 
-    const group =
-      Object.assign({},
-                    this.state.group,
-                    { group_memberships_attributes: membershipAttributes }
-                   );
+      const group =
+        Object.assign({},
+                      this.state.group,
+                      { group_memberships_attributes: membershipAttributes }
+                     );
 
-    this.props.createGroup(group);
+      this.props.createGroup(group);
+    } else {
+      this.props.updateGroup(this.props.group.id, this.state.group);
+    }
+  }
+
+  componentWillUpdate(nextProps) {
+    // if (this.props.isEditForm) {
+    //
+    // }
   }
 
   closeModal() {
@@ -96,12 +116,15 @@ class GroupForm extends React.Component {
   // }
 
   render() {
-    const groupMemberships =
-      this.state.group.group_memberships_attributes.map(m => {
-        return (
-          <li key={ m.member_user_id }>{ m.member_user_id }</li>
-        );
-      });
+    let groupMemberships;
+    if (!this.props.isEditForm) {
+      groupMemberships =
+        this.state.group.group_memberships_attributes.map(m => {
+          return (
+            <li key={ m.member_user_id }>{ m.member_user_id }</li>
+          );
+        });
+    }
 
     let errors;
     if (this.props.errors) {
@@ -112,14 +135,47 @@ class GroupForm extends React.Component {
       });
     }
 
-    return (
-      <div>
+    let inviteFriends;
+    if (!this.props.isEditForm) {
+      inviteFriends = (
+        <div className='group-form-invite'>
+          <div className='form-search'>
+            <div className='form-search-icon'>
+              <i className="fa fa-search" aria-hidden="true"></i>
+            </div>
+            <UserSearchContainer
+              membersInput={ this.state.membersInput }
+              setMembersInput={ this.setMembersInput.bind(this) }/>
+          </div>
+          <div className='group-form-invite-friends'>
+            { groupMemberships }
+          </div>
+        </div>
+      );
+    }
+
+    let button;
+    if (this.props.isEditForm) {
+      button = (
+        <div className='button'
+             onClick={ this.openModal.bind(this )}>
+          <i className="fa fa-pencil" aria-hidden="true"></i>
+          <span>  Edit</span>
+        </div>
+      );
+    } else {
+      button = (
         <div className='content-header-buttons button'
              onClick={ this.openModal.bind(this) }>
           <i className='fa fa-plus' aria-hidden='true'></i>
           <span>  Create Group</span>
         </div>
+      );
+    }
 
+    return (
+      <div>
+        { button }
         <Modal
           isOpen={ this.state.isModalOpen }
           onRequestClose={ this.closeModal.bind(this) }
@@ -152,19 +208,7 @@ class GroupForm extends React.Component {
                         bind(this, formFields.DESCRIPTION)
                     } />
 
-            <div className='group-form-invite'>
-              <div className='form-search'>
-                <div className='form-search-icon'>
-                  <i className="fa fa-search" aria-hidden="true"></i>
-                </div>
-                <UserSearchContainer
-                  membersInput={ this.state.membersInput }
-                  setMembersInput={ this.setMembersInput.bind(this) }/>
-              </div>
-              <div className='group-form-invite-friends'>
-                { groupMemberships }
-              </div>
-            </div>
+            { inviteFriends }
 
             <ul>
               { errors }
