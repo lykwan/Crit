@@ -10,7 +10,11 @@ const UserMiddleware = ({ dispatch }) => next => action => {
       return next(action);
     case UserConstants.FETCH_USERS:
       success = users => dispatch(UserActions.receiveUsers(users));
-      fetchUsers(success);
+      if (action.query) {
+        fetchUsers(success, null, action.query);
+      } else {
+        fetchUsers(success);
+      }
       return next(action);
     default:
       return next(action);

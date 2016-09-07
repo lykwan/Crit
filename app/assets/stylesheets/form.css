@@ -1,0 +1,39 @@
+.form h3 {
+  margin: 10px 0;
+}
+
+.form .form-input {
+  border-bottom: 1px solid #d3d3d3;;
+  /* border-radius: 3px; */
+  padding: 4px 8px;
+  display: block;
+  margin: 30px 0;
+  width: var(--input-width);
+}
+
+.form .form-textarea {
+  width: 500px;
+}
+
+.form .optional {
+  font-size: 10px;
+}
+
+.form button {
+  font-size: 15px;
+  position: absolute;
+  bottom: 41px;
+  left: 30px;
+}
+
+.form-search {
+  display: flex;
+  align-items: flex-end;
+}
+
+.form-search-icon {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+}

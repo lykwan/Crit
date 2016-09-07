@@ -2,35 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-:root {
-  --input-width: 450px;
-}
-
 .event-item {
   width: 80%;
   height: 120px;
   margin: 10px;
   border: 1px solid black;
-}
-
-.event-form h3 {
-  margin: 10px;
-}
-
-.event-form input, textarea {
-  border: 1px solid black;
-  border-radius: 3px;
-  padding: 4px 8px;
-  display: block;
-  margin: 5px 0 20px 0;
-  width: var(--input-width);
-}
-
-.event-form textarea {
-  width: var(--input-width);
-  height: 60px;
-}
-
-.event-form .optional {
-  font-size: 10px;
 }

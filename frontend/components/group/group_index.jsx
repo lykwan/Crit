@@ -1,10 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router';
 import GroupIndexItem from './group_index_item';
-
-const _handleAddGroupClick = (router) => {
-  router.push('/groups/new');
-};
+import GroupFormContainer from './group_form_container';
 
 const GroupIndex = ({ groups, router }) => {
   if (groups) {
@@ -16,11 +12,7 @@ const GroupIndex = ({ groups, router }) => {
       <section className='content'>
         <div className='content-header'>
           <h2>My Groups</h2>
-          <div className='content-header-buttons button'
-               onClick={ _handleAddGroupClick.bind(null, router) }>
-            <i className='fa fa-plus' aria-hidden='true'></i>
-            <span>  Create Group</span>
-          </div>
+          <GroupFormContainer />
         </div>
         { groupIndexItems }
       </section>
@@ -34,4 +26,4 @@ const GroupIndex = ({ groups, router }) => {
   );
 };
 
-export default withRouter(GroupIndex);
+export default GroupIndex;
