@@ -65,4 +65,15 @@ class Event < ActiveRecord::Base
 
   end
 
+  def finalized_availabilities
+    sql_str = <<-SQL
+      SELECT availabilities.date, BIT_AND(availabilities.time_slot_bitmap) AS final_availability
+      FROM availabilities
+      WHERE availabilities.event_id = #{self.id}
+      GROUP BY availabilities.date
+    SQL
+
+    Availability.find_by_sql(sql_str)
+  end
+
 end

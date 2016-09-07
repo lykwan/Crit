@@ -4,18 +4,18 @@ import EventScheduleContainer from './event_schedule_container';
 import EventResponseFormContainer from './event_response_form_container';
 
 class EventDetail extends React.Component {
-  getClosePollButton(eventData) {
-    let closePollButton;
+  getCloseResponsePollButton(eventData) {
+    let closeResponsePollButton;
     if (eventData.host.id === this.props.currentUser.id &&
         !eventData.is_attendees_finalized) {
-      closePollButton = (
+      closeResponsePollButton = (
         <div className='button'
-             onClick={ this.props.closePoll.bind(this, eventData.id) }>
+             onClick={ this.props.closeResponsePoll.bind(this, eventData.id) }>
           Close Poll
         </div>
       );
     }
-    return closePollButton;
+    return closeResponsePollButton;
   }
 
   getAttendeeResponseForm(eventData) {
@@ -73,7 +73,7 @@ class EventDetail extends React.Component {
       return (
         <section className='content detail-content'>
           <h2>{ eventData.title }</h2>
-          { this.getClosePollButton(eventData) }
+          { this.getCloseResponsePollButton(eventData) }
           { location }
           <span>
             { eventData.group.title } - { eventData.host.username } hosted
