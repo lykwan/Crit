@@ -1,4 +1,5 @@
 import React from 'react';
+import UserItem from '../profile/user_item';
 
 class GroupDetail extends React.Component {
   render() {
@@ -6,19 +7,13 @@ class GroupDetail extends React.Component {
     if (this.props.group) {
       const admins = this.props.group.admins.map(admin => {
         return (
-          <li className='member-list-item' key={ admin.id }>
-            <div className='group' />
-            <span>{ admin.username }</span>
-          </li>
+          <UserItem key={ admin.id } user={ admin }/>
         );
       });
 
       const regularMembers = this.props.group.regular_members.map(member => {
         return (
-          <li className='member-list-item' key={ member.id }>
-            <div className='group' />
-            <span>{ member.username }</span>
-          </li>
+          <UserItem key={ member.id } user={ member } />
         );
       });
 
@@ -42,14 +37,22 @@ class GroupDetail extends React.Component {
               </div>
             </div>
 
-            <h4>ADMINS</h4>
-            <ul className='member-list'>
-              { admins }
-            </ul>
-            <h4>MEMBERS</h4>
-            <ul className='member-list'>
-              { regularMembers }
-            </ul>
+            <div className='group-description'>
+              <p>{ this.props.group.description }</p>
+            </div>
+
+            <div className='user-list-container'>
+              <h4>ADMINS</h4>
+              <div className='user-list'>
+                { admins }
+              </div>
+            </div>
+            <div className='user-list-container'>
+              <h4>MEMBERS</h4>
+              <div className='user-list'>
+                { regularMembers }
+              </div>
+            </div>
           </div>
         </section>
       );
