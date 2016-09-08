@@ -23,38 +23,35 @@ class EventSchedule extends React.Component {
     return <EventTimeForm eventData={ this.props.eventData }
                         isEditForm={ this.state.openEditForm }
                         createAvailabilities={ this.props.createAvailabilities }
+                        updateAvailabilities={ this.props.updateAvailabilities }
                         availabilities={ this.props.availabilities }
                         />;
   }
 
   render() {
-    let editButton;
+    let editLine;
     let eventId;
     if (this.props.availabilities.length !== 0) {
       eventId = this.props.availabilities[0].event_id;
     }
 
-    if (!this.state.openEditForm &&
-        this.props.availabilities.length === 0) {
-      editButton = (
+    if (this.props.availabilities.length === 0) {
+      editLine = (
         <div>
           <span>You have not fill out your availability yet. </span>
-          <div className='button' onClick={ this.openEditForm.bind(this) }>
-            <i className="fa fa-pencil" aria-hidden="true"></i>
-            <span>  Fill Schedule</span>
-          </div>
         </div>
       );
-    } else {
-      editButton = <div></div>;
     }
 
 
+    console.log('rendering schedule')
+    console.log(eventId, this.props.eventData.id);
     if (!eventId || this.props.eventData.id === eventId) {
+      console.log('why isnt it getting here');
       return (
         <div className='event-time-form'>
           <h4>My availability</h4>
-          { editButton }
+          { editLine }
           { this.getEventTimeForm() }
         </div>
       );

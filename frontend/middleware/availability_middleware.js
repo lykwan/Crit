@@ -19,6 +19,12 @@ const AvailabilityMiddleware = ({ dispatch }) => next => action => {
                       action.availabilities,
                       receiveAvailabilities);
       return next(action);
+    case AvailabilityConstants.UPDATE_AVAILABILITIES:
+    console.log('got here in actions updating');
+      updateAvailabilities(action.eventId,
+                      action.availabilities,
+                      receiveAvailabilities);
+      return next(action);
     default:
       return next(action);
   }

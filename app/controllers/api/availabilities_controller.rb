@@ -24,10 +24,30 @@ class Api::AvailabilitiesController < ApplicationController
                          user_id: current_user.id)
   end
 
+  def update
+    @availabilities = params["availabilities"].keys.map do |id|
+      date = Time.iso8601(availability_params(id)[:date])
+      availability = Availability.find_by(date: date, user_id: current_user.id)
+      availability
+    end
+
+    Availability.transaction do
+      @availabilities.each_with_index do |avail, idx|
+        p "got here updating"
+        p idx
+        avail.update(time_slot_bitmap:
+                        params["availabilities"][idx.to_s][:time_slot_bitmap])
+      end
+    end
+
+    render :index
+  end
+
+
   private
   def availability_params(id)
     params.require(:availabilities).fetch(id)
-          .permit(:time_slot_bitmap , :date)
+          .permit(:time_slot_bitmap, :date)
   end
 
 end

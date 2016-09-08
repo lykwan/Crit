@@ -92,6 +92,13 @@ const deleteGroupMembership = (groupId, groupMembership) => {
 };
 
 
+// const removeGroupMembership = () => {
+//   return {
+//     type: GroupConstants.REMOVE_GROUP_MEMBERSHIP,
+//     groupId,
+//     groupMembership
+//   };
+// };
 
 export const GroupActions = {
   fetchGroups,

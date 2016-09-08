@@ -43,16 +43,21 @@
 
 .user-list {
   margin-top: 10px;
-  /* display: flex; */
+  /*display: flex; */
 }
 
 .user-item {
   height: 70px;
   line-height: 70px;
-  width: 226px;
+  width: 219px;
   margin-right: 20px;
   display: inline-block;
   margin-bottom: 20px;
+}
+
+.user-item-content {
+  height: 70px;
+  line-height: 70px;
 }
 
 .user-item-img {
