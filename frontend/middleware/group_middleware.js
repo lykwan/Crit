@@ -17,7 +17,6 @@ const GroupMiddleware = ({ dispatch }) => next => action => {
       fetchGroups(receiveGroups, errorCb);
       return next(action);
     case GroupConstants.FETCH_SINGLE_GROUP:
-      console.log('fetching single group');
       fetchSingleGroup(action.groupId, receiveSingleGroup, errorCb);
       return next(action);
     case GroupConstants.CREATE_GROUP:
@@ -27,7 +26,7 @@ const GroupMiddleware = ({ dispatch }) => next => action => {
       createGroup(action.group, successCb, errorCb);
       return next(action);
     case GroupConstants.UPDATE_GROUP:
-      createGroup(action.group, receiveSingleGroup, errorCb);
+      updateGroup(action.groupId, action.group, receiveSingleGroup, errorCb);
       return next(action);
     case GroupConstants.CREATE_GROUP_MEMBERSHIP:
       successCb = groupMembership =>
@@ -38,7 +37,6 @@ const GroupMiddleware = ({ dispatch }) => next => action => {
     case GroupConstants.DELETE_GROUP_MEMBERSHIP:
       const groupId = action.group_id;
       successCb = () => {
-        console.log(groupId);
         dispatch(GroupActions.fetchSingleGroup(groupId));
       };
       deleteGroupMembership(action.groupId,
