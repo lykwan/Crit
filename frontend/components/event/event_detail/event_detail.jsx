@@ -11,7 +11,7 @@ class EventDetail extends React.Component {
       closeResponsePollButton = (
         <div className='content-header-buttons'>
           <div className='button'
-               onClick={ this.props.closeResponsePoll.bind(this, eventData.id) }>
+             onClick={ this.props.closeResponsePoll.bind(this, eventData.id) }>
             Close Poll
           </div>
         </div>
@@ -63,9 +63,8 @@ class EventDetail extends React.Component {
     if (eventData.is_attendees_finalized) {
       eventAttendeeList =
         <EventAttendeeList attendees={ eventData.finalized_attendees }/>;
-    } else {
-      return eventAttendeeList;
     }
+    return eventAttendeeList;
   }
 
   render() {
@@ -75,11 +74,6 @@ class EventDetail extends React.Component {
     if (eventData) {
       const location = eventData.location ?
         <span>{ eventData.location }</span> :
-        <span>TBD</span>;
-
-      //TODO: convert the start_time and end_time to proper format
-      const startTime = (eventData.start_time && eventData.end_time) ?
-        <span>{ eventData.start_time } - { eventData.end_time }</span> :
         <span>TBD</span>;
 
       return (
@@ -93,6 +87,7 @@ class EventDetail extends React.Component {
               <h2>{ eventData.title }</h2>
               { this.getCloseResponsePollButton(eventData) }
               { location }
+              <span>{ eventData.start_time } - { eventData.end_time }</span>
               <span>
                 { eventData.group.title } - { eventData.host.username } hosted
               </span>

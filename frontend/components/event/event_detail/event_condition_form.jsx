@@ -34,11 +34,13 @@ class EventConditionForm extends React.Component {
     return (
       <div className='event-condition-form'>
         <NumPeopleCondition minNumPeople={ minNumPeople }
+                            condition={ this.props.condition }
                             eventResponseId={ this.props.eventResponseId }
                             createCondition={ this.props.createCondition }
                             updateCondition={ this.props.updateCondition }
                             />
         <SpecificFriendsCondition friendConditions={ friendConditions }
+                                  condition={ this.props.condition }
                                   eventResponseId={ this.props.eventResponseId }
                                   createCondition={ this.props.createCondition }
                                   updateCondition={ this.props.updateCondition }

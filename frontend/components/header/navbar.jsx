@@ -62,12 +62,11 @@ class Navbar extends React.Component {
 
           <div className='navbar-icon'>
             <i className='fa fa-cog' aria-hidden='true'></i>
-            <ul className='navbar-dropdown'>
-              <li onClick={ this.handleClick.bind(this) }>
-                <i className="fa fa-sign-out" aria-hidden="true"></i>
-                <span>Logout</span>
-              </li>
-            </ul>
+            <div className='navbar-dropdown'
+                 onClick={ this.handleClick.bind(this) }>
+              <i className="fa fa-sign-out" aria-hidden="true"></i>
+              <span>Logout</span>
+            </div>
           </div>
         </div>
       </nav>

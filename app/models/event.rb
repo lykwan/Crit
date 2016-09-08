@@ -35,6 +35,10 @@ class Event < ActiveRecord::Base
     through: :event_responses,
     source: :respondee
 
+  has_many :conditions,
+    through: :event_responses,
+    source: :condition
+
   accepts_nested_attributes_for :event_responses
 
   def event_in_future
@@ -56,6 +60,38 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def condition_satisfied?(condi, num_remaining, remaining_potentials)
+    # debugger
+    if condi.nil?
+      return true
+    elsif condi.min_num_people && condi.min_num_people > num_remaining
+      return false
+    end
+    condi.specified_friends.all? do |friend|
+      remaining_potentials.any? do |response|
+        response.respondee_user_id === friend.id
+      end
+    end
+  end
+
+  def eliminate_dependencies(eliminate_hash, eliminate_condition_responses, dependencies_hash)
+    if eliminate_condition_responses.length == 0
+      return
+    end
+
+    eliminate_condition_responses.each do |response|
+      # p "response"
+      # p response
+      if eliminate_hash[response.respondee.id]
+        return
+      end
+      eliminate_hash[response.respondee.id] = response
+      # p "eliminate_hash"
+      # p eliminate_hash
+      eliminate_dependencies(eliminate_hash, dependencies_hash[response], dependencies_hash)
+    end
+  end
+
   def finalized_attendees
     potential_respondees_responses =
       self.event_responses.includes(:respondee, condition: {friend_conditions: :friend})
@@ -69,22 +105,36 @@ class Event < ActiveRecord::Base
       end
     end
 
-    p dependencies_hash
+    remaining_potentials = potential_respondees_responses
+    is_all_satisfied = false
+    until is_all_satisfied
+      is_all_satisfied = true
+      num_remaining = remaining_potentials.length
+      eliminate_condition_responses = remaining_potentials.select do |response|
+        !condition_satisfied?(response.condition, num_remaining, remaining_potentials)
+      end
 
-    # remaining_potentials = pontential_respondees_responses
-    # is_all_satisfied = false
-    # until is_all_satisfied
-    #   is_all_satisified = true
-    #   eliminate_responses = remaining_potentials.filter do |response|
-    #     !condition_satisfied(response.condition)
-    #   end
-    #   eliminate_responses.each do |response|
-    #     is_all_satisfied = false
-    #     if (dependencies_hash[response.respondee]) {
-    #
-    #     }
 
-    self.event_respondees.where(event_responses: { response: "definitely" })
+      if eliminate_condition_responses.length >= 1
+        is_all_satisfied = false
+      end
+
+      eliminate_dependencies_responses = {}
+      eliminate_dependencies(eliminate_dependencies_responses, eliminate_condition_responses, dependencies_hash)
+
+      remaining_potentials = remaining_potentials.select do |response|
+        eliminate_dependencies_responses[response.respondee.id].nil?
+      end
+      # p "remaining_potentials"
+      # p remaining_potentials
+    end
+
+    return remaining_potentials.map do |response|
+      response.respondee
+    end
+
+
+    # self.event_respondees.where(event_responses: { response: "definitely" })
 
   end
 

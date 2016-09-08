@@ -22,7 +22,8 @@ class NumPeopleCondition extends React.Component {
 
     if (isPositiveInteger(numPeople)) {
       this.setState({ errors: null });
-      if (this.props.minNumPeople) {
+      if (this.props.condition.event_response_id
+          === this.props.eventResponseId) {
         this.props.updateCondition(this.props.eventResponseId, condition);
       } else {
         this.props.createCondition(this.props.eventResponseId, condition);
