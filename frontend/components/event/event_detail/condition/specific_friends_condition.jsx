@@ -57,20 +57,34 @@ class SpecificFriendsCondition extends React.Component {
       friend_conditions_attributes: deleteFriendConditionsAttributes
     };
 
-    const addFriendConditionsAttributes =
-      this.state.friendsInput.map(input => {
+    let addFriendConditionsAttributes;
+    if (this.state.friendsInput) {
+      addFriendConditionsAttributes = this.state.friendsInput.map(input => {
         return {
           friend_user_id: input.value
         };
       });
+    }
 
     const addCondition = {
       friend_conditions_attributes: addFriendConditionsAttributes
     };
 
-    if (this.props.friendConditions) {
-      this.props.updateCondition(this.props.eventResponseId, deleteCondition);
-      this.props.updateCondition(this.props.eventResponseId, addCondition);
+    console.log('condition', this.props.condition);
+    console.log('friendConditions', this.props.friendConditions);
+    console.log('friendsInput', this.state.friendsInput);
+    if (this.props.condition.event_response_id === this.props.eventResponseId) {
+      if (this.props.friendConditions.length >= 1) {
+        this.props.updateCondition(this.props.eventResponseId, deleteCondition);
+      }
+
+      // TODO: ASK TA TOMORROW HOW TO FIX THIS
+      if (this.state.friendsInput && this.state.friendsInput.length >= 1) {
+        let addConditionCb = () => {
+          this.props.updateCondition(this.props.eventResponseId, addCondition);
+        };
+        window.setTimeout(addConditionCb, 300);
+      }
     } else {
       this.props.createCondition(this.props.eventResponseId, addCondition);
     }
