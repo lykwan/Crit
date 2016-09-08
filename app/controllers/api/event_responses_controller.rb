@@ -53,7 +53,6 @@ class Api::EventResponsesController < ApplicationController
     if !@event_response
       render_404_error("event response")
     elsif @event_response.destroy
-      # TODO: fix this event response destroy??
       render :show
     else
       render(

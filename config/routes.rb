@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create, :show, :update, :index]
     resource :session, only: [:create, :destroy]
-    resources :groups, only: [:index, :create, :show, :update, :destroy]
-    resources :group_memberships, only: [:create, :delete]
+    resources :groups, only: [:index, :create, :show, :update, :destroy] do
+      resource :group_membership, only: [:create, :destroy]
+    end
     resources :events, only: [:index, :create, :show, :update, :destroy] do
       member do
         post "close_response_poll"

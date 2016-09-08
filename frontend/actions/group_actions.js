@@ -7,7 +7,9 @@ export const GroupConstants = {
   RECEIVE_GROUPS: 'RECEIVE_GROUPS',
   DELETE_GROUP: 'DELETE_GROUP',
   REMOVE_GROUP: 'REMOVE_GROUP',
-  RECEIVE_GROUP_ERRORS: 'RECEIVE_GROUP_ERRORS'
+  RECEIVE_GROUP_ERRORS: 'RECEIVE_GROUP_ERRORS',
+  CREATE_GROUP_MEMBERSHIP: 'CREATE_GROUP_MEMBERSHIP',
+  DELETE_GROUP_MEMBERSHIP: 'DELETE_GROUP_MEMBERSHIP'
 };
 
 const fetchGroups = () => {
@@ -73,6 +75,24 @@ const receiveGroupErrors = (errors) => {
   };
 };
 
+const createGroupMembership = (groupId, groupMembership) => {
+  return {
+    type: GroupConstants.CREATE_GROUP_MEMBERSHIP,
+    groupId,
+    groupMembership
+  };
+};
+
+const deleteGroupMembership = (groupId, groupMembership) => {
+  return {
+    type: GroupConstants.DELETE_GROUP_MEMBERSHIP,
+    groupId,
+    groupMembership
+  };
+};
+
+
+
 export const GroupActions = {
   fetchGroups,
   fetchSingleGroup,
@@ -82,5 +102,7 @@ export const GroupActions = {
   receiveGroups,
   deleteGroup,
   removeGroup,
-  receiveGroupErrors
+  receiveGroupErrors,
+  createGroupMembership,
+  deleteGroupMembership
 };

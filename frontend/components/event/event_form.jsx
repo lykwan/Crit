@@ -49,7 +49,7 @@ class EventForm extends React.Component {
   }
 
   inputGroup(val) {
-    if (val) {
+    if (val && !Array.isArray(val)) {
       this.setState({ group: val });
     } else {
       this.setState({ group: '' });

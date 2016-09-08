@@ -1,10 +1,10 @@
 import React from 'react';
 import UserItem from '../profile/user_item';
 import GroupFormContainer from '../group/group_form_container';
+import GroupMembershipForm from './group_membership_form';
 
 class GroupDetail extends React.Component {
   render() {
-
     if (this.props.group) {
       const admins = this.props.group.admins.map(admin => {
         return (
@@ -26,11 +26,9 @@ class GroupDetail extends React.Component {
             <div className='content-header'>
               <h2>{ this.props.group.title }</h2>
               <div className='content-header-buttons group-show-buttons'>
-                <div className='button'>
-                  <i className='fa fa-plus' aria-hidden='true'></i>
-                  <span>  Member</span>
-                </div>
-
+                <GroupMembershipForm groupId={ this.props.group.id }
+                   createGroupMembership={ this.props.createGroupMembership }
+                   errors={ this.props.errors }/>
                 <div>
                   <GroupFormContainer isEditForm={ true }
                                       group={ this.props.group }/>
@@ -43,13 +41,13 @@ class GroupDetail extends React.Component {
             </div>
 
             <div className='user-list-container'>
-              <h4>ADMINS</h4>
+              <h4>Admins</h4>
               <div className='user-list'>
                 { admins }
               </div>
             </div>
             <div className='user-list-container'>
-              <h4>MEMBERS</h4>
+              <h4>Members</h4>
               <div className='user-list'>
                 { regularMembers }
               </div>

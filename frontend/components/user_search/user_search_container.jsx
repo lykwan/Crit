@@ -5,7 +5,8 @@ import UserSearch from './user_search';
 const mapStateToProps = (state, ownProps) => ({
   users: state.users.users,
   membersInput: ownProps.membersInput,
-  setMembersInput: ownProps.setMembersInput
+  setMembersInput: ownProps.setMembersInput,
+  multi: ownProps.multi
 });
 
 const mapDispatchToProps = dispatch => ({

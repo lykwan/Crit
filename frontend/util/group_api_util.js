@@ -44,3 +44,25 @@ export const deleteGroup = (groupId, success, error) => {
     error
   });
 };
+
+export const createGroupMembership =
+  (groupId, groupMembership, success, error) => {
+  $.ajax({
+    method: 'POST',
+    url: `api/groups/${groupId}/group_membership`,
+    data: { group_membership: groupMembership },
+    success,
+    error
+  });
+};
+
+export const deleteGroupMembership =
+  (groupId, groupMembership, success, error) => {
+  $.ajax({
+    method: 'DELETE',
+    url: `api/groups/${groupId}/group_membership`,
+    data: { group_membership: groupMembership },
+    success,
+    error
+  });
+};
