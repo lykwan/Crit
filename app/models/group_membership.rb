@@ -13,7 +13,7 @@
 class GroupMembership < ActiveRecord::Base
 
   validates :group, :member_user_id, presence: true
-  validates :member_user_id, uniqueness: { scope: :group_id }
+  validates :member_user_id, uniqueness: { scope: :group_id, message: "- already existed in the group" }
 
   belongs_to :group
 

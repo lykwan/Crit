@@ -21,7 +21,7 @@ class UserSearch extends React.Component {
   render() {
     return (
       <Select.Async
-        multi={ true }
+        multi={ this.props.multi }
         placeholder='Invite People'
         value={ this.props.membersInput }
         loadOptions={ this.getUserOptions.bind(this) }

@@ -116,16 +116,6 @@ class GroupForm extends React.Component {
   // }
 
   render() {
-    let groupMemberships;
-    if (!this.props.isEditForm) {
-      groupMemberships =
-        this.state.group.group_memberships_attributes.map(m => {
-          return (
-            <li key={ m.member_user_id }>{ m.member_user_id }</li>
-          );
-        });
-    }
-
     let errors;
     if (this.props.errors) {
       errors = this.props.errors.map((error, idx) => {
@@ -145,10 +135,9 @@ class GroupForm extends React.Component {
             </div>
             <UserSearchContainer
               membersInput={ this.state.membersInput }
-              setMembersInput={ this.setMembersInput.bind(this) }/>
-          </div>
-          <div className='group-form-invite-friends'>
-            { groupMemberships }
+              setMembersInput={ this.setMembersInput.bind(this) }
+              multi={ true }
+              />
           </div>
         </div>
       );
@@ -210,7 +199,7 @@ class GroupForm extends React.Component {
 
             { inviteFriends }
 
-            <ul>
+            <ul className='errors'>
               { errors }
             </ul>
 
