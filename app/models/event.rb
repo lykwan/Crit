@@ -57,18 +57,20 @@ class Event < ActiveRecord::Base
   end
 
   def finalized_attendees
-    # potential_respondees_responses =
-    #   self.event_responses.includes(:respondee, condition: {friend_conditions: :friend})
-    #                       .where(response: ["definitely", "only if"])
-    # dependencies_hash = Hash.new { |h, k| h[k] = [] }
-    # potential_respondees_responses.each do |response|
-    #   if response.condition
-    #     response.condition.specified_friends.each do |depended_friend|
-    #       dependencies_hash[depended_friend] << response
-    #     end
-    #   end
-    # end
-    #
+    potential_respondees_responses =
+      self.event_responses.includes(:respondee, condition: {friend_conditions: :friend})
+                          .where(response: ["definitely", "only if"])
+    dependencies_hash = Hash.new { |h, k| h[k] = [] }
+    potential_respondees_responses.each do |response|
+      if response.condition
+        response.condition.specified_friends.each do |depended_friend|
+          dependencies_hash[depended_friend] << response
+        end
+      end
+    end
+
+    p dependencies_hash
+
     # remaining_potentials = pontential_respondees_responses
     # is_all_satisfied = false
     # until is_all_satisfied

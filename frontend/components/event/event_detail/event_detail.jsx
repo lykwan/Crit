@@ -25,7 +25,8 @@ class EventDetail extends React.Component {
     if (eventData.host.id !== this.props.currentUser.id &&
         !eventData.is_attendees_finalized) {
       attendeeResponseForm =
-        <EventResponseFormContainer eventId={ eventData.id }/>;
+        <EventResponseFormContainer eventId={ eventData.id }
+                                    eventData={ eventData }/>;
     } else if (!eventData.is_attendees_finalized) {
       attendeeResponseForm = (
         <div>
@@ -46,6 +47,10 @@ class EventDetail extends React.Component {
   getSchedule(eventData) {
     let eventSchedule;
     if (eventData.is_attendees_finalized &&
+        Object.keys(eventData.finalized_attendees).length <= 1) {
+          eventSchedule =
+            <h4>No available attendees</h4>;
+    } else if (eventData.is_attendees_finalized &&
         eventData.finalized_attendees[this.props.currentUser.id]) {
         eventSchedule =
           <EventScheduleContainer eventData={ eventData }/>;
@@ -91,6 +96,7 @@ class EventDetail extends React.Component {
               <span>
                 { eventData.group.title } - { eventData.host.username } hosted
               </span>
+              <p>{ eventData.description }</p>
             </div>
 
             <div className='content-divider'>

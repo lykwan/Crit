@@ -42,7 +42,7 @@ class EventConditionForm extends React.Component {
                                   eventResponseId={ this.props.eventResponseId }
                                   createCondition={ this.props.createCondition }
                                   updateCondition={ this.props.updateCondition }
-                                  users={ this.props.users }
+                                  members={ this.props.members }
                                   />
       </div>
     );

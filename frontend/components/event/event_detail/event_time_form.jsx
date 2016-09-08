@@ -19,7 +19,9 @@ class EventTimeForm extends React.Component {
     let updatedTimeForm = {};
     nextProps.availabilities.forEach(avail => {
       let dateObj = new Date(avail.date);
+      console.log(dateObj);
       dateObj.setTime(dateObj.getTime() + dateObj.getTimezoneOffset()*60*1000);
+      console.log(dateObj);
       updatedTimeForm[this.formatDate(dateObj)] =
         this.bitMapToArr(avail.time_slot_bitmap);
     });
@@ -86,7 +88,6 @@ class EventTimeForm extends React.Component {
   }
 
   formatDate(date) {
-    console.log(date);
     return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
   }
 

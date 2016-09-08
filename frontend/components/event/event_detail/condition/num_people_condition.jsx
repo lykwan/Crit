@@ -20,7 +20,7 @@ class NumPeopleCondition extends React.Component {
       return String(parseInt(n)) === n && n >= 0;
     };
 
-    if (isPositiveInteger(numPeople) || (!numPeople)) {
+    if (isPositiveInteger(numPeople)) {
       this.setState({ errors: null });
       if (this.props.minNumPeople) {
         this.props.updateCondition(this.props.eventResponseId, condition);
@@ -29,7 +29,7 @@ class NumPeopleCondition extends React.Component {
       }
     } else {
       this.setState({
-                      errors: 'Must be a positive number', 
+                      errors: 'Must be a positive number',
                       minNumPeople: ''
                     });
     }
@@ -50,6 +50,7 @@ class NumPeopleCondition extends React.Component {
         Minimum number of people:
         <div>{ this.props.minNumPeople }</div>
         <input type='text'
+               className='form-input'
                value={ this.state.minNumPeople }
                onChange={ this._handleChange.bind(this) }
                onBlur={

@@ -5,7 +5,8 @@ import EventResponseForm from './event_response_form';
 const mapStateToProps = (state, ownProps) => {
   return {
     eventResponse: state.eventResponse.eventResponse,
-    eventId: ownProps.eventId
+    eventId: ownProps.eventId,
+    eventData: ownProps.eventData
   };
 };
 
