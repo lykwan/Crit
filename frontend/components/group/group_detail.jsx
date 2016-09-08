@@ -4,8 +4,12 @@ import GroupFormContainer from '../group/group_form_container';
 import GroupMembershipForm from './group_membership_form';
 
 class GroupDetail extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
+    console.log(this.props);
     if (this.props.group) {
       const admins = this.props.group.admins.map(admin => {
         return (
@@ -45,7 +49,8 @@ class GroupDetail extends React.Component {
                    errors={ this.props.errors }/>
                 <div>
                   <GroupFormContainer isEditForm={ true }
-                                      group={ this.props.group }/>
+                                      group={ this.props.group }
+                                      errors={ this.props.errors }/>
                 </div>
               </div>
             </div>
