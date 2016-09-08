@@ -55,6 +55,7 @@ class GroupForm extends React.Component {
   _handleSubmit(e) {
     e.preventDefault();
 
+    let group;
     if (!this.props.isEditForm) {
       const membershipAttributes =
         this.state.membersInput.map(input => {
@@ -63,7 +64,7 @@ class GroupForm extends React.Component {
           };
         });
 
-      const group =
+      group =
         Object.assign({},
                       this.state.group,
                       { group_memberships_attributes: membershipAttributes }
@@ -71,14 +72,17 @@ class GroupForm extends React.Component {
 
       this.props.createGroup(group);
     } else {
-      this.props.updateGroup(this.props.group.id, this.state.group);
+      group = Object.assign({}, { title: this.state.group.title,
+                                  description: this.state.group.description
+                                });
+      this.props.updateGroup(this.props.group.id, group);
     }
   }
 
-  componentWillUpdate(nextProps) {
-    // if (this.props.isEditForm) {
-    //
-    // }
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.errors) {
+      this.closeModal();
+    }
   }
 
   closeModal() {
@@ -104,17 +108,6 @@ class GroupForm extends React.Component {
     this.setState({ membersInput: input });
   }
 
-  // componentWillUpdate(nextProps) {
-  //   this._redirectIfSuccessSubmit(nextProps.successSubmitGroupId);
-  // }
-  //
-  // _redirectIfSuccessSubmit(groupId) {
-  //   if (groupId) {
-  //     // this.props.router.push(`/groups/${groupId}`);
-  //     this.setState({ isModalOpen: false });
-  //   }
-  // }
-
   render() {
     let errors;
     if (this.props.errors) {
@@ -124,6 +117,7 @@ class GroupForm extends React.Component {
         );
       });
     }
+    console.log(errors);
 
     let inviteFriends;
     if (!this.props.isEditForm) {
@@ -162,6 +156,13 @@ class GroupForm extends React.Component {
       );
     }
 
+    let header;
+    if (this.props.isEditForm) {
+      header = <h3>Edit Group</h3>;
+    } else {
+      header = <h3>Create Group</h3>;
+    }
+
     return (
       <div>
         { button }
@@ -178,7 +179,7 @@ class GroupForm extends React.Component {
           <form className='form group-form'
                 onSubmit={ this._handleSubmit.bind(this) }>
 
-            <h3>Create Group</h3>
+            { header }
 
             <input type='text'
                    value={ this.state.group.title }
@@ -199,7 +200,7 @@ class GroupForm extends React.Component {
 
             { inviteFriends }
 
-            <ul className='errors'>
+            <ul className='errors-list'>
               { errors }
             </ul>
 
