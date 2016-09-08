@@ -63,7 +63,8 @@ class EventResponseForm extends React.Component {
     if (responseChoice === responseChoices.onlyIf) {
       onlyIfConditionForm =
         <EventConditionFormContainer
-            eventResponseId={ this.props.eventResponse.id }/>;
+            eventResponseId={ this.props.eventResponse.id }
+            eventData={ this.props.eventData }/>;
     }
 
     return (

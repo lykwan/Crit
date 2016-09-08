@@ -25,6 +25,10 @@ class Condition < ActiveRecord::Base
     through: :friend_conditions,
     source: :friend
 
+  has_one :event,
+    through: :event_response,
+    source: :event
+
   accepts_nested_attributes_for :friend_conditions, allow_destroy: true
 
 end

@@ -87,7 +87,7 @@ class SpecificFriendsCondition extends React.Component {
         <Select
             multi={ true }
             value={ this.state.friendsInput }
-            options={ this.props.users }
+            options={ this.props.members }
             onChange={ this.addFriends.bind(this) }
             onBlur={ this.setConditions.bind(this) }
         />

@@ -29,4 +29,8 @@ class EventResponse < ActiveRecord::Base
 
   has_one :condition, dependent: :destroy
 
+  has_many :specified_friends,
+    through: :condition,
+    source: :specified_friends
+
 end

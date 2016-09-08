@@ -4,20 +4,34 @@ import { UserActions } from '../../../actions/user_actions';
 import EventConditionForm from './event_condition_form';
 
 const mapStateToProps = (state, ownProps) => {
-  let users = [];
-  if (state.users.users) {
-    users = state.users.users.map(user => {
-      return {
-        value: user.id,
-        label: user.username
-      };
-    });
+  let members = [];
+  if (ownProps.eventData) {
+    let regularMembers = ownProps.eventData.group.regular_members
+      .filter(user => {
+        return state.session.currentUser.id !== user.id;
+      }).map(user => {
+        return {
+          value: user.id,
+          label: user.username
+        };
+      });
+    let admins = ownProps.eventData.group.admins
+      .filter(user => {
+        return state.session.currentUser.id !== user.id;
+      }).map(user => {
+        return {
+          value: user.id,
+          label: user.username
+        };
+      });
+
+    members = regularMembers.concat(admins);
   }
 
   return {
     condition: state.condition.condition,
     eventResponseId: ownProps.eventResponseId,
-    users
+    members
   };
 };
 

@@ -2,16 +2,22 @@
   margin: 20px 0;
 }
 
-.form .form-input {
-  border-bottom: 1px solid #d3d3d3;;
+.form-input {
+  border-bottom: 1px solid #d3d3d3;
   padding: 4px 8px;
   display: block;
   margin-bottom: 30px;
   width: var(--input-width);
 }
 
-.form .form-textarea {
+.form-textarea {
   width: 500px;
+}
+
+.form-input:focus {
+  border-bottom: 1px solid #d3d3d3;
+  outline-offset:0;
+  outline: 0;
 }
 
 /*.form .form-input.form-date {
