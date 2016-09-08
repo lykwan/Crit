@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show, :update, :index]
     resource :session, only: [:create, :destroy]
     resources :groups, only: [:index, :create, :show, :update, :destroy]
+    resources :group_memberships, only: [:create, :delete]
     resources :events, only: [:index, :create, :show, :update, :destroy] do
       member do
         post "close_response_poll"
