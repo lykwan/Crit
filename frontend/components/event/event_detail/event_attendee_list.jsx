@@ -1,18 +1,19 @@
 import React from 'react';
+import UserItem from '../../profile/user_item';
 
 const EventAttendeeList = ({ attendees }) => {
-  const attendeeLis = Object.keys(attendees).map(id => {
+  const attendeeItems = Object.keys(attendees).map(id => {
     return (
-      <li key={ id }>{ attendees[id].username }</li>
+      <UserItem key={ id } user={ attendees[id] } />
     );
   });
 
   return (
     <div>
       <h4>Finalized Attendee List</h4>
-      <ul>
-        { attendeeLis }
-      </ul>
+      <div>
+        { attendeeItems }
+      </div>
     </div>
   );
 };
