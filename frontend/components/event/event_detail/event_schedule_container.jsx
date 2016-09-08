@@ -3,8 +3,13 @@ import { AvailabilityActions } from '../../../actions/availability_actions';
 import EventSchedule from './event_schedule';
 
 const mapStateToProps = (state, ownProps) => {
+  let availabilities = [];
+  if (state.availability) {
+    availabilities = state.availability;
+  }
+
   return {
-    availabilities: state.availability,
+    availabilities,
     eventData: ownProps.eventData
   };
 };
@@ -16,9 +21,14 @@ const mapDispatchToProps = dispatch => {
         AvailabilityActions.fetchAvailabilities(eventId)
       );
     },
-    createAvailabilities: (eventId, availability) => {
+    createAvailabilities: (eventId, availabilities) => {
       dispatch(
-        AvailabilityActions.createAvailabilities(eventId, availability)
+        AvailabilityActions.createAvailabilities(eventId, availabilities)
+      );
+    },
+    updateAvailabilities: (eventId, availabilities) => {
+      dispatch(
+        AvailabilityActions.updateAvailabilities(eventId, availabilities)
       );
     }
   };

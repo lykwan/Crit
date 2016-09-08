@@ -4,17 +4,31 @@ import GroupFormContainer from '../group/group_form_container';
 import GroupMembershipForm from './group_membership_form';
 
 class GroupDetail extends React.Component {
+
   render() {
     if (this.props.group) {
       const admins = this.props.group.admins.map(admin => {
         return (
-          <UserItem key={ admin.id } user={ admin }/>
+          <UserItem key={ admin.id } user={ admin } />
         );
       });
 
+      const isAdmin = this.props.group.admins.some(admin => {
+        return admin.id === this.props.currentUser.id;
+      });
+
+      const handleDeleteMember = (groupMembership) => {
+        return () => {
+          this.props.deleteGroupMembership(this.props.group.id,
+                                           groupMembership);
+        };
+      };
+
       const regularMembers = this.props.group.regular_members.map(member => {
         return (
-          <UserItem key={ member.id } user={ member } />
+          <UserItem key={ member.id } user={ member }
+                    isDeletable={ isAdmin }
+                    handleDelete={ handleDeleteMember }/>
         );
       });
 

@@ -5,7 +5,8 @@ import { GroupActions } from '../../actions/group_actions';
 const mapStateToProps = state => {
   return {
     group: state.groups.groupDetail,
-    errors: state.groups.errors
+    errors: state.groups.errors,
+    currentUser: state.session.currentUser
   };
 };
 

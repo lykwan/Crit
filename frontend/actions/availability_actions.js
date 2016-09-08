@@ -2,6 +2,7 @@ export const AvailabilityConstants = {
   FETCH_AVAILABILITIES: 'FETCH_AVAILABILITIES',
   RECEIVE_AVAILABILITIES: 'RECEIVE_AVAILABILITIES',
   CREATE_AVAILABILITIES: 'CREATE_AVAILABILITIES',
+  UPDATE_AVAILABILITIES: 'UPDATE_AVAILABILITIES'
 };
 
 const fetchAvailabilities = (eventId) => {
@@ -26,8 +27,17 @@ const createAvailabilities = (eventId, availabilities) => {
   };
 };
 
+const updateAvailabilities = (eventId, availabilities) => {
+  return {
+    type: AvailabilityConstants.UPDATE_AVAILABILITIES,
+    eventId,
+    availabilities
+  };
+};
+
 export const AvailabilityActions = {
   fetchAvailabilities,
   receiveAvailabilities,
-  createAvailabilities
+  createAvailabilities,
+  updateAvailabilities
 };

@@ -4,46 +4,28 @@ import { fill } from 'lodash';
 class EventTimeForm extends React.Component {
   constructor(props) {
     super(props);
-    let timeForm = {};
+    this.timeForm = {};
     this.allDates = this.getAllDates();
 
     this.allDates.forEach(date => {
-      timeForm[date] = fill(Array(24), 0);
+      this.timeForm[date] = fill(Array(24), 0);
     });
-    this.state = {
-      timeForm
-    };
   }
 
   componentWillReceiveProps(nextProps) {
     let updatedTimeForm = {};
     nextProps.availabilities.forEach(avail => {
       let dateObj = new Date(avail.date);
-      console.log(dateObj);
       dateObj.setTime(dateObj.getTime() + dateObj.getTimezoneOffset()*60*1000);
-      console.log(dateObj);
       updatedTimeForm[this.formatDate(dateObj)] =
         this.bitMapToArr(avail.time_slot_bitmap);
     });
 
     const timeForm = Object.assign({},
-                                   this.state.timeForm,
+                                   this.timeForm,
                                    updatedTimeForm
                                    );
-    this.setState({ timeForm });
-  }
-
-  _handleSubmit() {
-    const availabilities =
-      Object.keys(this.state.timeForm).map(formattedDate => {
-        let [year, month, date] = formattedDate.split('/');
-        let dateObj = new Date(year, month, date);
-        return {
-          date: dateObj.toISOString(),
-          time_slot_bitmap: this.arrToBitMap(this.state.timeForm[formattedDate])
-        };
-      });
-    this.props.createAvailabilities(this.props.eventData.id, availabilities);
+    this.timeForm = timeForm;
   }
 
   arrToBitMap(arr) {
@@ -70,14 +52,30 @@ class EventTimeForm extends React.Component {
   }
 
   _handleClick(date, hour) {
-    const toggleValue = this.state.timeForm[date][hour] ? 0 : 1;
-    const dateCol = [...this.state.timeForm[date]];
+    const toggleValue = this.timeForm[date][hour] ? 0 : 1;
+    const dateCol = [...this.timeForm[date]];
     dateCol[hour] = toggleValue;
     const timeForm = Object.assign({},
-                                   this.state.timeForm,
+                                   this.timeForm,
                                    { [date]: dateCol }
                                    );
-    this.setState({ timeForm });
+    this.timeForm = timeForm;
+
+    const availabilities =
+      Object.keys(this.timeForm).map(formattedDate => {
+        let [year, month, day] = formattedDate.split('/');
+        let dateObj = new Date(year, month, day);
+        return {
+          date: dateObj.toISOString(),
+          time_slot_bitmap: this.arrToBitMap(this.timeForm[formattedDate])
+        };
+      });
+    if (this.props.availabilities &&
+      Object.getOwnPropertyNames(this.props.availabilities).length !== 0) {
+      this.props.updateAvailabilities(this.props.eventData.id, availabilities);
+    } else {
+      this.props.createAvailabilities(this.props.eventData.id, availabilities);
+    }
   }
 
   dateEqual(date, otherDate) {
@@ -109,11 +107,6 @@ class EventTimeForm extends React.Component {
 
 
   render() {
-    // let date = new Date(this.props.eventData.start_date);
-    // let endDate = new Date(this.props.eventData.end_date);
-    // date.setTime(date.getTime() + date.getTimezoneOffset()*60*1000);
-    // endDate.setTime(endDate.getTime() + endDate.getTimezoneOffset()*60*1000);
-
     let dateCols = [];
     this.allDates.forEach(date => {
       let [year, month, day] = date.split('/');
@@ -122,19 +115,14 @@ class EventTimeForm extends React.Component {
                     </div>];
 
       for (let i = 0; i < 24; i++) {
-        const selectedClass = this.state.timeForm[date][i] ?
+        const selectedClass = this.timeForm[date][i] ?
                               'selected' :
                               '';
-
-        let onClickCb;
-        if (this.props.isEditForm) {
-           onClickCb = this._handleClick.bind(this, date, i);
-        }
 
         dateCol.push(
           <div key={ `${date}-${i}` }
                className={ `date-box ${ selectedClass }` }
-               onClick={ onClickCb } >
+               onClick={ this._handleClick.bind(this, date, i) } >
           </div>);
       }
       dateCols.push(
@@ -151,19 +139,10 @@ class EventTimeForm extends React.Component {
                   </div>);
     }
 
-    let editSubmitButton;
-    if (this.props.isEditForm) {
-      editSubmitButton = (
-        <div className='button'
-             onClick={ this._handleSubmit.bind(this) }>
-          Submit
-        </div>
-      );
-    }
+    console.log('rendering event time form')
 
     return (
       <div className='date-table'>
-        { editSubmitButton }
         <div className='date-col'>{ hourCol }</div>
         { dateCols }
       </div>

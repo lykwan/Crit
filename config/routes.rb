@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       end
       resource :event_response, only: [:show, :create, :update, :destroy]
       resources :availabilities, only: [:index, :create]
+      resource :availabilities, only: [:update]
     end
     resources :event_responses, only: [] do
       resource :condition, only: [:create, :update, :show]

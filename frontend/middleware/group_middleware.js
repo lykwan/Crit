@@ -35,7 +35,7 @@ const GroupMiddleware = ({ dispatch }) => next => action => {
                             action.groupMembership, successCb, errorCb);
       return next(action);
     case GroupConstants.DELETE_GROUP_MEMBERSHIP:
-      const groupId = action.group_id;
+      const groupId = action.groupId;
       successCb = () => {
         dispatch(GroupActions.fetchSingleGroup(groupId));
       };

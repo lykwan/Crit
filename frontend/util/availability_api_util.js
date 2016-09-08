@@ -17,3 +17,14 @@ export const createAvailabilities =
       error
     });
 };
+
+export const updateAvailabilities =
+  (eventId, availabilities, success, error) => {
+    $.ajax({
+      method: 'PATCH',
+      url: `/api/events/${ eventId }/availabilities`,
+      data: { availabilities },
+      success,
+      error
+    });
+};
