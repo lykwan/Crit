@@ -18,8 +18,17 @@
 }
 
 /* line 24, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/availabilities.scss */
-.date-box.selected {
+
+.date-box.chosen {
   background-color: green;
+}
+
+.date-box.selected {
+  background-color: blue;
+}
+
+.date-box.unselected {
+  background-color: #CFDBC5;
 }
 
 .date-first-row {

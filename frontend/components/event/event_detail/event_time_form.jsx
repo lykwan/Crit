@@ -10,6 +10,14 @@ class EventTimeForm extends React.Component {
     this.allDates.forEach(date => {
       this.timeForm[date] = fill(Array(24), 0);
     });
+
+    this.state = {
+      selectedFromBox: null,
+      selectedToBox: null,
+      isSelecting: false
+    };
+
+    this.initialToggleValue = null;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,15 +59,77 @@ class EventTimeForm extends React.Component {
     return bitArr;
   }
 
-  _handleClick(date, hour) {
-    const toggleValue = this.timeForm[date][hour] ? 0 : 1;
-    const dateCol = [...this.timeForm[date]];
-    dateCol[hour] = toggleValue;
-    const timeForm = Object.assign({},
-                                   this.timeForm,
-                                   { [date]: dateCol }
-                                   );
-    this.timeForm = timeForm;
+  selectFromHere(fromDate, fromHour) {
+    this.initialToggleValue = this.timeForm[fromDate][fromHour] ? 0 : 1;
+    let selectedPair = [fromDate, fromHour];
+    this.setState({
+      selectedFromHere: selectedPair,
+      isSelecting: true
+    });
+  }
+
+  selectToHere(toDate, toHour) {
+    let selectedPair = [toDate, toHour];
+    this.setState({
+      selectedToHere: selectedPair
+    });
+  }
+    // console.log('got here to select to here');
+    // console.log(this.state.isSelecting);
+    // if (this.state.isSelecting) {
+    //   console.log('yes got here');
+    //   let selectedPair = [toDate, toHour];
+    //   let toggleValue;
+    //   if (this.state.selectedBoxes.hasOwnProperty(selectedPair)) {
+    //     console.log('has it ever has own propety??');
+    //     toggleValue = this.state.selectedBoxes[selectedPair] ? 0 : 1;
+    //   } else {
+    //     toggleValue = this.initialToggleValue;
+    //   }
+    //
+    //   const selectedBoxes = Object.assign({},
+    //                                 this.state.selectedBoxes,
+    //                                 { [selectedPair]: toggleValue }
+    //                          );
+    //   this.setState({ selectedBoxes });
+    // }
+
+  getSelectedDates() {
+    const selectedFromHere = this.state.selectedFromHere;
+    const selectedToHere = this.state.selectedToHere;
+    let [fromDate, fromHour] = this.state.selectedFromHere;
+    let [date, hour] = this.state.selectedFromHere;
+    let [toDate, toHour] = this.state.selectedToHere;
+    let selectedBoxes = {};
+
+    if (date === toDate && hour === toHour) {
+      return { [selectedFromHere]: this.initialToggleValue };
+    }
+
+    while (date <= toDate) {
+      while (hour <= toHour) {
+        selectedBoxes[[date, hour]] = this.initialToggleValue;
+        hour++;
+        console.log('date, hour', date, hour);
+      }
+      let [year, month, day] = date.split('/');
+      let dateObj = new Date(year, month, day);
+      dateObj.setTime(dateObj.getTime() + dateObj.getTimezoneOffset()*60*1000);
+      dateObj.setDate(dateObj.getDate() + 1);
+      date = this.formatDate(dateObj);
+      hour = fromHour;
+    }
+
+    return selectedBoxes;
+  }
+
+  submitAvailabilities(date, hour) {
+    console.log(this.getSelectedDates);
+    Object.keys(this.getSelectedDates()).forEach(selectedPair => {
+      const [selectedDate, selectedHour] = selectedPair.split(",");
+      this.timeForm[selectedDate][selectedHour] =
+        this.initialToggleValue;
+    });
 
     const availabilities =
       Object.keys(this.timeForm).map(formattedDate => {
@@ -76,6 +146,11 @@ class EventTimeForm extends React.Component {
     } else {
       this.props.createAvailabilities(this.props.eventData.id, availabilities);
     }
+
+    this.setState({
+      selectedBoxes: {},
+      isSelecting: false
+    });
   }
 
   dateEqual(date, otherDate) {
@@ -108,6 +183,7 @@ class EventTimeForm extends React.Component {
 
   render() {
     let dateCols = [];
+    // let selectedDates = this.getSelectedDates();
     this.allDates.forEach(date => {
       let [year, month, day] = date.split('/');
       let dateCol = [<div key={date} className='date-box date-first-row'>
@@ -115,15 +191,28 @@ class EventTimeForm extends React.Component {
                     </div>];
 
       for (let i = 0; i < 24; i++) {
-        const selectedClass = this.timeForm[date][i] ?
-                              'selected' :
+        const chosenClass = this.timeForm[date][i] ?
+                              'chosen' :
                               '';
+        let selectedClass = '';
+        let unselectedClass = '';
+        // if (Object.hasOwnProperty(selectedDates[[date, i]])
+        //     && selectedDates[[date, i]] === 1) {
+        //       selectedClass = 'selected';
+        // } else if (Object.hasOwnProperty(selectedDates[[date, i]])
+        //     && selectedDates[[date, i]] === 0) {
+        //       unselectedClass = 'unselected';
+        // }
 
         dateCol.push(
           <div key={ `${date}-${i}` }
-               className={ `date-box ${ selectedClass }` }
-               onClick={ this._handleClick.bind(this, date, i) } >
+               className={ `date-box ${ chosenClass } ${ selectedClass } ${ unselectedClass }` }
+               onMouseDown={ this.selectFromHere.bind(this, date, i) }
+               onMouseOver={ this.selectToHere.bind(this, date, i) }
+               onMouseUp={ this.submitAvailabilities.bind(this, date, i) }
+               onClick={ this.submitAvailabilities.bind(this, date, i) } >
           </div>);
+
       }
       dateCols.push(
         <div key={ date } className='date-col'>
@@ -138,8 +227,6 @@ class EventTimeForm extends React.Component {
                     { `${i}:00` }
                   </div>);
     }
-
-    console.log('rendering event time form')
 
     return (
       <div className='date-table'>

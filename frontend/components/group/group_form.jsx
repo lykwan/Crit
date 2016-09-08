@@ -109,6 +109,8 @@ class GroupForm extends React.Component {
   }
 
   render() {
+    console.log(this.props.errors);
+    console.log("erorrs");
     let errors;
     if (this.props.errors) {
       errors = this.props.errors.map((error, idx) => {
@@ -117,7 +119,6 @@ class GroupForm extends React.Component {
         );
       });
     }
-    console.log(errors);
 
     let inviteFriends;
     if (!this.props.isEditForm) {

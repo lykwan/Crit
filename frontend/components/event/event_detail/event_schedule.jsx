@@ -43,11 +43,7 @@ class EventSchedule extends React.Component {
       );
     }
 
-
-    console.log('rendering schedule')
-    console.log(eventId, this.props.eventData.id);
     if (!eventId || this.props.eventData.id === eventId) {
-      console.log('why isnt it getting here');
       return (
         <div className='event-time-form'>
           <h4>My availability</h4>

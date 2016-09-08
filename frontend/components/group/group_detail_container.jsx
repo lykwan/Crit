@@ -3,6 +3,8 @@ import GroupDetail from './group_detail';
 import { GroupActions } from '../../actions/group_actions';
 
 const mapStateToProps = state => {
+  console.log('in group detail cont');
+  console.log(state.groups.errors);
   return {
     group: state.groups.groupDetail,
     errors: state.groups.errors,
