@@ -9,11 +9,6 @@ const mapStateToProps = (state, ownProps) => {
     successSubmitGroupId = state.groups.groupDetail.id;
   }
 
-  // debugger
-
-  console.log('getting updated');
-  console.log(state.groups.errors);
-
   return {
     successSubmitGroupId,
     errors: state.groups.errors,

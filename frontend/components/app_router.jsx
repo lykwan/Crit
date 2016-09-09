@@ -73,6 +73,14 @@ class AppRouter extends React.Component {
     dispatch(UserActions.fetchUser(userId));
   }
 
+  _handleEnterOwnProfile(nextState, replace) {
+    this._ensureLoggedIn(nextState, replace);
+    const dispatch = this.context.store.dispatch;
+    const state = this.context.store.getState();
+    dispatch(UserActions.fetchUser(state.session.currentUser.id));
+  }
+
+
   render() {
     return (
       <Router history={ hashHistory }>
@@ -96,7 +104,7 @@ class AppRouter extends React.Component {
                  onEnter={ this._handleEnterGroupDetail.bind(this) } />
           <Route path='profile'
                  component={ ProfileContainer }
-                 onEnter={ this._ensureLoggedIn.bind(this) } />
+                 onEnter={ this._handleEnterOwnProfile.bind(this) } />
           <Route path='users/:id'
                  component={ ProfileContainer }
                  onEnter={ this._handleEnterUserProfile.bind(this) } />

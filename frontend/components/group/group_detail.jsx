@@ -8,6 +8,21 @@ class GroupDetail extends React.Component {
     super(props);
   }
 
+  postImage(image) {
+    let group = { img: image.url };
+    this.props.updateGroup(this.props.group.id, group);
+  }
+
+  upload(e) {
+    e.preventDefault();
+    window.cloudinary.openUploadWidget(window.CLOUDINARY_OPTIONS,
+      (error, results) => {
+      if(!error){
+        this.postImage(results[0]);
+      }
+    });
+  }
+
   render() {
     console.log(this.props);
     if (this.props.group) {
@@ -36,23 +51,40 @@ class GroupDetail extends React.Component {
         );
       });
 
+      let getAdminButtons;
+      if (isAdmin) {
+        getAdminButtons = (
+          <div className='content-header-buttons group-show-buttons'>
+            <GroupMembershipForm groupId={ this.props.group.id }
+               createGroupMembership={ this.props.createGroupMembership }
+               errors={ this.props.errors }/>
+            <div>
+              <GroupFormContainer isEditForm={ true }
+                                  group={ this.props.group }
+                                  errors={ this.props.errors }/>
+            </div>
+          </div>
+        );
+      }
+
       return (
         <section className='content detail-content'>
-          <div className='detail-img'
-               style={ { backgroundImage: `url(${this.props.group.img})`} } />
+
+           <div className='detail-img-frame' onClick={ this.upload.bind(this) }>
+             <div className='img-upload detail-img-upload'>
+               <div className='text'>
+                 <i className="fa fa-camera" aria-hidden="true"></i>
+                 <span>  Upload New Photo</span>
+               </div>
+             </div>
+             <div className='detail-img'
+                style={ { backgroundImage: `url(${this.props.group.img})`} } />
+          </div>
+
           <div className='content-body'>
             <div className='content-header'>
               <h2>{ this.props.group.title }</h2>
-              <div className='content-header-buttons group-show-buttons'>
-                <GroupMembershipForm groupId={ this.props.group.id }
-                   createGroupMembership={ this.props.createGroupMembership }
-                   errors={ this.props.errors }/>
-                <div>
-                  <GroupFormContainer isEditForm={ true }
-                                      group={ this.props.group }
-                                      errors={ this.props.errors }/>
-                </div>
-              </div>
+              { getAdminButtons }
             </div>
 
             <div className='group-description'>

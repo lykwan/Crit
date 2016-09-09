@@ -124,7 +124,6 @@ class EventTimeForm extends React.Component {
   }
 
   submitAvailabilities(date, hour) {
-    console.log(this.getSelectedDates);
     Object.keys(this.getSelectedDates()).forEach(selectedPair => {
       const [selectedDate, selectedHour] = selectedPair.split(",");
       this.timeForm[selectedDate][selectedHour] =

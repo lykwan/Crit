@@ -45,7 +45,7 @@ class EventSchedule extends React.Component {
 
     if (!eventId || this.props.eventData.id === eventId) {
       return (
-        <div className='event-time-form'>
+        <div className='event-time-form group'>
           <h4>My availability</h4>
           { editLine }
           { this.getEventTimeForm() }
