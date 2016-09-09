@@ -13,7 +13,7 @@
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
   box-shadow:         0 0 32px rgba(0,0,0,.1);
-
+  position: relative;
 }
 
 /* line 15, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/users.scss */
@@ -25,6 +25,25 @@
   width: 95%;
   height: 95%;
   margin: auto;
+}
+
+.profile-img-upload {
+  width: 330px;
+  height: 100px;
+  bottom: 10px;
+}
+
+.img-upload {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-upload .text {
+  opacity: 1;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  line-height: 100px;
 }
 
 /* line 27, /Users/appacademy/Crit/app/assets/stylesheets/api/users.scss */

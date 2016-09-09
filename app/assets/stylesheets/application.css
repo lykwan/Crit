@@ -120,3 +120,9 @@ body.modal-open {
 .errors-list {
   color: red;
 }
+
+.group:after {
+    content: "";
+    display: block;
+    clear: both;
+}
