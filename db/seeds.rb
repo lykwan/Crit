@@ -32,21 +32,6 @@ kwon_family = Group.create!(title: 'Kwon Family', description: 'People with the 
 coolest_group = Group.create!(title: 'The Coolest Group', description: 'Where all the cool people hang out', img: 'http://first-vet.bg/en/wp-content/uploads/sites/2/2014/09/hd-wallpapers-pictures-cats-cute-cat-wallpaper-1366x768-wallpaper.jpg')
 corgi_group = Group.create!(title: 'People who loves corgi', description: 'All the corgi owners united!!')
 
-lily = User.create!(username: 'lily', password: 'password', name: 'Lily')
-tim = User.create!(username: 'tim', password: 'password', name: 'Tim')
-kelly = User.create!(username: 'kelly', password: 'password', name: 'Kelly')
-amy = User.create!(username: 'amy', password: 'password', name: 'Amy')
-littletimmy = User.create!(username: 'littletimmy', password: 'password', name: 'Little Timmy')
-cow = User.create!(username: 'cow', password: 'password', name: 'Cow')
-corgi = User.create!(username: 'corgi', password: 'password', name: 'Corgi')
-katie = User.create!(username: 'katie', password: 'password', name: 'Katie')
-dad = User.create!(username: 'dad', password: 'password', name: 'Dad')
-
-kwan_family = Group.create!(title: 'kwan family', description: 'the coolest')
-koh_household = Group.create!(title: 'koh household', description: 'the hottest')
-pet_world = Group.create!(title: 'pet world', description: 'the cutest')
->>>>>>> parent of f0c2258... fixed time form bug
-
 GroupMembership.create!(member_user_id: 1, group_id: 1, is_admin: true)
 GroupMembership.create!(member_user_id: 3, group_id: 1, is_admin: false)
 GroupMembership.create!(member_user_id: 4, group_id: 1, is_admin: false)
