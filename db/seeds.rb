@@ -31,7 +31,7 @@ profile_pics = ["https://res.cloudinary.com/dsj48uswp/image/upload/w_250,h_250,c
 kwon_family = Group.create!(title: 'Kwon Family', description: 'People with the coolest last name', img: 'http://s3.amazonaws.com/etntmedia/media/images/ext/543627202/happy-people-friends.jpg')
 coolest_group = Group.create!(title: 'The Coolest Group', description: 'Where all the cool people hang out', img: 'http://first-vet.bg/en/wp-content/uploads/sites/2/2014/09/hd-wallpapers-pictures-cats-cute-cat-wallpaper-1366x768-wallpaper.jpg')
 corgi_group = Group.create!(title: 'People who loves corgi', description: 'All the corgi owners united!!')
-=======
+
 lily = User.create!(username: 'lily', password: 'password', name: 'Lily')
 tim = User.create!(username: 'tim', password: 'password', name: 'Tim')
 kelly = User.create!(username: 'kelly', password: 'password', name: 'Kelly')
