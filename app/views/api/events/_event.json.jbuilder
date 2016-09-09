@@ -9,8 +9,8 @@ json.extract! event,
               :end_date,
               :is_time_finalized
 
-json.start_date_formatted event.start_date.strftime("%A %m/%d/%Y")
-json.end_date_formatted event.end_date.strftime("%A %m/%d/%Y")
+json.start_date_formatted event.start_date.strftime("%m/%d/%y")
+json.end_date_formatted event.end_date.strftime("%m/%d/%y")
 
 json.event_respondees do
   json.array! event.event_respondees do |respondee|

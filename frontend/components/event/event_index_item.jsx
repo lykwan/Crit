@@ -51,25 +51,25 @@ const EventIndexItem = ({ eventData, currentUser, router }) => {
   }
 
   return (
-    <article className='list-item list-index-item event-item'
+    <article className='event-item'
              onClick={ handleClick.bind(null, router, eventData.id) }>
-      <div className='list-index-item-img'
+      <div className='event-item-img'
            style={ { backgroundImage: `url(${eventData.img})`} } />
       <div className='event-item-info'>
         <h3>{ eventData.title }</h3>
+        <span className='date'>{ eventData.start_date_formatted } - { eventData.end_date_formatted }</span>
         { location }
-        <span>{ eventData.start_date_formatted } - { eventData.end_date_formatted }</span>
         <div className='event-item-last-row'>
           <span>
-            { eventData.group.title } - { host } hosted
-          </span>
-          <span className='event-instruction'>
-            { instructionText }
+            { eventData.group.title }
           </span>
         </div>
       </div>
     </article>
   );
 };
+          // <span className='event-instruction'>
+          //   { instructionText }
+          // </span>
 
 export default withRouter(EventIndexItem);

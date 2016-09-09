@@ -17,6 +17,65 @@
   text-align: center;
 }
 
+.list-item-text span {
+  text-overflow: ellipsis;
+}
+
+.list-index-item {
+  width: 100%;
+  height: 135px;
+  margin: 20px 0;
+  border: 1px solid black;
+}
+
+.list-index-item-img {
+  background-position: center;
+  background-size: 338px;
+  width: 30%;
+  height: 100%;
+}
+
+.event-item {
+  height: 300px;
+  width: 280px;
+  margin-bottom: 20px;
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.event-item-img {
+  background-position: center;
+  background-size: 338px;
+  width: 100%;
+  height: 65%;
+}
+
+.event-item-info {
+  height: 35%;
+  position: relative;
+  padding: 10px 15px;
+}
+
+.event-item-info .date {
+  font-size: 13px;
+  color: #a0a0a0;
+  margin-bottom: 12px;
+}
+.event-item-info h3 {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.event-item-info span {
+  display: block;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+
+
 .group-item {
   height: 63px;
   background: #F5F5F5;

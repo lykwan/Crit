@@ -12,10 +12,7 @@ const EventIndex = ({ events, currentUser,router }) => {
 
     return (
       <section className='content'>
-        <div className='content-header'>
-          <h2>My Events</h2>
-          <EventFormContainer />
-        </div>
+        <EventFormContainer />
         { eventIndexItems }
       </section>
     );
