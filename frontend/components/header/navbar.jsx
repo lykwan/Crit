@@ -32,6 +32,21 @@ class Navbar extends React.Component {
         isActiveTabClass = 'active';
       }
 
+
+//       <div className='navbar-icon'>
+//   <i className='fa fa-search' aria-hidden='true'></i>
+// </div>
+//
+// <div className='navbar-icon'>
+//   <i className="fa fa-user-plus" aria-hidden="true"></i>
+// </div>
+//
+// <div className='navbar-icon'>
+//   <i className="fa fa-bell" aria-hidden="true"></i>
+// </div>
+//
+
+
       return (
         <li key={ RouteConstants[section].title }
             onClick={ this.selectTab.bind(this, section) }
@@ -48,18 +63,6 @@ class Navbar extends React.Component {
         </ul>
 
         <div className='navbar-icons'>
-          <div className='navbar-icon'>
-            <i className='fa fa-search' aria-hidden='true'></i>
-          </div>
-
-          <div className='navbar-icon'>
-            <i className="fa fa-user-plus" aria-hidden="true"></i>
-          </div>
-
-          <div className='navbar-icon'>
-            <i className="fa fa-bell" aria-hidden="true"></i>
-          </div>
-
           <div className='navbar-icon'>
             <i className='fa fa-cog' aria-hidden='true'></i>
             <div className='navbar-dropdown'
