@@ -23,7 +23,8 @@ class EventDetail extends React.Component {
   getCloseTimePollButton(eventData) {
     let closeTimePollButton;
     if (eventData.host.id === this.props.currentUser.id &&
-        eventData.is_attendees_finalized && !eventData.is_time_finalized) {
+        eventData.is_attendees_finalized && !eventData.is_time_finalized &&
+        Object.keys(eventData.finalized_attendees).length > 1) {
       closeTimePollButton = (
         <div className='content-header-buttons'>
           <div className='button'
@@ -43,24 +44,9 @@ class EventDetail extends React.Component {
       attendeeResponseForm =
         <EventResponseFormContainer eventId={ eventData.id }
                                     eventData={ eventData }/>;
-    } else if (!eventData.is_attendees_finalized) {
-      attendeeResponseForm = (
-        <div>
-          <span>{ `${eventData.event_respondees.length - 1} people responded` }
-          </span>
-          <br/>
-          <br/>
-          <span>
-            Currently waiting for group members to respond to event.
-          </span>
-          <br/>
-          <br/>
-          <span>Close the poll when you are no longer accepting responses.
-          </span>
-        </div>
-      );
     }
-
+//     <span>{ `${eventData.group.members.length} people invited`}
+// </span>
     return attendeeResponseForm;
   }
 
@@ -69,7 +55,7 @@ class EventDetail extends React.Component {
     if (eventData.is_attendees_finalized &&
         Object.keys(eventData.finalized_attendees).length <= 1) {
           eventSchedule =
-            <h4>No available attendees</h4>;
+            <h4>Sorry no one was able to go :(</h4>;
     } else if (eventData.is_attendees_finalized &&
         eventData.finalized_attendees[this.props.currentUser.id]) {
         eventSchedule =
@@ -80,11 +66,29 @@ class EventDetail extends React.Component {
 
   getAttendeeList(eventData) {
     let eventAttendeeList;
-    if (eventData.is_attendees_finalized) {
+    if (eventData.is_attendees_finalized &&
+        Object.keys(eventData.finalized_attendees).length > 1) {
       eventAttendeeList =
         <EventAttendeeList attendees={ eventData.finalized_attendees }/>;
     }
     return eventAttendeeList;
+  }
+
+  getPeopleRespondedText(eventData) {
+    let peopleRespondedText;
+    if (eventData.host.id === this.props.currentUser.id &&
+        !eventData.is_attendees_finalized) {
+      const numCount = eventData.event_respondees.length - 1;
+      let peopleNoun = numCount !== 1 ? 'people' : 'person';
+      peopleRespondedText = (
+        <div className='people-responded-text'>
+          <span>{ `${eventData.event_respondees.length - 1} ${peopleNoun} responded` }
+          </span>
+        </div>
+      );
+    }
+
+    return peopleRespondedText;
   }
 
   render() {
@@ -96,33 +100,53 @@ class EventDetail extends React.Component {
         <span>{ eventData.location }</span> :
         <span>TBD</span>;
 
-      return (
-        <section className='content detail-content'>
-          <div className='detail-img'
-               style={ { backgroundImage: `url(${eventData.img})`} } />
+    let hostText;
+    if (eventData.host.id === currentUser.id) {
+      hostText = "You are the host";
+    } else {
+      hostText = `${ eventData.host.username } is the host`;
+    }
 
-          <div className='content-body'>
+    return (
+      <section className='content detail-content'>
+        <div className='detail-img'
+             style={ { backgroundImage: `url(${eventData.img})`} } />
 
-            <div className='content-header event-content-header'>
-              <h2>{ eventData.title }</h2>
-              { this.getCloseResponsePollButton(eventData) }
-              { this.getCloseTimePollButton(eventData) }
+        <div className='content-body'>
+
+          <div className='content-header event-content-header'>
+            <h2>{ eventData.title }</h2>
+            { this.getPeopleRespondedText(eventData) }
+            { this.getCloseResponsePollButton(eventData) }
+            { this.getCloseTimePollButton(eventData) }
+          </div>
+          <div className='event-content-info'>
+            <div className='event-detail'>
+              <i className="fa fa-map-marker" aria-hidden="true"></i>
               { location }
-              <span>{ eventData.start_time } - { eventData.end_time }</span>
-              <span>
-                { eventData.group.title } - { eventData.host.username } hosted
-              </span>
-              <p>{ eventData.description }</p>
             </div>
-
-            { this.getAttendeeList(eventData) }
-            { this.getSchedule(eventData) }
-            { this.getAttendeeResponseForm(eventData) }
-
+            <div className='event-detail'>
+              <i className="fa fa-calendar" aria-hidden="true"></i>
+              <span>{ eventData.start_date_formatted } - { eventData.end_date_formatted }</span>
+            </div>
+            <div className='event-detail'>
+              <i className="fa fa-users" aria-hidden="true"></i>
+              <span>
+                { eventData.group.title } - { hostText }
+              </span>
+            </div>
+            <p>{ eventData.description }</p>
           </div>
 
+
+          { this.getAttendeeList(eventData) }
+          { this.getSchedule(eventData) }
+          { this.getAttendeeResponseForm(eventData) }
+
+        </div>
+
         </section>
-      );
+        );
     }
 
     return (

@@ -107,6 +107,7 @@ class SpecificFriendsCondition extends React.Component {
       <div>
         Friends going:
         <Select
+            className='select-friends-input'
             multi={ true }
             value={ this.state.friendsInput }
             options={ this.props.members }

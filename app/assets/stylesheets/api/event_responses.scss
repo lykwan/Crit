@@ -28,15 +28,19 @@
 /* line 30, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
 .event-response-form .response {
   color: white;
-  background-color: #16A085;
+  background-color: #3498DB;
 }
 
 /* line 36, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
 .event-response-form li:hover {
-  background-color: #48C9B0;
+  background-color: #5dade2;
+}
+
+.event-response-form i {
+  margin-right: 6px;
 }
 
 
 .event-response-form .response:hover {
-    background-color: #16A085;
+    background-color: #3498DB;
 }

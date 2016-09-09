@@ -7,7 +7,8 @@ class NumPeopleCondition extends React.Component {
     this.state = {
       errors: '',
       minNumPeople: '',
-      isSaved: false
+      isSaved: false,
+      isChanging: false
     };
   }
 
@@ -27,10 +28,10 @@ class NumPeopleCondition extends React.Component {
       if (this.props.condition.event_response_id
           === this.props.eventResponseId) {
         this.props.updateCondition(this.props.eventResponseId, condition);
-        this.setState({ isSaved: true });
+        this.setState({ isSaved: true, minNumPeople: '', isChanging: false });
       } else {
         this.props.createCondition(this.props.eventResponseId, condition);
-        this.setState({ isSaved: true });
+        this.setState({ isSaved: true, minNumPeople: '', isChanging: false });
       }
     } else {
       this.setState({
@@ -47,25 +48,37 @@ class NumPeopleCondition extends React.Component {
     });
   }
 
+
+  _handleFocus(e) {
+    this.setState({
+      isChanging: true
+    });
+  }
+
   render() {
     let errors;
     if (this.state.errors) {
       errors = <div>{ this.state.errors }</div>;
     }
 
-    let savedMsg;
+    let savedMsg, minNumPeople;
     if (this.state.isSaved) {
       savedMsg = <span className='saved-msg'>Saved</span>;
     }
 
+    if (!this.state.isChanging) {
+      minNumPeople = <span className='num-people'>{ this.props.minNumPeople }</span>;
+    }
+
     return (
-      <div>
+      <div className='num-people-condition'>
         Minimum number of people:
-        <div>{ this.props.minNumPeople }</div>
+        { minNumPeople }
         <input type='text'
-               className='form-input'
+               className='form-input min-num-input'
                value={ this.state.minNumPeople }
                onChange={ this._handleChange.bind(this) }
+               onFocus={ this._handleFocus.bind(this) }
                onBlur={
                  this.setCondition.bind(this)
                }/>

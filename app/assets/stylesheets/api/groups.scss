@@ -1,72 +1,59 @@
-/* line 7, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 9, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 4, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 5, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 6, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 .group-show-buttons {
   display: flex;
   width: 184px;
   justify-content: space-between;
 }
 
-/* line 17, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 21, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 26, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 27, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 20, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 15, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 17, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 19, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 26, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 22, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 26, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 29, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-.group-index-item h3 {
-  float: left;
-  font-size: 35px;
-  margin: 20px 37px;
-}
-
-/* line 31, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 33, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 34, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 31, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 36, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 40, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 40, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 43, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 44, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 48, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 49, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 45, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 50, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 55, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-.group-index-item-info span {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  margin: 20px;
-}
-
-.group-index-item-info {
+.group-index-item {
+  width: 278px;
+  height: 200px;
   position: relative;
 }
 
-/* line 56, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 53, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 59, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 65, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+.group-index-item-img {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: 340px;
+}
 
-/* line 66, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 73, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
+.group-index-item .group-title {
+  font-size: 35px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 0 20px;
+  line-height: 200px;
+  text-align: center;
+  color: white;
+}
+
+.group-title h3 {
+  font-weight: 500;
+}
+
+.group-index-item-overlay {
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0,0,0,0.2);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
+}
+
+.group-index-item-overlay:hover {
+  background-color:rgba(0,0,0,0.4);
+}
+
 .group-description {
   margin-bottom: 40px;
 }
 
-/* line 63, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 61, /Users/appacademy/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 72, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
-/* line 80, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/groups.scss */
 .member-list {
   display: block;
 }

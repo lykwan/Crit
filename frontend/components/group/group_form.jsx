@@ -144,7 +144,7 @@ class GroupForm extends React.Component {
         <div className='button'
              onClick={ this.openModal.bind(this )}>
           <i className="fa fa-pencil" aria-hidden="true"></i>
-          <span>  Edit</span>
+          <span>Edit</span>
         </div>
       );
     } else {
@@ -152,7 +152,7 @@ class GroupForm extends React.Component {
         <div className='content-header-buttons button'
              onClick={ this.openModal.bind(this) }>
           <i className='fa fa-plus' aria-hidden='true'></i>
-          <span>  Create Group</span>
+          <span>Create</span>
         </div>
       );
     }

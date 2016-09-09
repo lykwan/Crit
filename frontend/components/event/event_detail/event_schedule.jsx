@@ -17,6 +17,7 @@ class EventSchedule extends React.Component {
 
   getEventTimeForm() {
     console.log('getting event time form');
+    console.log(this.props.availabilities);
     return <EventTimeForm eventData={ this.props.eventData }
                       createAvailabilities={ this.props.createAvailabilities }
                       updateAvailabilities={ this.props.updateAvailabilities }

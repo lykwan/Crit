@@ -11,7 +11,7 @@ const EventAttendeeList = ({ attendees }) => {
   return (
     <div>
       <h4>Finalized Attendee List</h4>
-      <div>
+      <div className='event-attendee-list'>
         { attendeeItems }
       </div>
     </div>

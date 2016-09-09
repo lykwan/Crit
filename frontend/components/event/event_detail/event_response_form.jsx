@@ -20,9 +20,11 @@ class EventResponseForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      responseChoice: nextProps.eventResponse.response
-    });
+    if (nextProps.eventResponse !== undefined) {
+      this.setState({
+        responseChoice: nextProps.eventResponse.response
+      });
+    }
   }
 
   handleClick(choice) {
@@ -50,10 +52,20 @@ class EventResponseForm extends React.Component {
         const chosenClass = responseChoice === responseChoices[choice] ?
                             'response' :
                             '';
+        let icon;
+        if (responseChoices[choice] === 'definitely') {
+          icon = <i key={1} className="fa fa-check" aria-hidden="true"></i>;
+        } else if (responseChoices[choice] === 'definitely') {
+          icon = <i key={2} className="fa fa-question" aria-hidden="true"></i>;
+        } else {
+          icon = <i key={3} className="fa fa-times" aria-hidden="true"></i>;
+        }
+
         return(
           <li key={idx}
               className={ chosenClass }
               onClick={ this.handleClick.bind(this, choice)}>
+            { icon }
             { responseChoices[choice] }
           </li>
         );
