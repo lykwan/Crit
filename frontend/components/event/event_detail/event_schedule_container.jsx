@@ -8,6 +8,10 @@ const mapStateToProps = (state, ownProps) => {
     availabilities = state.availability;
   }
 
+  // if (ownProps.eventData.is_time_finalized) {
+  //   availabilities = ownProps.eventData.finalized_availabilities;
+  // }
+  //
   return {
     availabilities,
     eventData: ownProps.eventData

@@ -94,8 +94,29 @@ class Api::EventsController < ApplicationController
         status: 422
       )
     end
-
   end
+
+  def close_time_poll
+    @event = Event.find_by_id(params[:id])
+
+    if !@event
+      render_404_error("event")
+      return
+    elsif @event.host_user_id != current_user.id
+      render_403_error("event")
+      return
+    end
+
+    if @event.update({ is_time_finalized: true })
+      render :show
+    else
+      render(
+        json: @event.errors.full_messages,
+        status: 422
+      )
+    end
+  end
+
 
   private
   def event_params

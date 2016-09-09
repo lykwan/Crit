@@ -15,17 +15,13 @@ class EventSchedule extends React.Component {
     this.props.fetchAvailabilities(this.props.eventData.id);
   }
 
-  openEditForm() {
-    this.setState({ openEditForm: true });
-  }
-
   getEventTimeForm() {
+    console.log('getting event time form');
     return <EventTimeForm eventData={ this.props.eventData }
-                        isEditForm={ this.state.openEditForm }
-                        createAvailabilities={ this.props.createAvailabilities }
-                        updateAvailabilities={ this.props.updateAvailabilities }
-                        availabilities={ this.props.availabilities }
-                        />;
+                      createAvailabilities={ this.props.createAvailabilities }
+                      updateAvailabilities={ this.props.updateAvailabilities }
+                      availabilities={ this.props.availabilities }
+                      />;
   }
 
   render() {
@@ -35,6 +31,8 @@ class EventSchedule extends React.Component {
       eventId = this.props.availabilities[0].event_id;
     }
 
+    console.log(this.props.availabilities);
+
     if (this.props.availabilities.length === 0) {
       editLine = (
         <div>
@@ -42,6 +40,9 @@ class EventSchedule extends React.Component {
         </div>
       );
     }
+
+    console.log(eventId);
+    console.log(this.props.eventData);
 
     if (!eventId || this.props.eventData.id === eventId) {
       return (

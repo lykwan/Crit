@@ -66,7 +66,8 @@ class Api::GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:title,
                                   :description,
-                                  :is_public)
+                                  :is_public,
+                                  :img)
   end
 
   def new_memberships_attr

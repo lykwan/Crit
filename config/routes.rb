@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :create, :show, :update, :destroy] do
       member do
         post "close_response_poll"
-        post "close_schedule_poll"
+        post "close_time_poll"
       end
       resource :event_response, only: [:show, :create, :update, :destroy]
       resources :availabilities, only: [:index, :create]
