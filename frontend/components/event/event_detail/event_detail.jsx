@@ -115,10 +115,6 @@ class EventDetail extends React.Component {
               <p>{ eventData.description }</p>
             </div>
 
-            <div className='content-divider'>
-              _________________________________________________________________________________
-            </div>
-
             { this.getAttendeeList(eventData) }
             { this.getSchedule(eventData) }
             { this.getAttendeeResponseForm(eventData) }

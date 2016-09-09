@@ -98,11 +98,12 @@ class EventForm extends React.Component {
     //TODO: fix the dropdown of select group
 
     return (
-      <div>
+      <div className='content-header'>
+        <h2>Events</h2>
         <div className='content-header-buttons button'
              onClick={ this.openModal.bind(this) }>
           <i className='fa fa-plus' aria-hidden='true'></i>
-          <span>  Create Event</span>
+          <span>Create</span>
         </div>
 
         <Modal
