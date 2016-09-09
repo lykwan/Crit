@@ -8,6 +8,7 @@ export const EventConstants = {
   DELETE_EVENT: 'DELETE_EVENT',
   REMOVE_EVENT: 'REMOVE_EVENT',
   CLOSE_RESPONSE_POLL: 'CLOSE_RESPONSE_POLL',
+  CLOSE_TIME_POLL: 'CLOSE_TIME_POLL',
   RECEIVE_EVENT_ERRORS: 'RECEIVE_EVENT_ERRORS'
 };
 
@@ -82,6 +83,13 @@ const closeResponsePoll = (eventId) => {
   };
 };
 
+const closeTimePoll = (eventId) => {
+  return {
+    type: EventConstants.CLOSE_TIME_POLL,
+    eventId
+  };
+};
+
 export const EventActions = {
   fetchEvents,
   fetchSingleEvent,
@@ -92,5 +100,6 @@ export const EventActions = {
   deleteEvent,
   removeEvent,
   receiveEventErrors,
-  closeResponsePoll
+  closeResponsePoll,
+  closeTimePoll
 };

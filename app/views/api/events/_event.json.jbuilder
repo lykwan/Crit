@@ -6,7 +6,8 @@ json.extract! event,
               :img,
               :is_attendees_finalized,
               :start_date,
-              :end_date
+              :end_date,
+              :is_time_finalized
 
 json.start_date_formatted event.start_date.strftime("%A %m/%d/%Y")
 json.end_date_formatted event.end_date.strftime("%A %m/%d/%Y")
@@ -31,6 +32,15 @@ if event.is_attendees_finalized
       json.set! attendee.id do
         json.partial! "api/users/user", user: attendee
       end
+    end
+  end
+end
+
+if event.is_time_finalized
+  json.finalized_availabilities do
+    json.array! event.finalized_availabilities do |availability|
+        json.partial! "api/availabilities/finalized_availability",
+                      availability: availability, event_id: event.id
     end
   end
 end

@@ -9,7 +9,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   closeResponsePoll: eventId =>
-    dispatch(EventActions.closeResponsePoll(eventId))
+    dispatch(EventActions.closeResponsePoll(eventId)),
+  closeTimePoll: eventId =>
+    dispatch(EventActions.closeTimePoll(eventId))
 });
 
 export default connect(

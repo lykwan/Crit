@@ -20,6 +20,22 @@ class EventDetail extends React.Component {
     return closeResponsePollButton;
   }
 
+  getCloseTimePollButton(eventData) {
+    let closeTimePollButton;
+    if (eventData.host.id === this.props.currentUser.id &&
+        eventData.is_attendees_finalized && !eventData.is_time_finalized) {
+      closeTimePollButton = (
+        <div className='content-header-buttons'>
+          <div className='button'
+             onClick={ this.props.closeTimePoll.bind(this, eventData.id) }>
+            Close Poll
+          </div>
+        </div>
+      );
+    }
+    return closeTimePollButton;
+  }
+
   getAttendeeResponseForm(eventData) {
     let attendeeResponseForm;
     if (eventData.host.id !== this.props.currentUser.id &&
@@ -30,6 +46,10 @@ class EventDetail extends React.Component {
     } else if (!eventData.is_attendees_finalized) {
       attendeeResponseForm = (
         <div>
+          <span>{ `${eventData.event_respondees.length - 1} people responded` }
+          </span>
+          <br/>
+          <br/>
           <span>
             Currently waiting for group members to respond to event.
           </span>
@@ -45,6 +65,7 @@ class EventDetail extends React.Component {
   }
 
   getSchedule(eventData) {
+          console.log('getting schedule again here');
     let eventSchedule;
     if (eventData.is_attendees_finalized &&
         Object.keys(eventData.finalized_attendees).length <= 1) {
@@ -52,6 +73,7 @@ class EventDetail extends React.Component {
             <h4>No available attendees</h4>;
     } else if (eventData.is_attendees_finalized &&
         eventData.finalized_attendees[this.props.currentUser.id]) {
+          console.log('got htere to event schedule ctaonienr');
         eventSchedule =
           <EventScheduleContainer eventData={ eventData }/>;
     }
@@ -86,6 +108,7 @@ class EventDetail extends React.Component {
             <div className='content-header event-content-header'>
               <h2>{ eventData.title }</h2>
               { this.getCloseResponsePollButton(eventData) }
+              { this.getCloseTimePollButton(eventData) }
               { location }
               <span>{ eventData.start_time } - { eventData.end_time }</span>
               <span>

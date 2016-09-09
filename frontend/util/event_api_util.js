@@ -53,3 +53,12 @@ export const closeResponsePoll = (eventId, success, error) => {
     error
   });
 };
+
+export const closeTimePoll = (eventId, success, error) => {
+  $.ajax({
+    method: 'POST',
+    url: `api/events/${eventId}/close_time_poll`,
+    success,
+    error
+  });
+};

@@ -51,7 +51,7 @@ class GroupDetail extends React.Component {
         );
       });
 
-      let getAdminButtons;
+      let getAdminButtons, uploadPhoto;
       if (isAdmin) {
         getAdminButtons = (
           <div className='content-header-buttons group-show-buttons'>
@@ -65,18 +65,23 @@ class GroupDetail extends React.Component {
             </div>
           </div>
         );
+
+        uploadPhoto = (
+          <div className='img-upload detail-img-upload'
+                onClick={ this.upload.bind(this) }>
+            <div className='text'>
+              <i className="fa fa-camera" aria-hidden="true"></i>
+              <span>  Upload New Photo</span>
+            </div>
+          </div>
+        );
       }
 
       return (
         <section className='content detail-content'>
 
-           <div className='detail-img-frame' onClick={ this.upload.bind(this) }>
-             <div className='img-upload detail-img-upload'>
-               <div className='text'>
-                 <i className="fa fa-camera" aria-hidden="true"></i>
-                 <span>  Upload New Photo</span>
-               </div>
-             </div>
+           <div className='detail-img-frame'>
+             { uploadPhoto }
              <div className='detail-img'
                 style={ { backgroundImage: `url(${this.props.group.img})`} } />
           </div>

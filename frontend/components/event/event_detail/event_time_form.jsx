@@ -17,16 +17,22 @@ class EventTimeForm extends React.Component {
       isSelecting: false
     };
 
+
+    // if (this.props.isTimeFinalized) {
+    //   this.updateTimeForm(this.props);
+    // }
+    //
     this.initialToggleValue = null;
   }
 
   componentWillReceiveProps(nextProps) {
+    // this.updateTimeForm(nextProps);
     let updatedTimeForm = {};
     nextProps.availabilities.forEach(avail => {
       let dateObj = new Date(avail.date);
       dateObj.setTime(dateObj.getTime() + dateObj.getTimezoneOffset()*60*1000);
       updatedTimeForm[this.formatDate(dateObj)] =
-        this.bitMapToArr(avail.time_slot_bitmap);
+          this.bitMapToArr(avail.time_slot_bitmap);
     });
 
     const timeForm = Object.assign({},
@@ -34,6 +40,10 @@ class EventTimeForm extends React.Component {
                                    updatedTimeForm
                                    );
     this.timeForm = timeForm;
+    console.log(this.timeForm);
+  }
+
+  updateTimeForm(props) {
   }
 
   arrToBitMap(arr) {
@@ -74,25 +84,6 @@ class EventTimeForm extends React.Component {
       selectedToHere: selectedPair
     });
   }
-    // console.log('got here to select to here');
-    // console.log(this.state.isSelecting);
-    // if (this.state.isSelecting) {
-    //   console.log('yes got here');
-    //   let selectedPair = [toDate, toHour];
-    //   let toggleValue;
-    //   if (this.state.selectedBoxes.hasOwnProperty(selectedPair)) {
-    //     console.log('has it ever has own propety??');
-    //     toggleValue = this.state.selectedBoxes[selectedPair] ? 0 : 1;
-    //   } else {
-    //     toggleValue = this.initialToggleValue;
-    //   }
-    //
-    //   const selectedBoxes = Object.assign({},
-    //                                 this.state.selectedBoxes,
-    //                                 { [selectedPair]: toggleValue }
-    //                          );
-    //   this.setState({ selectedBoxes });
-    // }
 
   getSelectedDates() {
     const selectedFromHere = this.state.selectedFromHere;
@@ -140,7 +131,7 @@ class EventTimeForm extends React.Component {
         };
       });
     if (this.props.availabilities &&
-      Object.getOwnPropertyNames(this.props.availabilities).length !== 0) {
+      this.props.availabilities.length !== 0) {
       this.props.updateAvailabilities(this.props.eventData.id, availabilities);
     } else {
       this.props.createAvailabilities(this.props.eventData.id, availabilities);
@@ -181,12 +172,14 @@ class EventTimeForm extends React.Component {
 
 
   render() {
+    console.log('rerendinggggg');
     let dateCols = [];
-    // let selectedDates = this.getSelectedDates();
+    console.log('allDates');
+    console.log(this.allDates);
     this.allDates.forEach(date => {
       let [year, month, day] = date.split('/');
       let dateCol = [<div key={date} className='date-box date-first-row'>
-                      { `${parseInt(month) + 1} / ${day}` }
+                { `${parseInt(month) + 1} / ${day}` }
                     </div>];
 
       for (let i = 0; i < 24; i++) {
@@ -203,13 +196,25 @@ class EventTimeForm extends React.Component {
         //       unselectedClass = 'unselected';
         // }
 
+        const onMouseDown = !this.props.isTimeFinalized ?
+                            this.selectFromHere.bind(this, date, i) :
+                            null;
+
+        const onMouseOver = !this.props.isTimeFinalized ?
+                            this.selectToHere.bind(this, date, i) :
+                            null;
+
+        const onMouseUp = !this.props.isTimeFinalized ?
+                            this.submitAvailabilities.bind(this, date, i) :
+                            null;
+
+
         dateCol.push(
           <div key={ `${date}-${i}` }
                className={ `date-box ${ chosenClass } ${ selectedClass } ${ unselectedClass }` }
-               onMouseDown={ this.selectFromHere.bind(this, date, i) }
-               onMouseOver={ this.selectToHere.bind(this, date, i) }
-               onMouseUp={ this.submitAvailabilities.bind(this, date, i) }
-               onClick={ this.submitAvailabilities.bind(this, date, i) } >
+               onMouseDown={ onMouseDown }
+               onMouseOver={ onMouseOver }
+               onMouseUp={ onMouseUp }>
           </div>);
 
       }
