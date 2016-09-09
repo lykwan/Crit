@@ -1,4 +1,4 @@
-lily = User.create!(username: 'lily', password: 'password', name: 'Lily')
+guest = User.create!(username: 'guest', password: 'password', name: 'Guest')
 tim = User.create!(username: 'tim', password: 'password', name: 'Tim')
 kelly = User.create!(username: 'kelly', password: 'password', name: 'Kelly')
 amy = User.create!(username: 'amy', password: 'password', name: 'Amy')
