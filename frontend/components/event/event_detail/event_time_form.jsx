@@ -4,7 +4,7 @@ import { fill } from 'lodash';
 class EventTimeForm extends React.Component {
   constructor(props) {
     super(props);
-    this.timeForm = {};
+    const timeForm = {};
     this.allDates = this.getAllDates();
 
     if (this.props.availabilities.length > 0 &&
@@ -14,7 +14,7 @@ class EventTimeForm extends React.Component {
     }
 
     this.allDates.forEach(date => {
-      this.timeForm[date] = fill(Array(24), 0);
+      timeForm[date] = fill(Array(24), 0);
     });
 
     this.state = {
@@ -22,7 +22,7 @@ class EventTimeForm extends React.Component {
       selectedToBox: null,
       isSelecting: false,
       isSaved: false,
-      timeForm: this.timeForm
+      timeForm
     };
 
 
@@ -51,6 +51,7 @@ class EventTimeForm extends React.Component {
                                    updatedTimeForm
                                    );
     this.timeForm = timeForm;
+    this.setState({ timeForm: this.timeForm });
   }
 
   arrToBitMap(arr) {
@@ -185,6 +186,8 @@ class EventTimeForm extends React.Component {
 
 
   render() {
+    console.log('rerendering');
+    console.log(this.props);
     let dateCols = [];
     this.allDates.forEach(date => {
       let [year, month, day] = date.split('/');
@@ -193,7 +196,7 @@ class EventTimeForm extends React.Component {
                     </div>];
 
       for (let i = 0; i < 24; i++) {
-        const chosenClass = this.timeForm[date][i] ?
+        const chosenClass = this.state.timeForm[date][i] ?
                               'chosen' :
                               '';
         let selectedClass = '';
