@@ -51,15 +51,22 @@ const EventIndexItem = ({ eventData, currentUser, router }) => {
   }
 
   return (
-    <article className='event-item'
+    <article className='event-item list-item'
              onClick={ handleClick.bind(null, router, eventData.id) }>
+      <div className='overlay' />
       <div className='event-item-img'
            style={ { backgroundImage: `url(${eventData.img})`} } />
       <div className='event-item-info'>
         <h3>{ eventData.title }</h3>
-        <span className='date'>{ eventData.start_date_formatted } - { eventData.end_date_formatted }</span>
-        { location }
+        <div className='date'>
+          <span>{ eventData.start_date_formatted } - { eventData.end_date_formatted }</span>
+        </div>
+        <div>
+          <i className="fa fa-map-marker" aria-hidden="true"></i>
+          { location }
+        </div>
         <div className='event-item-last-row'>
+          <i className="fa fa-users" aria-hidden="true"></i>
           <span>
             { eventData.group.title }
           </span>

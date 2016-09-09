@@ -7,6 +7,12 @@ class EventTimeForm extends React.Component {
     this.timeForm = {};
     this.allDates = this.getAllDates();
 
+    if (this.props.availabilities.length > 0 &&
+        this.props.availabilities.event_id === this.props.eventData.id &&
+        !this.props.eventData.is_time_finalized) {
+        this.updateTimeForm(this.props);
+    }
+
     this.allDates.forEach(date => {
       this.timeForm[date] = fill(Array(24), 0);
     });
@@ -15,7 +21,8 @@ class EventTimeForm extends React.Component {
       selectedFromBox: null,
       selectedToBox: null,
       isSelecting: false,
-      isSaved: false
+      isSaved: false,
+      timeForm: this.timeForm
     };
 
 
@@ -182,7 +189,7 @@ class EventTimeForm extends React.Component {
     this.allDates.forEach(date => {
       let [year, month, day] = date.split('/');
       let dateCol = [<div key={date} className='date-box date-first-row'>
-                { `${parseInt(month) + 1} / ${day}` }
+                { `${parseInt(month) + 1}/${day}` }
                     </div>];
 
       for (let i = 0; i < 24; i++) {
@@ -230,7 +237,7 @@ class EventTimeForm extends React.Component {
 
     let hourCol = [<div key='hour' className='date-box date-first-row'></div>];
     for (let i = 0; i < 24; i++) {
-      hourCol.push(<div key={ `hour-${i}` } className='date-box'>
+      hourCol.push(<div key={ `hour-${i}` } className='date-box date-first-col'>
                     { `${i}:00` }
                   </div>);
     }

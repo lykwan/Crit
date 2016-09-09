@@ -46,6 +46,9 @@ h2 {
 h3 {
   font-weight: 300;
   font-size: 27px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 h4 {
@@ -112,6 +115,11 @@ body.modal-open {
   font-weight: 100;
 }
 
+.button:hover {
+  background-color: #5dade2;
+  transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
+}
+
 .detail-content {
   border: 1px solid;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
@@ -128,8 +136,13 @@ body.modal-open {
 
 
 .content-body {
-  padding: 26px 40px;
+  padding: 26px 60px;
 }
+
+.content-body h4 {
+  margin-bottom: 15px;
+}
+
 
 .errors-list {
   color: red;

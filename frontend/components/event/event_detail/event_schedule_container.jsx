@@ -3,8 +3,9 @@ import { AvailabilityActions } from '../../../actions/availability_actions';
 import EventSchedule from './event_schedule';
 
 const mapStateToProps = (state, ownProps) => {
+  console.log('props are getting updated');
   let availabilities = [];
-  if (state.availability) {
+  if (state.availability.length >= 1) {
     availabilities = state.availability;
   }
 
