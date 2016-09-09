@@ -40,6 +40,12 @@ class AuthForm extends React.Component {
     action(this.state.user);
   }
 
+  handleGuestClick() {
+    const action = this.tabs[LOGIN];
+    const user = { username: 'guest', password: 'password' };
+    action(user);
+  }
+
   componentWillUpdate(nextProps) {
     this.redirectIfLoggedIn(nextProps.isLoggedIn);
   }
@@ -90,6 +96,9 @@ class AuthForm extends React.Component {
 
         <button onClick={this.handleClick.bind(this)}>
           { this.state.selectedTab }
+        </button>
+        <button onClick={this.handleGuestClick.bind(this)}>
+          GUEST LOGIN
         </button>
       </div>
     );
