@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 guest = User.create!(username: 'guest', password: 'password', name: 'Guest')
 tim = User.create!(username: 'tim', password: 'password', name: 'Tim Koh')
 kelly = User.create!(username: 'kelly', password: 'password', name: 'Katherine Kwon')
