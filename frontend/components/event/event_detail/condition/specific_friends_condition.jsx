@@ -18,7 +18,8 @@ class SpecificFriendsCondition extends React.Component {
     this.state = {
       errors: '',
       friendConditions: [],
-      friendsInput
+      friendsInput,
+      isSaved: false
     };
   }
 
@@ -70,12 +71,10 @@ class SpecificFriendsCondition extends React.Component {
       friend_conditions_attributes: addFriendConditionsAttributes
     };
 
-    console.log('condition', this.props.condition);
-    console.log('friendConditions', this.props.friendConditions);
-    console.log('friendsInput', this.state.friendsInput);
     if (this.props.condition.event_response_id === this.props.eventResponseId) {
       if (this.props.friendConditions.length >= 1) {
         this.props.updateCondition(this.props.eventResponseId, deleteCondition);
+        this.setState({ isSaved: true });
       }
 
       // TODO: ASK TA TOMORROW HOW TO FIX THIS
@@ -87,14 +86,23 @@ class SpecificFriendsCondition extends React.Component {
       }
     } else {
       this.props.createCondition(this.props.eventResponseId, addCondition);
+      this.setState({ isSaved: true });
     }
   }
 
   addFriends(val) {
-    this.setState({ friendsInput: val });
+    this.setState({
+      friendsInput: val,
+      isSaved: false
+    });
   }
 
   render() {
+    let savedMsg;
+    if (this.state.isSaved) {
+      savedMsg = <span className='saved-msg'>Saved</span>;
+    }
+
     return (
       <div>
         Friends going:
@@ -105,6 +113,7 @@ class SpecificFriendsCondition extends React.Component {
             onChange={ this.addFriends.bind(this) }
             onBlur={ this.setConditions.bind(this) }
         />
+      { savedMsg }
       </div>
     );
   }

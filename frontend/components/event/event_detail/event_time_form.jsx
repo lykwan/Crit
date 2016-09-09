@@ -14,21 +14,25 @@ class EventTimeForm extends React.Component {
     this.state = {
       selectedFromBox: null,
       selectedToBox: null,
-      isSelecting: false
+      isSelecting: false,
+      isSaved: false
     };
 
 
-    // if (this.props.isTimeFinalized) {
-    //   this.updateTimeForm(this.props);
-    // }
-    //
+    if (this.props.eventData.is_time_finalized) {
+      this.updateTimeForm(this.props);
+    }
+
     this.initialToggleValue = null;
   }
 
   componentWillReceiveProps(nextProps) {
-    // this.updateTimeForm(nextProps);
+    this.updateTimeForm(nextProps);
+  }
+
+  updateTimeForm(props) {
     let updatedTimeForm = {};
-    nextProps.availabilities.forEach(avail => {
+    props.availabilities.forEach(avail => {
       let dateObj = new Date(avail.date);
       dateObj.setTime(dateObj.getTime() + dateObj.getTimezoneOffset()*60*1000);
       updatedTimeForm[this.formatDate(dateObj)] =
@@ -40,10 +44,6 @@ class EventTimeForm extends React.Component {
                                    updatedTimeForm
                                    );
     this.timeForm = timeForm;
-    console.log(this.timeForm);
-  }
-
-  updateTimeForm(props) {
   }
 
   arrToBitMap(arr) {
@@ -74,7 +74,8 @@ class EventTimeForm extends React.Component {
     let selectedPair = [fromDate, fromHour];
     this.setState({
       selectedFromHere: selectedPair,
-      isSelecting: true
+      isSelecting: true,
+      isSaved: false
     });
   }
 
@@ -121,6 +122,8 @@ class EventTimeForm extends React.Component {
         this.initialToggleValue;
     });
 
+    let isSaved = false;
+
     const availabilities =
       Object.keys(this.timeForm).map(formattedDate => {
         let [year, month, day] = formattedDate.split('/');
@@ -133,13 +136,16 @@ class EventTimeForm extends React.Component {
     if (this.props.availabilities &&
       this.props.availabilities.length !== 0) {
       this.props.updateAvailabilities(this.props.eventData.id, availabilities);
+      isSaved = true;
     } else {
       this.props.createAvailabilities(this.props.eventData.id, availabilities);
+      isSaved = true;
     }
 
     this.setState({
       selectedBoxes: {},
-      isSelecting: false
+      isSelecting: false,
+      isSaved
     });
   }
 
@@ -172,10 +178,7 @@ class EventTimeForm extends React.Component {
 
 
   render() {
-    console.log('rerendinggggg');
     let dateCols = [];
-    console.log('allDates');
-    console.log(this.allDates);
     this.allDates.forEach(date => {
       let [year, month, day] = date.split('/');
       let dateCol = [<div key={date} className='date-box date-first-row'>
@@ -196,15 +199,15 @@ class EventTimeForm extends React.Component {
         //       unselectedClass = 'unselected';
         // }
 
-        const onMouseDown = !this.props.isTimeFinalized ?
+        const onMouseDown = !this.props.eventData.is_time_finalized ?
                             this.selectFromHere.bind(this, date, i) :
                             null;
 
-        const onMouseOver = !this.props.isTimeFinalized ?
+        const onMouseOver = !this.props.eventData.is_time_finalized ?
                             this.selectToHere.bind(this, date, i) :
                             null;
 
-        const onMouseUp = !this.props.isTimeFinalized ?
+        const onMouseUp = !this.props.eventData.is_time_finalized ?
                             this.submitAvailabilities.bind(this, date, i) :
                             null;
 
@@ -232,8 +235,14 @@ class EventTimeForm extends React.Component {
                   </div>);
     }
 
+    let savedMsg;
+    if (this.state.isSaved) {
+      savedMsg = <span className='saved-msg'>Saved</span>;
+    }
+
     return (
       <div className='date-table'>
+        { savedMsg }
         <div className='date-col'>{ hourCol }</div>
         { dateCols }
       </div>
