@@ -27,7 +27,8 @@ class Api::AvailabilitiesController < ApplicationController
   def update
     @availabilities = params["availabilities"].keys.map do |id|
       date = Time.iso8601(availability_params(id)[:date])
-      availability = Availability.find_by(date: date, user_id: current_user.id)
+      availability = Availability.find_by(event_id: params[:event_id],
+                                          date: date, user_id: current_user.id)
       availability
     end
 
@@ -35,6 +36,7 @@ class Api::AvailabilitiesController < ApplicationController
       @availabilities.each_with_index do |avail, idx|
         p "got here updating"
         p idx
+        p avail
         avail.update(time_slot_bitmap:
                         params["availabilities"][idx.to_s][:time_slot_bitmap])
       end

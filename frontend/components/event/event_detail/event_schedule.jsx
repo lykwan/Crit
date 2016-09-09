@@ -27,11 +27,10 @@ class EventSchedule extends React.Component {
   render() {
     let editLine;
     let eventId;
+    let title;
     if (this.props.availabilities.length !== 0) {
       eventId = this.props.availabilities[0].event_id;
     }
-
-    console.log(this.props.availabilities);
 
     if (this.props.availabilities.length === 0) {
       editLine = (
@@ -41,13 +40,16 @@ class EventSchedule extends React.Component {
       );
     }
 
-    console.log(eventId);
-    console.log(this.props.eventData);
+    if (this.props.eventData.is_time_finalized) {
+      title = <h4>{ `Everyone's availability ` }</h4>;
+    } else {
+      title = <h4>My availability</h4>;
+    }
 
     if (!eventId || this.props.eventData.id === eventId) {
       return (
         <div className='event-time-form group'>
-          <h4>My availability</h4>
+          { title }
           { editLine }
           { this.getEventTimeForm() }
         </div>

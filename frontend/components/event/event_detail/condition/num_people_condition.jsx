@@ -6,9 +6,11 @@ class NumPeopleCondition extends React.Component {
     super(props);
     this.state = {
       errors: '',
-      minNumPeople: ''
+      minNumPeople: '',
+      isSaved: false
     };
   }
+
 
   setCondition() {
     const numPeople = this.state.minNumPeople;
@@ -25,8 +27,10 @@ class NumPeopleCondition extends React.Component {
       if (this.props.condition.event_response_id
           === this.props.eventResponseId) {
         this.props.updateCondition(this.props.eventResponseId, condition);
+        this.setState({ isSaved: true });
       } else {
         this.props.createCondition(this.props.eventResponseId, condition);
+        this.setState({ isSaved: true });
       }
     } else {
       this.setState({
@@ -37,13 +41,21 @@ class NumPeopleCondition extends React.Component {
   }
 
   _handleChange(e) {
-    this.setState({ minNumPeople: e.currentTarget.value });
+    this.setState({
+      minNumPeople: e.currentTarget.value,
+      isSaved: false
+    });
   }
 
   render() {
     let errors;
     if (this.state.errors) {
       errors = <div>{ this.state.errors }</div>;
+    }
+
+    let savedMsg;
+    if (this.state.isSaved) {
+      savedMsg = <span className='saved-msg'>Saved</span>;
     }
 
     return (
@@ -57,6 +69,7 @@ class NumPeopleCondition extends React.Component {
                onBlur={
                  this.setCondition.bind(this)
                }/>
+       { savedMsg }
        { errors }
       </div>
     );

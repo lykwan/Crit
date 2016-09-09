@@ -20,6 +20,7 @@
   --border-color: #DCDCDC;
   --navbar-height: 60px;
   --input-width: 450px;
+  --primary-color: #E45F4D;
 }
 
 html, #root, .app {

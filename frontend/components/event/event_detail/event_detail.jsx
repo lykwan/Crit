@@ -65,7 +65,6 @@ class EventDetail extends React.Component {
   }
 
   getSchedule(eventData) {
-          console.log('getting schedule again here');
     let eventSchedule;
     if (eventData.is_attendees_finalized &&
         Object.keys(eventData.finalized_attendees).length <= 1) {
@@ -73,7 +72,6 @@ class EventDetail extends React.Component {
             <h4>No available attendees</h4>;
     } else if (eventData.is_attendees_finalized &&
         eventData.finalized_attendees[this.props.currentUser.id]) {
-          console.log('got htere to event schedule ctaonienr');
         eventSchedule =
           <EventScheduleContainer eventData={ eventData }/>;
     }
