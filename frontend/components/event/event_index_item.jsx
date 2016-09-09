@@ -18,36 +18,51 @@ const EventIndexItem = ({ eventData, currentUser, router }) => {
               "You" :
               eventData.host.username;
 
-  let instructionText;
+  let instructionText, instructionIcon;
   if (eventData.is_attendees_finalized && eventData.is_time_finalized) {
-    instructionText =
-      <span className='event-instruction'>
-        Event finalized
-      </span>;
+    if (eventData.finalized_attendees[currentUser.id]) {
+      instructionText =
+        <span className='event-instruction'>
+          Attendees and schedule have been confirmed!
+        </span>;
+      instructionIcon = <i className="fa fa-check green-icon" aria-hidden="true"></i>;
+    }
   } else if (eventData.is_attendees_finalized) {
     if (Object.keys(eventData.finalized_attendees).length <= 1) {
       instructionText =
         <span className='event-instruction'>
-          No available attendees
+          Sorry no one was able to go
         </span>;
+      instructionIcon = <i className="fa fa-times gray-icon" aria-hidden="true"></i>;
+    } else {
+      if (eventData.finalized_attendees[currentUser.id]) {
+        instructionText =
+          <span className='event-instruction'>
+            Attendees confirmed. Choose time availability
+          </span>;
+        instructionIcon = <i className="fa fa-clock-o orange-icon" aria-hidden="true"></i>;
+      } else {
+        instructionText =
+          <span className='event-instruction'>
+            Attendees confirmed. You are not going
+          </span>;
+        instructionIcon = <i className="fa fa-calendar-times-o gray-icon" aria-hidden="true"></i>;
+      }
+    }
+  } else {
+    if (isHost(eventData, currentUser) && eventData.event_respondees.includes(currentUser)) {
+      instructionText =
+        <span className='event-instruction'>
+          Waiting for people to respond
+        </span>;
+      instructionIcon = <i className="fa fa-hourglass-end gray-icon" aria-hidden="true"></i>;
     } else {
       instructionText =
         <span className='event-instruction'>
-          Attendees finalized. Choose time availability
+          Choose attendance response
         </span>;
-    }
-  } else {
-    if (isHost(eventData, currentUser)) {
-    instructionText =
-      <span className='event-instruction'>
-        Waiting for people to respond
-      </span>;
-    } else {
-    instructionText =
-      <span className='event-instruction'>
-        Choose attendance response
-      </span>;
-    }
+      }
+      instructionIcon = <i className="fa fa-calendar-o orange-icon" aria-hidden="true"></i>;
   }
 
   return (
@@ -70,13 +85,11 @@ const EventIndexItem = ({ eventData, currentUser, router }) => {
           <span>
             { eventData.group.title }
           </span>
+          { instructionIcon }
         </div>
       </div>
     </article>
   );
 };
-          // <span className='event-instruction'>
-          //   { instructionText }
-          // </span>
 
 export default withRouter(EventIndexItem);

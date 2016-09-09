@@ -18,7 +18,7 @@ const GroupIndexItem = ({ group, router }) => {
       <div className='group-title'>
         <h3>{ group.title }</h3>
       </div>
-      <span>{ numGroupMembers } members</span>
+      <span className='num-members'>{ numGroupMembers } members</span>
     </article>
   );
 };
