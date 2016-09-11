@@ -1,55 +1,55 @@
 @font-face{
     font-family: Proxima-Nova;
-    src: url("fonts/ProximaNovaThin.otf") format("opentype");
+    src: asset-url("ProximaNovaThin.otf") format("opentype");
     font-weight: 200;
     font-style: normal;
 }
 @font-face{
     font-family: Proxima-Nova;
-    src: url("fonts/ProximaNovaLight.otf") format("opentype");
+    src: asset-url("ProximaNovaLight.otf") format("opentype");
     font-weight: 300;
     font-style: normal;
 }
 @font-face{
     font-family: Proxima-Nova;
-    src: url("fonts/ProximaNovaRegular.otf") format("opentype");
+    src: asset-url("ProximaNovaRegular.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
 }
 @font-face{
     font-family: Proxima-Nova;
-    src: url("fonts/ProximaNovaSemibold.otf") format("opentype");
+    src: asset-url("ProximaNovaSemibold.otf") format("opentype");
     font-weight: 500;
     font-style: normal;
 }
 @font-face{
     font-family: Proxima-Nova;
-    src: url("fonts/ProximaNovaBold.otf") format("opentype");
+    src: asset-url("ProximaNovaBold.otf") format("opentype");
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face{
     font-family: Proxima-Nova;
-    src: url("fonts/ProximaNovaThinItalic.otf") format("opentype");
+    src: asset-url("ProximaNovaThinItalic.otf") format("opentype");
     font-weight: 200;
     font-style: italic;
 }
 @font-face{
     font-family: Proxima-Nova;
-    src: url("fonts/ProximaNovaLightItalic.otf") format("opentype");
+    src: asset-url("ProximaNovaLightItalic.otf") format("opentype");
     font-weight: 300;
     font-style: italic;
 }
 @font-face{
     font-family: Proxima-Nova;
-    src: url("fonts/ProximaNovaRegularItalic.otf") format("opentype");
+    src: asset-url("ProximaNovaRegularItalic.otf") format("opentype");
     font-weight: 400;
     font-style: italic;;
 }
 @font-face{
     font-family: Proxima-Nova;
-    src: url("fonts/ProximaNovaBoldItalic.otf") format("opentype");
+    src: asset-url("ProximaNovaBoldItalic.otf") format("opentype");
     font-weight: 700;
     font-style: italic;
 }
