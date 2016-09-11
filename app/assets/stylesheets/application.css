@@ -21,6 +21,7 @@
   --input-width: 450px;
   --primary-color: #0092D7;
   --border-color: #DCDCDC;
+  --text-color: #899AA6;
 }
 
 html, #root, .app {
@@ -79,6 +80,7 @@ h4 {
 }
 
 .content-header h2 {
+  color: #899AA6;
 }
 
 .content-header-buttons {
