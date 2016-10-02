@@ -136,6 +136,6 @@
   transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
 }
 
-.event-item .overlay:hover {
+.event-item:hover .overlay {
   background-color:rgba(120,120,120,0.2);
 }
