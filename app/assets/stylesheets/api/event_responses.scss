@@ -1,5 +1,3 @@
-/* line 5, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
-/* line 7, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
 .event-response-form {
   display: flex;
   width: 400px;
@@ -8,8 +6,6 @@
   overflow: hidden;
 }
 
-/* line 9, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
-/* line 16, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
 .event-response-form li {
   border-right: 2px solid #e4e7ea;
   flex-grow: 1;
@@ -19,19 +15,15 @@
   cursor: pointer;
 }
 
-/* line 25, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
 .event-response-form li:last-child {
   border-right: 0;
 }
 
-/* line 13, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
-/* line 30, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
 .event-response-form .response {
   color: white;
   background-color: #3498DB;
 }
 
-/* line 36, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/event_responses.scss */
 .event-response-form li:hover {
   background-color: #5dade2;
 }

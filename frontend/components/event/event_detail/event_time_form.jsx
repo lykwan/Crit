@@ -8,8 +8,8 @@ class EventTimeForm extends React.Component {
 
     this.timeForm = {};
     this.state = {
-      selectedFromBox: null,
-      selectedToBox: null,
+      selectedFromDiv: null,
+      selectedToDiv: null,
       isSelecting: false,
       isSaved: false
     };
@@ -57,7 +57,6 @@ class EventTimeForm extends React.Component {
   // updating the time form with new availabilities
   updateTimeForm() {
     let updatedTimeForm = {};
-    console.log('availabilities', this.props.availabilities);
 
     if (this.props.availabilities.length > 0) {
       this.props.availabilities.forEach(avail => {
@@ -98,56 +97,76 @@ class EventTimeForm extends React.Component {
     return bitArr;
   }
 
-  selectFromHere(fromDate, fromHour) {
+  selectFromHere(fromDate, fromHour, e) {
     // setting the rest of the time slots that the user drags to to be
     // the same as the initial time slot
+    e.preventDefault();
     this.initialToggleValue = this.timeForm[fromDate][fromHour] ? 0 : 1;
     let selectedPair = [fromDate, fromHour];
     this.setState({
-      selectedFromHere: selectedPair,
+      selectedFromDiv: selectedPair,
       isSelecting: true,
       isSaved: false
     });
   }
 
-  selectToHere(toDate, toHour) {
+  selectToHere(toDate, toHour, e) {
+    e.preventDefault();
     let selectedPair = [toDate, toHour];
     this.setState({
-      selectedToHere: selectedPair
+      selectedToDiv: selectedPair
     });
   }
 
   // get all the time slots within the range of
-  // selectFromHere and selectedToHere
+  // selectedFromDiv and selectedToDiv
   getSelectedTimeSlots() {
-    let [fromDate, fromHour] = this.state.selectedFromHere;
-    let [date, hour] = [fromDate, fromHour];
-    let [toDate, toHour] = this.state.selectedToHere;
-    let selectedBoxes = {};
-
-    // if only one time slot was selected
-    if (date === toDate && hour === toHour) {
-      return { [this.state.selectedFromHere]: this.initialToggleValue };
+    if (this.state.selectedFromDiv === null) {
+      return {};
     }
 
-    while (date <= toDate) {
-      while (hour <= toHour) {
+    // console.log('selectedfrom', this.state.selectedFromDiv);
+    // console.log('selectedto', this.state.selectedToDiv);
+    let [fromDate, fromHour] = this.state.selectedFromDiv;
+    let [toDate, toHour] = this.state.selectedToDiv;
+
+    // if only one time slot was selected
+    // if (fromDate === toDate && fromHour === toHour) {
+    //   return { [this.state.selectedFromDiv]: this.initialToggleValue };
+    // }
+
+    // getting the top left div and the bottom right div
+    let fromDateObj = this.dateStrToObj(fromDate);
+    let toDateObj = this.dateStrToObj(toDate);
+    let topLeftDateObj = new Date(Math.min(fromDateObj, toDateObj));
+    let topLeftHour = Math.min(fromHour, toHour);
+    let bottomRightDateObj = new Date(Math.max(fromDateObj, toDateObj));
+    let bottomRightHour = Math.max(fromHour, toHour);
+    let [dateObj, hour] = [topLeftDateObj, topLeftHour];
+    // console.log('date', dateObj);
+    // console.log('hour', hour);
+
+    let selectedBoxes = {};
+
+    // iterating through the range between top left div and bottom right div
+    // and pushing it to the selectedBoxes dict
+    while (dateObj <= bottomRightDateObj) {
+      let date = this.dateObjToStr(dateObj);
+
+      while (hour <= bottomRightHour) {
         selectedBoxes[[date, hour]] = this.initialToggleValue;
         hour++;
       }
 
-      // increment date by 1
-      const dateObj = this.dateStrToObj(date);
       dateObj.setDate(dateObj.getDate() + 1);
-      date = this.dateObjToStr(dateObj);
-
-      hour = fromHour;
+      hour = topLeftHour;
     }
 
     return selectedBoxes;
   }
 
-  submitAvailabilities(date, hour) {
+  submitAvailabilities(date, hour, e) {
+    e.preventDefault();
     const selectedTimeSlots = this.getSelectedTimeSlots();
     Object.keys(selectedTimeSlots).forEach(timeSlot => {
       const [selectedDate, selectedHour] = timeSlot.split(",");
@@ -176,7 +195,7 @@ class EventTimeForm extends React.Component {
     }
 
     this.setState({
-      selectedBoxes: {},
+      selectedFromDiv: null,
       isSelecting: false,
       isSaved
     });
@@ -191,18 +210,21 @@ class EventTimeForm extends React.Component {
 
     // push 24 divs representing the hours into the dateCol array
     for (let hour = 0; hour < 24; hour++) {
-      const chosenClass = this.timeForm[date][hour] ?
-                            'chosen' :
+      // assigning different css selectors
+      //if they were filled/selected/deselected
+      const filledClass = (this.timeForm[date][hour] === 1) ?
+                            'filled' :
                             '';
+      const selectedTimeSlots = this.getSelectedTimeSlots();
       let selectedClass = '';
-      let unselectedClass = '';
-      // if (Object.hasOwnProperty(selectedDates[[date, hour]])
-      //     && selectedDates[[date, hour]] === 1) {
-      //       selectedClass = 'selected';
-      // } else if (Object.hasOwnProperty(selectedDates[[date, hour]])
-      //     && selectedDates[[date, hour]] === 0) {
-      //       unselectedClass = 'unselected';
-      // }
+      // if (Object.keys(selectedTimeSlots).length !== 0) console.log(selectedTimeSlots);
+      if (selectedTimeSlots.hasOwnProperty([date, hour])) {
+        if (selectedTimeSlots[[date, hour]] === 1) {
+          selectedClass = 'selected';
+        } else {
+          selectedClass = 'deselected';
+        }
+      }
 
       // defining event handlers for selecting time slots
       let onMouseDown, onMouseOver, onMouseUp;
@@ -214,9 +236,7 @@ class EventTimeForm extends React.Component {
 
       dateCol.push(
         <div key={ `${date}-${hour}` }
-             className={ `date-box ${ chosenClass }
-                                   ${ selectedClass }
-                                   ${ unselectedClass }` }
+             className={ `date-box ${ filledClass } ${ selectedClass }` }
              onMouseDown={ onMouseDown }
              onMouseOver={ onMouseOver }
              onMouseUp={ onMouseUp }>
