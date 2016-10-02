@@ -27,10 +27,15 @@
   margin: auto;
 }
 
+
 .profile-img-upload {
   width: 330px;
   height: 100px;
   bottom: 10px;
+  display: none;
+}
+.profile-img-frame:hover .profile-img-upload {
+  display: block;
 }
 
 .img-upload {

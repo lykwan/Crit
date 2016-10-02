@@ -4,20 +4,28 @@
 
 
 /* line 9, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/availabilities.scss */
-.date-table {
+.time-table-container {
   width: 700px;
-  height: 700px;
+  height: 800px;
   overflow-x: auto;
   white-space: nowrap;
-  border-top: 1px solid #D3D3D3;
-  border-left: 1px solid #D3D3D3;
   color: #B3B3B3;
 }
 
 /* line 13, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/availabilities.scss */
-.date-col {
+.time-table-col {
   display: inline-block;
   vertical-align: top;
+  border-top: 1px solid #D3D3D3;
+  border-bottom: 1px solid #D3D3D3;
+}
+
+.time-table-col:first-child {
+  border-left: 1px solid #D3D3D3;
+}
+
+.time-table-col:last-child {
+  border-right: 1px solid #D3D3D3;
 }
 
 /* line 17, /Users/Lily/Documents/aa/Crit/app/assets/stylesheets/api/availabilities.scss */
@@ -48,12 +56,12 @@
   background-color: #CFDBC5;
 }
 
-.date-first-col {
+.hour-headers {
   line-height: 20px;
   background-color: white;
 }
 
-.date-first-row {
+.date-headers {
   height: 30px;
   line-height: 30px;
   background-color: white;
