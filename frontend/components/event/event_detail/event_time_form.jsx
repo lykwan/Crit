@@ -4,60 +4,81 @@ import { fill } from 'lodash';
 class EventTimeForm extends React.Component {
   constructor(props) {
     super(props);
-    const timeForm = {};
-    this.allDates = this.getAllDates();
+    this.allFormattedDates = this.getAllDates();
 
-    if (this.props.availabilities.length > 0 &&
-        this.props.availabilities.event_id === this.props.eventData.id &&
-        !this.props.eventData.is_time_finalized) {
-        this.updateTimeForm(this.props);
-    }
-
-    this.allDates.forEach(date => {
-      timeForm[date] = fill(Array(24), 0);
-    });
-
+    this.timeForm = {};
     this.state = {
       selectedFromBox: null,
       selectedToBox: null,
       isSelecting: false,
-      isSaved: false,
-      timeForm
+      isSaved: false
     };
-
-
-    if (this.props.eventData.is_time_finalized) {
-      this.updateTimeForm(this.props);
-    }
 
     this.initialToggleValue = null;
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.updateTimeForm(nextProps);
+  // getting all the formatted date between event start date and end date
+  getAllDates() {
+    let date = new Date(this.props.eventData.start_date);
+    let endDate = new Date(this.props.eventData.end_date);
+    // adjusting the timezone difference with javascript date object
+    console.log(date);
+    date.setTime(date.getTime() + date.getTimezoneOffset()*60*1000);
+    endDate.setTime(endDate.getTime() + endDate.getTimezoneOffset()*60*1000);
+
+    let allDates = [];
+    while (!this.dateEqual(date, endDate)) {
+      allDates.push(this.dateObjToStr(date));
+      date.setDate(date.getDate() + 1);
+    }
+
+    allDates.push(this.dateObjToStr(date));
+
+    return allDates;
   }
 
-  updateTimeForm(props) {
-    let updatedTimeForm = {};
-    props.availabilities.forEach(avail => {
-      let dateObj = new Date(avail.date);
-      dateObj.setTime(dateObj.getTime() + dateObj.getTimezoneOffset()*60*1000);
-      updatedTimeForm[this.formatDate(dateObj)] =
-          this.bitMapToArr(avail.time_slot_bitmap);
-    });
+  dateEqual(date, otherDate) {
+    const value = date.getFullYear() === otherDate.getFullYear() &&
+      date.getMonth() === otherDate.getMonth() &&
+      date.getDate() === otherDate.getDate();
+    return value;
+  }
 
-    const timeForm = Object.assign({},
-                                   this.timeForm,
-                                   updatedTimeForm
-                                   );
-    this.timeForm = timeForm;
-    this.setState({ timeForm: this.timeForm });
+  dateObjToStr(date) {
+    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+  }
+
+  dateStrToObj(date) {
+    let [year, month, day] = date.split('/');
+    let dateObj = new Date(year, month - 1, day);
+    return dateObj;
+  }
+
+  // updating the time form with new availabilities
+  updateTimeForm() {
+    let updatedTimeForm = {};
+    console.log('availabilities', this.props.availabilities);
+
+    if (this.props.availabilities.length > 0) {
+      this.props.availabilities.forEach(avail => {
+        const dateObj = new Date(avail.date);
+        dateObj.setTime(dateObj.getTime() +
+                        dateObj.getTimezoneOffset()*60*1000);
+        updatedTimeForm[this.dateObjToStr(dateObj)] =
+            this.bitMapToArr(avail.time_slot_bitmap);
+      });
+      this.timeForm = updatedTimeForm;
+    } else {
+      this.allFormattedDates.forEach(date => {
+        this.timeForm[date] = fill(Array(24), 0);
+      });
+    }
   }
 
   arrToBitMap(arr) {
-    var bitMap = 0;
-    var shift = arr.length - 1;
-    for (var i = 0; i < arr.length; i++) {
+    let bitMap = 0;
+    let shift = arr.length - 1;
+    for (let i = 0; i < arr.length; i++) {
       bitMap |= arr[i] << shift;
       shift -= 1;
     }
@@ -65,7 +86,7 @@ class EventTimeForm extends React.Component {
   }
 
   bitMapToArr(bitMap) {
-    var bitArr = [];
+    let bitArr = [];
     while (bitMap > 0) {
       bitArr.unshift(bitMap % 2);
       bitMap >>= 1;
@@ -78,6 +99,8 @@ class EventTimeForm extends React.Component {
   }
 
   selectFromHere(fromDate, fromHour) {
+    // setting the rest of the time slots that the user drags to to be
+    // the same as the initial time slot
     this.initialToggleValue = this.timeForm[fromDate][fromHour] ? 0 : 1;
     let selectedPair = [fromDate, fromHour];
     this.setState({
@@ -94,29 +117,30 @@ class EventTimeForm extends React.Component {
     });
   }
 
-  getSelectedDates() {
-    const selectedFromHere = this.state.selectedFromHere;
-    const selectedToHere = this.state.selectedToHere;
+  // get all the time slots within the range of
+  // selectFromHere and selectedToHere
+  getSelectedTimeSlots() {
     let [fromDate, fromHour] = this.state.selectedFromHere;
-    let [date, hour] = this.state.selectedFromHere;
+    let [date, hour] = [fromDate, fromHour];
     let [toDate, toHour] = this.state.selectedToHere;
     let selectedBoxes = {};
 
+    // if only one time slot was selected
     if (date === toDate && hour === toHour) {
-      return { [selectedFromHere]: this.initialToggleValue };
+      return { [this.state.selectedFromHere]: this.initialToggleValue };
     }
 
     while (date <= toDate) {
       while (hour <= toHour) {
         selectedBoxes[[date, hour]] = this.initialToggleValue;
         hour++;
-        console.log('date, hour', date, hour);
       }
-      let [year, month, day] = date.split('/');
-      let dateObj = new Date(year, month, day);
-      dateObj.setTime(dateObj.getTime() + dateObj.getTimezoneOffset()*60*1000);
+
+      // increment date by 1
+      const dateObj = this.dateStrToObj(date);
       dateObj.setDate(dateObj.getDate() + 1);
-      date = this.formatDate(dateObj);
+      date = this.dateObjToStr(dateObj);
+
       hour = fromHour;
     }
 
@@ -124,29 +148,30 @@ class EventTimeForm extends React.Component {
   }
 
   submitAvailabilities(date, hour) {
-    Object.keys(this.getSelectedDates()).forEach(selectedPair => {
-      const [selectedDate, selectedHour] = selectedPair.split(",");
-      this.timeForm[selectedDate][selectedHour] =
-        this.initialToggleValue;
+    const selectedTimeSlots = this.getSelectedTimeSlots();
+    Object.keys(selectedTimeSlots).forEach(timeSlot => {
+      const [selectedDate, selectedHour] = timeSlot.split(",");
+      this.timeForm[selectedDate][selectedHour] = selectedTimeSlots[timeSlot];
     });
 
-    let isSaved = false;
-
-    const availabilities =
-      Object.keys(this.timeForm).map(formattedDate => {
-        let [year, month, day] = formattedDate.split('/');
-        let dateObj = new Date(year, month, day);
+    const newAvailabilities =
+      Object.keys(this.timeForm).map(dateStr => {
+        let dateObj = this.dateStrToObj(dateStr);
         return {
           date: dateObj.toISOString(),
-          time_slot_bitmap: this.arrToBitMap(this.timeForm[formattedDate])
+          time_slot_bitmap: this.arrToBitMap(this.timeForm[dateStr])
         };
       });
-    if (this.props.availabilities &&
-      this.props.availabilities.length !== 0) {
-      this.props.updateAvailabilities(this.props.eventData.id, availabilities);
+
+    // update availabilities if there were previous availabilities, else create
+    let isSaved = false;
+    if (this.props.availabilities && this.props.availabilities.length !== 0) {
+      this.props.updateAvailabilities(this.props.eventData.id,
+                                      newAvailabilities);
       isSaved = true;
     } else {
-      this.props.createAvailabilities(this.props.eventData.id, availabilities);
+      this.props.createAvailabilities(this.props.eventData.id,
+                                      newAvailabilities);
       isSaved = true;
     }
 
@@ -157,104 +182,86 @@ class EventTimeForm extends React.Component {
     });
   }
 
-  dateEqual(date, otherDate) {
-    const value = date.getFullYear() === otherDate.getFullYear() &&
-      date.getMonth() === otherDate.getMonth() &&
-      date.getDate() === otherDate.getDate();
-    return value;
-  }
+  getTimeSlotDivs(date) {
+    let [year, month, day] = date.split('/');
+    let dateHeader = <div key={date} className='date-box date-headers'>
+                        { `${month}/${day}` }
+                      </div>;
+    let dateCol = [dateHeader];
 
-  formatDate(date) {
-    return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
-  }
+    // push 24 divs representing the hours into the dateCol array
+    for (let hour = 0; hour < 24; hour++) {
+      const chosenClass = this.timeForm[date][hour] ?
+                            'chosen' :
+                            '';
+      let selectedClass = '';
+      let unselectedClass = '';
+      // if (Object.hasOwnProperty(selectedDates[[date, hour]])
+      //     && selectedDates[[date, hour]] === 1) {
+      //       selectedClass = 'selected';
+      // } else if (Object.hasOwnProperty(selectedDates[[date, hour]])
+      //     && selectedDates[[date, hour]] === 0) {
+      //       unselectedClass = 'unselected';
+      // }
 
-  getAllDates() {
-    let date = new Date(this.props.eventData.start_date);
-    let endDate = new Date(this.props.eventData.end_date);
-    date.setTime(date.getTime() + date.getTimezoneOffset()*60*1000);
-    endDate.setTime(endDate.getTime() + endDate.getTimezoneOffset()*60*1000);
+      // defining event handlers for selecting time slots
+      let onMouseDown, onMouseOver, onMouseUp;
+      if (!this.props.eventData.is_time_finalized) {
+        onMouseDown = this.selectFromHere.bind(this, date, hour);
+        onMouseOver = this.selectToHere.bind(this, date, hour);
+        onMouseUp = this.submitAvailabilities.bind(this, date, hour);
+      }
 
-    let allDates = [];
-    while (!this.dateEqual(date, endDate)) {
-      allDates.push(this.formatDate(date));
-      date.setDate(date.getDate() + 1);
+      dateCol.push(
+        <div key={ `${date}-${hour}` }
+             className={ `date-box ${ chosenClass }
+                                   ${ selectedClass }
+                                   ${ unselectedClass }` }
+             onMouseDown={ onMouseDown }
+             onMouseOver={ onMouseOver }
+             onMouseUp={ onMouseUp }>
+        </div>);
     }
-    allDates.push(this.formatDate(date));
 
-    return allDates;
+    return dateCol;
   }
 
+  getHourHeaderDivs() {
+    let hourHeader = [<div key='hour' className='date-box date-headers'></div>];
+    for (let hour = 0; hour < 24; hour++) {
+      hourHeader.push(<div key={ `hour-${hour}` }
+                           className='date-box hour-headers'>
+                        { `${hour}:00` }
+                      </div>);
+    }
+
+    return hourHeader;
+  }
 
   render() {
-    console.log('rerendering');
-    console.log(this.props);
+    this.updateTimeForm();
     let dateCols = [];
-    this.allDates.forEach(date => {
-      let [year, month, day] = date.split('/');
-      let dateCol = [<div key={date} className='date-box date-first-row'>
-                { `${parseInt(month) + 1}/${day}` }
-                    </div>];
-
-      for (let i = 0; i < 24; i++) {
-        const chosenClass = this.state.timeForm[date][i] ?
-                              'chosen' :
-                              '';
-        let selectedClass = '';
-        let unselectedClass = '';
-        // if (Object.hasOwnProperty(selectedDates[[date, i]])
-        //     && selectedDates[[date, i]] === 1) {
-        //       selectedClass = 'selected';
-        // } else if (Object.hasOwnProperty(selectedDates[[date, i]])
-        //     && selectedDates[[date, i]] === 0) {
-        //       unselectedClass = 'unselected';
-        // }
-
-        const onMouseDown = !this.props.eventData.is_time_finalized ?
-                            this.selectFromHere.bind(this, date, i) :
-                            null;
-
-        const onMouseOver = !this.props.eventData.is_time_finalized ?
-                            this.selectToHere.bind(this, date, i) :
-                            null;
-
-        const onMouseUp = !this.props.eventData.is_time_finalized ?
-                            this.submitAvailabilities.bind(this, date, i) :
-                            null;
-
-
-        dateCol.push(
-          <div key={ `${date}-${i}` }
-               className={ `date-box ${ chosenClass } ${ selectedClass } ${ unselectedClass }` }
-               onMouseDown={ onMouseDown }
-               onMouseOver={ onMouseOver }
-               onMouseUp={ onMouseUp }>
-          </div>);
-
-      }
+    this.allFormattedDates.forEach(date => {
       dateCols.push(
-        <div key={ date } className='date-col'>
-          { dateCol }
+        <div key={ date } className='time-table-col'>
+          { this.getTimeSlotDivs(date) }
         </div>
       );
     });
 
-    let hourCol = [<div key='hour' className='date-box date-first-row'></div>];
-    for (let i = 0; i < 24; i++) {
-      hourCol.push(<div key={ `hour-${i}` } className='date-box date-first-col'>
-                    { `${i}:00` }
-                  </div>);
-    }
 
     let savedMsg;
-    if (this.state.isSaved) {
-      savedMsg = <span className='saved-msg'>Saved</span>;
-    }
+    // if (this.state.isSaved) {
+    //   savedMsg = <span className='saved-msg'>Saved</span>;
+    // }
 
     return (
-      <div className='date-table'>
+      <div className='time-table-container'>
         { savedMsg }
-        <div className='date-col'>{ hourCol }</div>
-        { dateCols }
+        <div className='time-table'>
+          <div className='time-table-col'>{ this.getHourHeaderDivs() }</div>
+          { dateCols }
+        </div>
       </div>
     );
   }
