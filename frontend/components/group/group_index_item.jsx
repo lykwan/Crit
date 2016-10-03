@@ -10,7 +10,7 @@ const handleClick = (router, groupId) => {
 const GroupIndexItem = ({ group, router }) => {
   const numGroupMembers = group.admins.length + group.regular_members.length;
   return (
-    <article className='list-index-item group-index-item'
+    <article className='list-item group-index-item'
              onClick={ handleClick.bind(null, router, group.id) }>
       <div className='group-index-item-overlay' />
       <div className='group-index-item-img'

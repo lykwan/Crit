@@ -7,13 +7,45 @@
 }
 
 .splash {
-  padding: 80px 130px;
+  position: relative;
+  height: 100%;
+  color: white;
+  background-position: center center;
+  // background: url(http://www.jordankranda.com/wp-content/uploads/2014/04/421412.jpg);
+  background: url(/assets/splash_bg.jpg);
+  background-size: cover;
 }
+
+  .splash-header {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 27px;
+    margin-left: 17px;
+    position: absolute;
+    line-height: 60px;
+    z-index: 2;
+  }
+
+  .splash-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .splash-container {
+    display: flex;
+    width: 75%;
+    margin: auto;
+    justify-content: space-between;
+    padding-top: 115px;
+  }
 
   .splash-description {
     position: relative;
-    padding: 40px 130px;
-    float: left;
+    padding: 40px 70px;
+    text-shadow: -2px 2px 0px rgba(0,0,0,0.3),-3px 3px 1px rgba(0,0,0,0.5),-4px 4px 2px rgba(0,0,0,0.2);
   }
 
     .splash-description h2 {
@@ -35,7 +67,6 @@
   height: 380px;
   box-sizing: border-box;
   padding: 25px;
-  background-color: var(--main-bg-color);
 }
 
   .auth-form input {
@@ -43,27 +74,63 @@
     width: 100%;
     height: 30px;
     margin: 25px 0px;
+    font-size: 17px;
     padding: 5px;
-    background-color: var(--main-bg-color);
-    border: 1px solid black;
+    background: none;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    -webkit-transition: border-color 1s ease;
+    transition: border-color 1s ease;
   }
+
+  .auth-form input:focus {
+    border-bottom: 1px solid white;
+    outline-offset:0;
+    outline: 0;
+    -webkit-transition: border-color 1s ease;
+    transition: border-color 1s ease;
+  }
+
 
   .auth-form input:last-of-type {
     margin: 0;
   }
 
   .auth-form ::-webkit-input-placeholder {
-     color: gray;
+     color: rgba(255, 255, 255, 0.6);
   }
 
   .auth-form ::-moz-placeholder {
-     color: gray;
+     color: rgba(255, 255, 255, 0.7);
   }
 
   .auth-form button {
-    display: block;
+    color: rgba(255, 255, 255, 0.3);
+    background: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    height: 50px;
+    font-size: 13px;
+    -webkit-transition: border-color 1s ease, color 1s ease;
+    transition: border-color 1s ease, color 1s ease;
+  }
+
+  .auth-form button:hover {
+    color: white;
+    border: 2px solid white;
+  }
+
+  .auth-form .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .auth-form .sign-up {
     width: 100%;
-    padding: 20px;
+    display: block;
+  }
+
+  .auth-form .login {
+    width: 48%;
   }
 
   .auth-form-errors {
@@ -78,17 +145,10 @@
       flex-grow: 1;
       padding: 10px;
       text-align: center;
-      border-top: 2px solid black;
-      border-bottom: 2px solid black;
-      border-left: 2px solid black;
-      background-color: whitesmoke;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
       cursor: pointer;
     }
 
-    .auth-form-tabs li:last-child {
-      border-right: 2px solid black;
-    }
-
     .auth-form-tabs .selected {
-      background-color: lightgray;
+      border-bottom: 2px solid white;
     }

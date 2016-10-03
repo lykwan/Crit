@@ -15,6 +15,11 @@ class EventTimeForm extends React.Component {
     };
 
     this.initialToggleValue = null;
+    this.updateTimeForm(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.updateTimeForm(nextProps);
   }
 
   // getting all the formatted date between event start date and end date
@@ -22,7 +27,6 @@ class EventTimeForm extends React.Component {
     let date = new Date(this.props.eventData.start_date);
     let endDate = new Date(this.props.eventData.end_date);
     // adjusting the timezone difference with javascript date object
-    console.log(date);
     date.setTime(date.getTime() + date.getTimezoneOffset()*60*1000);
     endDate.setTime(endDate.getTime() + endDate.getTimezoneOffset()*60*1000);
 
@@ -55,11 +59,11 @@ class EventTimeForm extends React.Component {
   }
 
   // updating the time form with new availabilities
-  updateTimeForm() {
+  updateTimeForm(props) {
     let updatedTimeForm = {};
 
-    if (this.props.availabilities.length > 0) {
-      this.props.availabilities.forEach(avail => {
+    if (props.availabilities.length > 0) {
+      props.availabilities.forEach(avail => {
         const dateObj = new Date(avail.date);
         dateObj.setTime(dateObj.getTime() +
                         dateObj.getTimezoneOffset()*60*1000);
@@ -125,15 +129,8 @@ class EventTimeForm extends React.Component {
       return {};
     }
 
-    // console.log('selectedfrom', this.state.selectedFromDiv);
-    // console.log('selectedto', this.state.selectedToDiv);
     let [fromDate, fromHour] = this.state.selectedFromDiv;
     let [toDate, toHour] = this.state.selectedToDiv;
-
-    // if only one time slot was selected
-    // if (fromDate === toDate && fromHour === toHour) {
-    //   return { [this.state.selectedFromDiv]: this.initialToggleValue };
-    // }
 
     // getting the top left div and the bottom right div
     let fromDateObj = this.dateStrToObj(fromDate);
@@ -143,8 +140,6 @@ class EventTimeForm extends React.Component {
     let bottomRightDateObj = new Date(Math.max(fromDateObj, toDateObj));
     let bottomRightHour = Math.max(fromHour, toHour);
     let [dateObj, hour] = [topLeftDateObj, topLeftHour];
-    // console.log('date', dateObj);
-    // console.log('hour', hour);
 
     let selectedBoxes = {};
 
@@ -217,7 +212,6 @@ class EventTimeForm extends React.Component {
                             '';
       const selectedTimeSlots = this.getSelectedTimeSlots();
       let selectedClass = '';
-      // if (Object.keys(selectedTimeSlots).length !== 0) console.log(selectedTimeSlots);
       if (selectedTimeSlots.hasOwnProperty([date, hour])) {
         if (selectedTimeSlots[[date, hour]] === 1) {
           selectedClass = 'selected';
@@ -259,7 +253,6 @@ class EventTimeForm extends React.Component {
   }
 
   render() {
-    this.updateTimeForm();
     let dateCols = [];
     this.allFormattedDates.forEach(date => {
       dateCols.push(
