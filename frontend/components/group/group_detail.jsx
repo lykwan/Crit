@@ -37,7 +37,8 @@ class GroupDetail extends React.Component {
       });
 
       const handleDeleteMember = (groupMembership) => {
-        return () => {
+        return (e) => {
+          e.stopPropagation();
           this.props.deleteGroupMembership(this.props.group.id,
                                            groupMembership);
         };
@@ -114,7 +115,9 @@ class GroupDetail extends React.Component {
     }
 
     return (
-      <div>loading... </div>
+      <div className='loading-container'>
+        <i className="fa fa-spinner fa-spin fa-3x fa-fw loading"></i>
+      </div>
     );
   }
 }

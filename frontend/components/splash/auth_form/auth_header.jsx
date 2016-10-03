@@ -8,7 +8,7 @@ class AuthHeader extends React.Component {
       return <li key={title}
                  className={ isSelectedTab }
                  onClick={ this.props.onTabChosen.bind(null, title) }>
-              { title }
+              <div className='tab'>{ title }</div>
             </li>;
     });
 

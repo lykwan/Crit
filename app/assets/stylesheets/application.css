@@ -108,12 +108,13 @@ body.modal-open {
 
 .button {
   cursor: pointer;
-  border: 1px solid #bdbdbd;
-  padding: 9px 20px;
+  padding: 9px;
+  width: 110px;
+  text-align: center;
   border-radius: 7px;
   background-color: var(--primary-color);
   color: white;
-  font-weight: 100;
+  font-weight: 400;
 }
 
 .button:hover {
@@ -124,6 +125,7 @@ body.modal-open {
 .detail-content {
   border: 1px solid;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-top: 0;
   background: white;
 }
 
@@ -152,4 +154,20 @@ body.modal-open {
     content: "";
     display: block;
     clear: both;
+}
+
+.loading-container {
+  font-size: 30px;
+  color: #899AA6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 60px);
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 15px;
+  display: block;
+  margin-top: 10px;
 }

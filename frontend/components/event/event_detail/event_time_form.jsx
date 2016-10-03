@@ -72,7 +72,7 @@ class EventTimeForm extends React.Component {
       });
       this.timeForm = updatedTimeForm;
     } else {
-      this.allFormattedDates.forEach(date => {
+      this.getAllDates().forEach(date => {
         this.timeForm[date] = fill(Array(24), 0);
       });
     }

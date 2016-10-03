@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 
-const ASYNC_DELAY = 1000;
+const ASYNC_DELAY = 1300;
 
 
 class UserSearch extends React.Component {

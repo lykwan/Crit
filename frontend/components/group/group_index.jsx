@@ -20,8 +20,8 @@ const GroupIndex = ({ groups, router }) => {
   }
 
   return (
-    <div>
-      loading...
+    <div className='loading-container'>
+      <i className="fa fa-spinner fa-spin fa-3x fa-fw loading"></i>
     </div>
   );
 };

@@ -19,7 +19,9 @@ const EventIndex = ({ events, currentUser,router }) => {
   }
 
   return (
-    <div>loading...</div>
+    <div className='loading-container'>
+      <i className="fa fa-spinner fa-spin fa-3x fa-fw loading"></i>
+    </div>
   );
 };
 

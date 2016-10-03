@@ -20,14 +20,27 @@ class Navbar extends React.Component {
   }
 
   componentWillMount() {
+    let selectedTab;
+    const currentLocation = window.location.hash.slice(1);
+    Object.keys(RouteConstants).forEach(section => {
+      if (currentLocation.startsWith(RouteConstants[section].route)) {
+        selectedTab = RouteConstants[section].route;
+      }
+    });
+
+    // if this is at home page
+    if (currentLocation.startsWith('/?')) {
+      selectedTab = RouteConstants['EVENTS'].route;
+    }
+
     this.setState({
-      selectedTab: this.context.location.pathname
+      selectedTab: selectedTab
     });
   }
 
   render() {
     const navbarTabsLi = Object.keys(RouteConstants).map((section) => {
-      let isActiveTabClass = '';
+      let isActiveTabClass = 'inactive';
       if (this.state.selectedTab === RouteConstants[section].route) {
         isActiveTabClass = 'active';
       }
@@ -51,7 +64,9 @@ class Navbar extends React.Component {
         <li key={ RouteConstants[section].title }
             onClick={ this.selectTab.bind(this, section) }
             className={ isActiveTabClass }>
-          { RouteConstants[section].title }
+          <div className='tab'>
+            { RouteConstants[section].title }
+          </div>
         </li>
       );
     });

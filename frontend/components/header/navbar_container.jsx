@@ -4,7 +4,7 @@ import { SessionActions } from '../../actions/session_actions';
 import { RouteConstants } from '../../util/route_constants';
 import Navbar from './navbar';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   state: state
 });
 
