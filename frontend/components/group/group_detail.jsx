@@ -24,7 +24,6 @@ class GroupDetail extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     if (this.props.group) {
       const admins = this.props.group.admins.map(admin => {
         return (

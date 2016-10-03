@@ -1,3 +1,8 @@
+.form {
+  position: relative;
+  top: -16px;
+}
+
 .form h3 {
   margin: 20px 0;
 }
@@ -6,13 +11,28 @@
   border-bottom: 1px solid #d3d3d3;
   padding: 4px 8px;
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   width: var(--input-width);
 }
 
 .form-textarea {
   width: 500px;
 }
+
+.form-input ::-webkit-input-placeholder {
+  color: #d3d3d3;
+}
+
+.form-input ::-moz-placeholder {
+  color: #d3d3d3;
+}
+
+/*::-webkit-datetime-edit-text,
+::-webkit-datetime-edit-day-field[aria-valuetext=blank],
+::-webkit-datetime-edit-month-field[aria-valuetext=blank],
+::-webkit-datetime-edit-year-field[aria-valuetext=blank] {
+  color: blue;
+}*/
 
 .form-input:focus {
   border-bottom: 1px solid #d3d3d3;
@@ -35,8 +55,9 @@
 .form button {
   font-size: 15px;
   position: absolute;
-  bottom: 41px;
-  left: 30px;
+  left: 0px;
+  bottom: 20px;
+  border: 0;
 }
 
 .form-search {

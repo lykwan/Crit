@@ -14,7 +14,6 @@ class EventConditionForm extends React.Component {
 
   componentWillUnMount() {
     // TODO: FIX THIS??
-    console.log('got here');
     this.props.clearCondition();
   }
 
