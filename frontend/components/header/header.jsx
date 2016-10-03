@@ -14,17 +14,18 @@ class Header extends React.Component {
   }
 
   render() {
-    let navbar;
     if (this.props.isLoggedIn) {
-      navbar = (<NavbarContainer location={ this.props.location }/>);
+      return (
+        <header className='header'>
+          <h1>Crit</h1>
+          <NavbarContainer location={ this.props.location }/>
+        </header>
+      );
+    } else {
+      return (
+        <h1 className='splash-header'>Crit</h1>
+      );
     }
-
-    return (
-      <header className='header'>
-        <h1>Crit</h1>
-        { navbar }
-      </header>
-    );
   }
 }
 

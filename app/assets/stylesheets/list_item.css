@@ -4,6 +4,11 @@
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   cursor: pointer;
   position: relative;
+  display: inline-block;
+  width: 280px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .list-item-text {
@@ -14,27 +19,8 @@
   text-overflow: ellipsis;
 }
 
-/*.list-index-item {
-  width: 100%;
-  height: 135px;
-  margin: 20px 0;
-  border: 1px solid black;
-}
-
-.list-index-item-img {
-  background-position: center;
-  background-size: 338px;
-  width: 30%;
-  height: 100%;
-}
-*/
 .event-item {
   height: 300px;
-  width: 280px;
-  margin-bottom: 20px;
-  display: inline-block;
-  margin-right: 10px;
-  margin-left: 10px;
 }
 
 .event-item-img {
@@ -137,5 +123,5 @@
 }
 
 .event-item:hover .overlay {
-  background-color:rgba(120,120,120,0.2);
+  background-color:rgba(80,80,80,0.3);
 }

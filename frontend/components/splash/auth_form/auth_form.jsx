@@ -57,7 +57,7 @@ class AuthForm extends React.Component {
   }
 
   render() {
-    let signupInput;
+    let signupInput, guestLoginButton, buttonClass;
     if (this.state.selectedTab === SIGNUP) {
       signupInput = (
           <input type='text'
@@ -65,6 +65,14 @@ class AuthForm extends React.Component {
                  placeholder="Name"
                  onChange={ this.handleInputChange.bind(this, 'name') } />
       );
+      buttonClass = 'sign-up';
+    } else {
+      guestLoginButton = (
+        <button className='login' onClick={this.handleGuestClick.bind(this)}>
+          Guest Login
+        </button>
+      );
+      buttonClass = 'login';
     }
 
     const errors = this.props.errors.map((error, idx) => {
@@ -94,12 +102,13 @@ class AuthForm extends React.Component {
           </ul>
         </div>
 
-        <button onClick={this.handleClick.bind(this)}>
-          { this.state.selectedTab }
-        </button>
-        <button onClick={this.handleGuestClick.bind(this)}>
-          GUEST LOGIN
-        </button>
+        <div className='buttons'>
+          <button className={ buttonClass }
+                  onClick={this.handleClick.bind(this)}>
+            { this.state.selectedTab === 'LOGIN' ? 'Login' : 'Sign up' }
+          </button>
+          { guestLoginButton }
+        </div>
       </div>
     );
   }
