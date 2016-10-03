@@ -16,6 +16,7 @@
 .header h1 {
   font-size: 27px;
   margin-right: 45px;
+  color: var(--primary-color);
 }
 
 .navbar {
@@ -27,13 +28,41 @@
 
   .navbar-tabs {
     display: flex;
-    justify-content: space-between;
-    width: 195px;
+    width: 230px;
   }
 
   .navbar-tabs li {
-    line-height: var(--navbar-height);
+    height: var(--navbar-height);
+    flex-grow: 1;
     cursor: pointer;
+    position: relative;
+  }
+
+  .navbar-tabs li .tab {
+    text-align: center;
+    line-height: var(--navbar-height);
+    width: 100%;
+    height: 100%;
+  }
+
+  .navbar-tabs li.inactive .tab:hover {
+    color: #7dbde7;
+  }
+
+  .navbar-tabs li.inactive .tab:after {
+    content: '';
+    display: block;
+    border-bottom: 3px solid #7dbde7;
+    width: 0;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+  }
+
+  .navbar-tabs li.inactive .tab:hover:after {
+    width: 100%;
   }
 
   .navbar-tabs .active {

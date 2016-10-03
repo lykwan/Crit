@@ -92,7 +92,7 @@ class GroupMembershipForm extends React.Component {
       <div>
         <div className='button' onClick={ this.openModal.bind(this) }>
           <i className='fa fa-plus' aria-hidden='true'></i>
-          <span>  Member</span>
+          <span>Member</span>
         </div>
 
         <Modal

@@ -9,11 +9,9 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.context.location);
-
     return (
       <div className='app'>
-        <HeaderContainer location={ location } />
+        <HeaderContainer />
         { this.props.children }
       </div>
     );

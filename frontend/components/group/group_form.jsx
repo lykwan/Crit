@@ -109,8 +109,6 @@ class GroupForm extends React.Component {
   }
 
   render() {
-    console.log(this.props.errors);
-    console.log("erorrs");
     let errors;
     if (this.props.errors) {
       errors = this.props.errors.map((error, idx) => {

@@ -19,6 +19,23 @@
   text-overflow: ellipsis;
 }
 
+.list-item-trash {
+  display: none;
+  width: 17px;
+  position: absolute;
+  top: 0;
+  right: 7px;
+  color: blue;
+  -webkit-transition: color 1s ease;
+  transition: display 1s ease;
+}
+
+.list-item:hover .list-item-trash {
+  display: block;
+  -webkit-transition: display 1s ease;
+  transition: display 1s ease;
+}
+
 .event-item {
   height: 300px;
 }

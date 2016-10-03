@@ -100,57 +100,59 @@ class EventDetail extends React.Component {
         <span>{ eventData.location }</span> :
         <span>TBD</span>;
 
-    let hostText;
-    if (eventData.host.id === currentUser.id) {
-      hostText = "You are the host";
-    } else {
-      hostText = `${ eventData.host.username } is the host`;
-    }
+      let hostText;
+      if (eventData.host.id === currentUser.id) {
+        hostText = "You are the host";
+      } else {
+        hostText = `${ eventData.host.username } is the host`;
+      }
 
-    return (
-      <section className='content detail-content'>
-        <div className='detail-img'
-             style={ { backgroundImage: `url(${eventData.img})`} } />
+      return (
+        <section className='content detail-content'>
+          <div className='detail-img'
+               style={ { backgroundImage: `url(${eventData.img})`} } />
 
-        <div className='content-body'>
+          <div className='content-body'>
 
-          <div className='content-header event-content-header'>
-            <h2>{ eventData.title }</h2>
-            { this.getPeopleRespondedText(eventData) }
-            { this.getCloseResponsePollButton(eventData) }
-            { this.getCloseTimePollButton(eventData) }
+            <div className='content-header event-content-header'>
+              <h2>{ eventData.title }</h2>
+              { this.getPeopleRespondedText(eventData) }
+              { this.getCloseResponsePollButton(eventData) }
+              { this.getCloseTimePollButton(eventData) }
+            </div>
+            <div className='event-content-info'>
+              <div className='event-detail'>
+                <i className="fa fa-map-marker" aria-hidden="true"></i>
+                { location }
+              </div>
+              <div className='event-detail'>
+                <i className="fa fa-calendar" aria-hidden="true"></i>
+                <span>{ eventData.start_date_formatted } - { eventData.end_date_formatted }</span>
+              </div>
+              <div className='event-detail'>
+                <i className="fa fa-users" aria-hidden="true"></i>
+                <span>
+                  { eventData.group.title } - { hostText }
+                </span>
+              </div>
+              <p>{ eventData.description }</p>
+            </div>
+
+
+            { this.getAttendeeList(eventData) }
+            { this.getSchedule(eventData) }
+            { this.getAttendeeResponseForm(eventData) }
+
           </div>
-          <div className='event-content-info'>
-            <div className='event-detail'>
-              <i className="fa fa-map-marker" aria-hidden="true"></i>
-              { location }
-            </div>
-            <div className='event-detail'>
-              <i className="fa fa-calendar" aria-hidden="true"></i>
-              <span>{ eventData.start_date_formatted } - { eventData.end_date_formatted }</span>
-            </div>
-            <div className='event-detail'>
-              <i className="fa fa-users" aria-hidden="true"></i>
-              <span>
-                { eventData.group.title } - { hostText }
-              </span>
-            </div>
-            <p>{ eventData.description }</p>
-          </div>
-
-
-          { this.getAttendeeList(eventData) }
-          { this.getSchedule(eventData) }
-          { this.getAttendeeResponseForm(eventData) }
-
-        </div>
 
         </section>
-        );
+      );
     }
 
     return (
-      <div>loading...</div>
+      <div className='loading-container'>
+        <i className="fa fa-spinner fa-spin fa-3x fa-fw loading"></i>
+      </div>
     );
   }
 }
