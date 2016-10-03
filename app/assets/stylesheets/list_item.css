@@ -11,12 +11,22 @@
   margin-left: 10px;
 }
 
-.list-item-text {
-  text-align: center;
+.list-item-img {
+  background-position: center;
+  background-size: cover;
+  width: 35%;
+  height: 100%;
+  display: inline-block;
 }
 
-.list-item-text span {
+.list-item-text {
+  text-align: center;
+  width: 65%;
+  display: inline-block;
+  padding: 0 10px;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .list-item-trash {
@@ -25,8 +35,8 @@
   position: absolute;
   top: 0;
   right: 7px;
-  color: blue;
-  -webkit-transition: color 1s ease;
+  color: #899AA6;
+  -webkit-transition: display 1s ease;
   transition: display 1s ease;
 }
 
@@ -81,17 +91,9 @@
 .group-item {
   height: 63px;
   background: #F5F5F5;
-  width: 210px;
+  width: 200px;
   float: left;
   margin-right: 10px;
-}
-
-.group-item-img {
-  background-position: center;
-  background-size: 120px;
-  width: 35%;
-  height: 100%;
-  float: left;
 }
 
 .group-item-text span {
@@ -119,14 +121,6 @@
 .user-item-content {
   height: 70px;
   line-height: 70px;
-}
-
-.user-item-img {
-  background-position: center;
-  background-size: 70px;
-  width: 35%;
-  height: 100%;
-  float: left;
 }
 
 .overlay {

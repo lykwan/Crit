@@ -9,7 +9,7 @@ const GroupItem = ({ group, router }) => {
   return (
     <div className='list-item group-item'
          onClick={ _handleGroupClick.bind(null, group.id, router) }>
-      <div className='group-item-img'
+      <div className='list-item-img'
            style={ { backgroundImage: `url(${group.img})`} } />
          <div className='group-item-text list-item-text'>
         <span>{ group.title }</span>

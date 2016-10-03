@@ -15,7 +15,7 @@ class Navbar extends React.Component {
     this.props.router.push(RouteConstants[section].route);
   }
 
-  handleClick() {
+  handleLogoutClick() {
     this.props.logout();
   }
 
@@ -78,11 +78,10 @@ class Navbar extends React.Component {
         </ul>
 
         <div className='navbar-icons'>
-          <div className='navbar-icon'>
-            <i className='fa fa-cog' aria-hidden='true'></i>
-            <div className='navbar-dropdown'
-                 onClick={ this.handleClick.bind(this) }>
+          <div className='navbar-icon'
+                onClick={ this.handleLogoutClick.bind(this) }>
               <i className="fa fa-sign-out" aria-hidden="true"></i>
+            <div className='navbar-dropdown'>
               <span>Logout</span>
             </div>
           </div>

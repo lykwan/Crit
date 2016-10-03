@@ -15,12 +15,12 @@ const UserItem = ({ user, isDeletable, handleDelete, router }) => {
       </div>
     );
   }
-  
+
   return (
     <div className='list-item user-item'>
       <div className='user-item-content'
            onClick={ _handleUserClick.bind(null, user.id, router) }>
-        <div className='user-item-img'
+        <div className='list-item-img'
              style={ { backgroundImage: `url(${user.img})`} } />
         <div className='user-item-text list-item-text'>
           <span>{ user.name }</span>
