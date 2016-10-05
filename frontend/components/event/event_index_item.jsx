@@ -81,10 +81,12 @@ const EventIndexItem = ({ eventData, currentUser, router }) => {
           { location }
         </div>
         <div className='event-item-last-row'>
-          <i className="fa fa-users" aria-hidden="true"></i>
-          <span>
-            { eventData.group.title }
-          </span>
+          <div>
+            <i className="fa fa-users" aria-hidden="true"></i>
+            <span>
+              { eventData.group.title }
+            </span>
+          </div>
           { instructionIcon }
         </div>
       </div>

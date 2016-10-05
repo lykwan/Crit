@@ -10,6 +10,7 @@ const customModalStyles = {
     right           :0,
     bottom          :0,
     backgroundColor :'rgba(0, 0, 0, 0.40)',
+    zIndex          :10
   },
   content: {
     position        :'fixed',
@@ -17,6 +18,7 @@ const customModalStyles = {
     margin          :'auto',
     border          :'1px solid #ccc',
     padding         :'30px',
+    zIndex          : 11
   }
 };
 

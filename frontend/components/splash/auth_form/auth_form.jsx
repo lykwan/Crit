@@ -68,7 +68,8 @@ class AuthForm extends React.Component {
       buttonClass = 'sign-up';
     } else {
       guestLoginButton = (
-        <button className='login' onClick={this.handleGuestClick.bind(this)}>
+        <button className='login'
+                onClick={this.handleGuestClick.bind(this)}>
           Guest Login
         </button>
       );

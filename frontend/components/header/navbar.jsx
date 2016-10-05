@@ -44,8 +44,6 @@ class Navbar extends React.Component {
       if (this.state.selectedTab === RouteConstants[section].route) {
         isActiveTabClass = 'active';
       }
-
-
 //       <div className='navbar-icon'>
 //   <i className='fa fa-search' aria-hidden='true'></i>
 // </div>
@@ -58,8 +56,6 @@ class Navbar extends React.Component {
 //   <i className="fa fa-bell" aria-hidden="true"></i>
 // </div>
 //
-
-
       return (
         <li key={ RouteConstants[section].title }
             onClick={ this.selectTab.bind(this, section) }
@@ -80,7 +76,7 @@ class Navbar extends React.Component {
         <div className='navbar-icons'>
           <div className='navbar-icon'
                 onClick={ this.handleLogoutClick.bind(this) }>
-              <i className="fa fa-sign-out" aria-hidden="true"></i>
+              <i className='fa fa-sign-out' aria-hidden='true'></i>
             <div className='navbar-dropdown'>
               <span>Logout</span>
             </div>

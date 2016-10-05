@@ -87,13 +87,18 @@
   margin-right: 8px;
 }
 
+.event-item-last-row {
+  display: flex;
+  justify-content: space-between;
+}
+
 
 .group-item {
   height: 63px;
   background: #F5F5F5;
-  width: 200px;
+  width: 206px;
   float: left;
-  margin-right: 10px;
+  margin-right: 2px;
 }
 
 .group-item-text span {

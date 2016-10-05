@@ -8,10 +8,9 @@
 
 .splash {
   position: relative;
-  height: 100%;
+  height: 100vh;
   color: white;
   background-position: center center;
-  // background: url(http://www.jordankranda.com/wp-content/uploads/2014/04/421412.jpg);
   background: url(/assets/splash_bg.jpg);
   background-size: cover;
 }
@@ -36,16 +35,18 @@
 
   .splash-container {
     display: flex;
-    width: 75%;
+    width: 60%;
     margin: auto;
     justify-content: space-between;
-    padding-top: 115px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .splash-description {
     position: relative;
-    padding: 40px 70px;
-    text-shadow: -2px 2px 0px rgba(0,0,0,0.3),-3px 3px 1px rgba(0,0,0,0.5),-4px 4px 2px rgba(0,0,0,0.2);
+    padding: 40px 0;
   }
 
     .splash-description h2 {
@@ -63,10 +64,10 @@
   flex-direction: column;
   justify-content: space-between;
   float: left;
-  width: 370px;
+  width: 320px;
   height: 380px;
   box-sizing: border-box;
-  padding: 25px;
+  padding: 25px 0;
 }
 
   .auth-form input {
@@ -105,11 +106,12 @@
   }
 
   .auth-form button {
+    cursor: pointer;
     color: rgba(255, 255, 255, 0.3);
     background: none;
     border: 2px solid rgba(255, 255, 255, 0.3);
     height: 50px;
-    font-size: 13px;
+    font-size: 15px;
     -webkit-transition: border-color 1s ease, color 1s ease;
     transition: border-color 1s ease, color 1s ease;
   }
