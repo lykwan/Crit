@@ -33,7 +33,7 @@ class Profile extends React.Component {
       }
 
       return (
-        <div>
+        <section className='content'>
           <div className='profile-img-frame'>
             <div className='img-upload profile-img-upload'>
               <div className='text'>
@@ -64,7 +64,7 @@ class Profile extends React.Component {
                </div>
              </div>
           </div>
-        </div>
+        </section>
       );
     } else {
       return <div></div>;

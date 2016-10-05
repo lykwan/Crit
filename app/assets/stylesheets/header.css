@@ -11,6 +11,10 @@
   padding: 0 17px;
   background-color: white;
   border-bottom: 1px solid var(--border-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
 
 .header h1 {
@@ -109,3 +113,21 @@
         .navbar-dropdown li {
           float: left;
         }
+
+.body-scrolled {
+  -webkit-box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 4px 5px 0 rgba(0,0,0,0.06),0 1px 10px 0 rgba(0,0,0,0.08);
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 4px 5px 0 rgba(0,0,0,0.06),0 1px 10px 0 rgba(0,0,0,0.08);
+}
+
+.splash-sticky {
+  top: -60px;
+  -webkit-transition: transform 1s ease;
+   -moz-transition: transform 1s ease;
+        transition: transform 1s ease;
+}
+
+.splash-sticky.splash-scrolled {
+  -webkit-transform: translate(0, 60px);
+    -moz-transform: translate(0, 60px);
+        transform: translate(0, 60px);
+}

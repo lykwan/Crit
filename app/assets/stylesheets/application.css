@@ -65,6 +65,8 @@ h4 {
 .content {
   width: 900px;
   margin: auto;
+  position: relative;
+  top: 60px;
 }
 
 
@@ -134,6 +136,16 @@ body.modal-open {
   height: 280px;
   background-position: center;
   background-size: cover;
+  cursor: pointer;
+}
+
+.detail-img-upload {
+  display: none;
+  cursor: pointer;
+}
+
+.detail-img-frame:hover .detail-img-upload {
+  display: block;
 }
 
 
@@ -148,6 +160,8 @@ body.modal-open {
 
 .errors-list {
   color: red;
+  font-size: 13px;
+  height: 60px;
 }
 
 .group:after {

@@ -48,10 +48,6 @@ GroupMembership.create!(member_user_id: 6, group_id: 3, is_admin: false)
 GroupMembership.create!(member_user_id: 1, group_id: 3, is_admin: false)
 GroupMembership.create!(member_user_id: 7, group_id: 3, is_admin: true)
 
-10.times do |i|
-  GroupMembership.create!(member_user_id: 10 + i, group_id: 2 + rand(2), is_admin: false)
-end
-
 # guest can close poll
 Event.create!(title: 'dinner', description: 'yummy food', group_id: 1, host_user_id: 1, start_date: DateTime.new(2017,10,5), end_date: DateTime.new(2017,10,12), img: 'http://comptonbusinessjournal.com/wp-content/uploads/2015/11/Compton-Community-Thanksgiving-Dinner.jpg')
 # guest can set conditions

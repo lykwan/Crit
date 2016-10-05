@@ -1,18 +1,18 @@
-.form {
-  position: relative;
-  top: -16px;
-}
-
 .form h3 {
-  margin: 20px 0;
+  margin-bottom: 20px;
+  color: #899AA6;
 }
 
 .form-input {
   border-bottom: 1px solid #d3d3d3;
   padding: 4px 8px;
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   width: var(--input-width);
+}
+
+.form label {
+  font-size: 15px;
 }
 
 .form-textarea {
@@ -54,9 +54,6 @@
 
 .form button {
   font-size: 15px;
-  position: absolute;
-  left: 0px;
-  bottom: 20px;
   border: 0;
 }
 
@@ -69,7 +66,8 @@
   height: 35px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #d3d3d3;
+  color: #d3d3d3;
 }
 
 .form-date {
