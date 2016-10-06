@@ -104,8 +104,8 @@ class SpecificFriendsCondition extends React.Component {
     }
 
     return (
-      <div>
-        Friends going:
+      <div className='specific-friends'>
+        <span className='label'>Friends going:</span>
         <Select
             className='select-friends-input'
             multi={ true }

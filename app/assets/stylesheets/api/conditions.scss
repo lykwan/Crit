@@ -10,6 +10,10 @@
   position: relative;
 }
 
+.num-people-condition .label {
+  margin-right: 10px;
+}
+
 .num-people-condition .num-people {
   position: absolute;
   padding: 0 8px;
@@ -18,7 +22,8 @@
 
 .form-input.min-num-input {
   display: inline-block;
-  margin: 10 15px;
+  width: 60px;
+  margin-right: 10px;
 }
 
 .saved-msg {
@@ -29,4 +34,5 @@
 .select-friends-input {
   display: inline-block;
   margin: 0 15px;
+  vertical-align: middle;
 }
