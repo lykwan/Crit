@@ -72,7 +72,7 @@ class NumPeopleCondition extends React.Component {
 
     return (
       <div className='num-people-condition'>
-        Minimum number of people:
+        <span className='label'>Minimum number of people:</span>
         { minNumPeople }
         <input type='text'
                className='form-input min-num-input'
