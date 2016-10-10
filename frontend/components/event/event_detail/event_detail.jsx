@@ -91,6 +91,12 @@ class EventDetail extends React.Component {
     return peopleRespondedText;
   }
 
+  componentDidUpdate() {
+    let objDiv = document.getElementById("scrollBottom");
+    console.log('got here');
+    objDiv.scrollTop = objDiv.scrollHeight;
+  }
+
   render() {
     const eventData = this.props.eventData;
     const currentUser = this.props.currentUser;
@@ -108,7 +114,7 @@ class EventDetail extends React.Component {
       }
 
       return (
-        <section className='content detail-content'>
+        <section className='content detail-content' id='scrollBottom'>
           <div className='detail-img'
                style={ { backgroundImage: `url(${eventData.img})`} } />
 

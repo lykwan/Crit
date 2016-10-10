@@ -57,7 +57,7 @@ class AuthForm extends React.Component {
   }
 
   render() {
-    let signupInput, guestLoginButton, buttonClass;
+    let signupInput, guestLoginButton, buttonClass, demoExplanationBox;
     if (this.state.selectedTab === SIGNUP) {
       signupInput = (
           <input type='text'
@@ -66,6 +66,16 @@ class AuthForm extends React.Component {
                  onChange={ this.handleInputChange.bind(this, 'name') } />
       );
       buttonClass = 'sign-up';
+      demoExplanationBox = (
+        <div className='demo-explanation-container'>
+          <div className='demo-explanation'>
+            If you are on this site for demoing, it might be
+            better to switch to "Guest Login" on the login tab instead,
+            as there would be more test data to work with.
+          </div>
+          <div className='arrow-right'></div>
+        </div>
+      );
     } else {
       guestLoginButton = (
         <button className='login'
@@ -103,6 +113,7 @@ class AuthForm extends React.Component {
           </ul>
         </div>
 
+        { demoExplanationBox }
         <div className='buttons'>
           <button className={ buttonClass }
                   onClick={this.handleClick.bind(this)}>

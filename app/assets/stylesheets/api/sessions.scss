@@ -102,7 +102,7 @@
   }
 
   .auth-form ::-moz-placeholder {
-     color: rgba(255, 255, 255, 0.7);
+     color: rgba(255, 255, 255, 0.6);
   }
 
   .auth-form button {
@@ -133,6 +133,32 @@
 
   .auth-form .login {
     width: 48%;
+  }
+
+  .auth-form .demo-explanation-container {
+    position: relative;
+    left: -340px;
+    top: 78px;
+    width: 320px;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .auth-form .demo-explanation {
+    width: 300px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    display: inline-block;
+  }
+
+  .auth-form .arrow-right {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 45%;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid rgba(255, 255, 255, 0.3);
+    display: inline-block;
   }
 
   .auth-form-errors {
